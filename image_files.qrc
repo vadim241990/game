@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/menu">
+        <file>image/menu/fon_left.jpg</file>
+        <file>image/menu/stal.jpg</file>
+    </qresource>
+    <qresource prefix="/other">
+        <file>image/other/er.bmp</file>
+        <file>image/other/mask.bmp</file>
+        <file>image/other/blue.jpg</file>
+        <file>image/other/fiolet.jpg</file>
+        <file>image/other/green.jpg</file>
+        <file>image/other/red.jpg</file>
+        <file>image/other/yellow.jpg</file>
+    </qresource>
+    <qresource prefix="/person">
+        <file>image/person/fon_geroi.jpg</file>
+        <file>image/person/green_st.png</file>
+        <file>image/person/person_geroi_lush.jpg</file>
+        <file>image/person/person_geroi_mag.jpg</file>
+        <file>image/person/person_geroi_voin.jpg</file>
+        <file>image/person/red_st.png</file>
+    </qresource>
+</RCC>

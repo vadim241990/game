@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MainForm.ui.qml</file>
+        <file>geroi.qml</file>
+        <file>Style_files.qml</file>
+        <file>Select_window.qml</file>
+        <file>history.qml</file>
+        <file>taktic_game.qml</file>
+        <file>home.qml</file>
+        <file>ESC.qml</file>
+        <file>army.qml</file>
+        <file>battle.qml</file>
+        <file>Table_property.qml</file>
+        <file>Delegate_building.qml</file>
+        <file>up_level.qml</file>
+    </qresource>
+    <qresource prefix="/building_home">
+        <file>building_gold.qml</file>
+        <file>building_boez.qml</file>
+        <file>Delegate_building.qml</file>
+        <file>load_army.qml</file>
+        <file>Bar.qml</file>
+        <file>Property_otrad.qml</file>
+        <file>load_taktic.qml</file>
+        <file>Table_property.qml</file>
+        <file>result.qml</file>
+    </qresource>
+</RCC>
