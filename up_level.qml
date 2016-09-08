@@ -426,6 +426,7 @@ Rectangle //вступительная заставка к новому уров
     {
         if(var_init === false)
         {
+            //global_settings.set_point_1(global_settings.get_point_1() + 5); //тестовая строка
             fon.source = "file:///" + applicationDirPath + "/image/up_level/fon_up_level.jpg";
 
             var adress = "";
@@ -888,6 +889,7 @@ Rectangle //вступительная заставка к новому уров
                         global_settings.set_point_sila(global_settings.get_point_sila() + 1);
                         global_settings.set_point_1(global_settings.get_point_1() - 1);
                         repaint_fon_1_point_sila();
+                        table.update_damage_for_geroy();
                     }
                 }
             }
@@ -926,6 +928,7 @@ Rectangle //вступительная заставка к новому уров
                         global_settings.set_point_lovkost(global_settings.get_point_lovkost() + 1);
                         global_settings.set_point_1(global_settings.get_point_1() - 1);
                         repaint_fon_1_point_lovkost();
+                        table.update_damage_for_geroy();
                     }
                 }
             }
@@ -964,6 +967,7 @@ Rectangle //вступительная заставка к новому уров
                         global_settings.set_point_life(global_settings.get_point_life() + 1);
                         global_settings.set_point_1(global_settings.get_point_1() - 1);
                         repaint_fon_1_point_life();
+                        table.update_life_for_geroy();
                     }
                 }
             }
@@ -1003,6 +1007,7 @@ Rectangle //вступительная заставка к новому уров
                         global_settings.set_point_energy(global_settings.get_point_energy() + 1);
                         global_settings.set_point_1(global_settings.get_point_1() - 1);
                         repaint_fon_1_point_energy();
+                        table.update_damage_for_geroy();
                     }
                 }
             }

@@ -175,6 +175,9 @@ public:
     Q_INVOKABLE void set_point_3(int number);
     Q_INVOKABLE void add_point_3();
 
+    Q_INVOKABLE int get_add_life_for_geroy(QString name); //сколько добавляется герою к здоровью от прокачки
+    Q_INVOKABLE int get_add_damage_for_geroy(QString name);
+
     Q_INVOKABLE int get_books_magic_use();
     Q_INVOKABLE void set_books_magic(int index, QString value);
     Q_INVOKABLE QString get_books_magic(int index);

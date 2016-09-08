@@ -6,10 +6,26 @@ Rectangle
     width: parent.width
     height: parent.height
     visible: true
+
+    property string name_geroy: ""   // Воин Лучник или Маг
+    property string base_life: ""
+    property string base_damage: ""
     
     function set_name(name)
     {
         name_otrad_text.text = name;
+    }
+
+    function update_life_for_geroy()
+    {
+        var life = (parseInt(base_life) + global_settings.get_add_life_for_geroy(name_geroy)).toString();
+        model_list.setProperty(3,"value_model",life);
+    }
+
+    function update_damage_for_geroy()
+    {
+        var damage = (parseInt(base_damage) + global_settings.get_add_damage_for_geroy(name_geroy)).toString();
+        model_list.setProperty(2,"value_model",damage);
     }
 
     function parsing_full_version(x,y)
@@ -31,17 +47,24 @@ Rectangle
         var end_index = stroka.indexOf("#");
         var name_res = stroka.slice(start_index,end_index);
 
-        if((name_res === "Воин") || (name_res === "Маг") || (name_res === "Лучник"))
-            name_otrad_text.text = global_settings.get_real_name_geroy();
-        else
-            name_otrad_text.text = name_res;
-
         for(var i = 0; i < massiv.length; i++) //парсинг строки
         {
             start_index = end_index;
             end_index = stroka.indexOf("#",start_index + 1);
             massiv[i] = stroka.slice(start_index + 1,end_index);
         }
+
+        if((name_res === "Воин") || (name_res === "Маг") || (name_res === "Лучник"))
+        {
+            name_otrad_text.text = global_settings.get_real_name_geroy();
+            base_life = massiv[3];
+            base_damage = massiv[2];
+            massiv[3] = (parseInt(massiv[3]) + global_settings.get_add_life_for_geroy(name_res)).toString();
+            massiv[2] = (parseInt(massiv[2]) + global_settings.get_add_damage_for_geroy(name_res)).toString();
+            name_geroy = name_res;
+        }
+        else
+            name_otrad_text.text = name_res;
 
         if(massiv[7] === "")
             massiv[7] = "Нет";
