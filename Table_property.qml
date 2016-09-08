@@ -30,7 +30,11 @@ Rectangle
         var massiv = new Array(11);
         var end_index = stroka.indexOf("#");
         var name_res = stroka.slice(start_index,end_index);
-        name_otrad_text.text = name_res;
+
+        if((name_res === "Воин") || (name_res === "Маг") || (name_res === "Лучник"))
+            name_otrad_text.text = global_settings.get_real_name_geroy();
+        else
+            name_otrad_text.text = name_res;
 
         for(var i = 0; i < massiv.length; i++) //парсинг строки
         {

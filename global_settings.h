@@ -93,6 +93,7 @@ public:
     Q_INVOKABLE void set_result_battle(QString text);
 
     Q_INVOKABLE QString get_name_geroy();
+    Q_INVOKABLE QString get_real_name_geroy();
     Q_INVOKABLE void set_name_geroy(QString name);
 
     Q_INVOKABLE bool get_building(QString name);

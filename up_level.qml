@@ -431,7 +431,6 @@ Rectangle //вступительная заставка к новому уров
             var adress = "";
             var name = global_settings.get_name_geroy();
             var end_index = name.indexOf(":",1);
-            var name2 = name.slice(end_index + 1,name.length);
             name = name.slice(0,end_index);
 
             if(name === "Воин")
