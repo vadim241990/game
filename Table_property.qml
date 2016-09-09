@@ -57,11 +57,14 @@ Rectangle
         if((name_res === "Воин") || (name_res === "Маг") || (name_res === "Лучник"))
         {
             name_otrad_text.text = global_settings.get_real_name_geroy();
-            base_life = massiv[3];
-            base_damage = massiv[2];
-            massiv[3] = (parseInt(massiv[3]) + global_settings.get_add_life_for_geroy(name_res)).toString();
-            massiv[2] = (parseInt(massiv[2]) + global_settings.get_add_damage_for_geroy(name_res)).toString();
-            name_geroy = name_res;
+            if(name !== "")
+            {
+                base_life = massiv[3];
+                base_damage = massiv[2];
+                massiv[3] = (parseInt(massiv[3]) + global_settings.get_add_life_for_geroy(name_res)).toString();
+                massiv[2] = (parseInt(massiv[2]) + global_settings.get_add_damage_for_geroy(name_res)).toString();
+                name_geroy = name_res;
+            }
         }
         else
             name_otrad_text.text = name_res;

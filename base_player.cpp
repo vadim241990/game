@@ -493,9 +493,30 @@ void Base_player::create_unit(QString name,QString header,bool need_level)
   this->name = massiv.at(0);
   this->type_damage = massiv.at(1);
   this->ver_damage = massiv.at(2).toInt();
-  this->damage = massiv.at(3).toInt();
-  this->life = massiv.at(4).toInt();
-  this->real_life = massiv.at(4).toInt();
+
+  //обработка урона(герои и все остальные)
+  if(name == "Герой маг")
+  {
+      this->damage = massiv.at(3).toInt() + global->get_add_damage_for_geroy("Маг");
+      this->life = massiv.at(4).toInt() + global->get_add_life_for_geroy("Маг");
+  }
+  else if(name == "Герой воин")
+  {
+      this->damage = massiv.at(3).toInt() + global->get_add_damage_for_geroy("Воин");
+      this->life = massiv.at(4).toInt() + global->get_add_life_for_geroy("Воин");
+  }
+  else if(name == "Герой лучник")
+  {
+      this->damage = massiv.at(3).toInt() + global->get_add_damage_for_geroy("Лучник");
+      this->life = massiv.at(4).toInt() + global->get_add_life_for_geroy("Лучник");
+  }
+  else
+  {
+      this->damage = massiv.at(3).toInt();
+      this->life = massiv.at(4).toInt();
+  }
+
+  this->real_life = this->life;
   this->bron = massiv.at(5).toInt();
   this->inichiativa = massiv.at(6).toInt();
   this->shel = massiv.at(7);

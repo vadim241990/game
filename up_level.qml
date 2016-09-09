@@ -422,11 +422,25 @@ Rectangle //вступительная заставка к новому уров
         point.text = "Осталось пунктов: " + global_settings.get_point_1();
     }
 
+    function click_button_fon_2(name_mag)
+    {
+        if(global_settings.get_point_2() > 0)
+        {
+            global_settings.set_geroy_skill(name_mag,true);
+            repaint_fon_2();
+            global_settings.set_point_2(global_settings.get_point_2() - 1);
+            number_points.text = "Осталось баллов: " + global_settings.get_point_2();
+        }
+    }
+
     function repaint_table()
     {
         if(var_init === false)
         {
-            //global_settings.set_point_1(global_settings.get_point_1() + 5); //тестовая строка
+            global_settings.set_point_1(global_settings.get_point_1() + 5); //тестовая строка
+            global_settings.add_point_2();                                  //тестовая строка
+            global_settings.add_point_2();                                  //тестовая строка
+
             fon.source = "file:///" + applicationDirPath + "/image/up_level/fon_up_level.jpg";
 
             var adress = "";
@@ -1269,8 +1283,7 @@ Rectangle //вступительная заставка к новому уров
                 }
                 onClicked:
                 {
-                    global_settings.set_geroy_skill("damage_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("damage_1");
                 }
             }
         }
@@ -1323,8 +1336,7 @@ Rectangle //вступительная заставка к новому уров
                 }
                 onClicked:
                 {
-                    global_settings.set_geroy_skill("toshnost_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("toshnost_1");
                 }
             }
         }
@@ -1377,8 +1389,7 @@ Rectangle //вступительная заставка к новому уров
                 }
                 onClicked:
                 {
-                    global_settings.set_geroy_skill("inishiativa_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("inishiativa_1");
                 }
             }
         }
@@ -1431,8 +1442,7 @@ Rectangle //вступительная заставка к новому уров
                 }
                 onClicked:
                 {
-                    global_settings.set_geroy_skill("bron_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("bron_1");
                 }
             }
         }
@@ -1494,8 +1504,7 @@ Rectangle //вступительная заставка к новому уров
                     if(left_2_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("damage_vampir_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("damage_vampir_1");
                 }
             }
         }
@@ -1558,8 +1567,7 @@ Rectangle //вступительная заставка к новому уров
                     if(left_2_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("damage_poison_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("damage_poison_1");
                 }
             }
         }
@@ -1621,8 +1629,7 @@ Rectangle //вступительная заставка к новому уров
                     if(top_2_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("def_fier_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("def_fier_1");
                 }
             }
         }
@@ -1684,8 +1691,7 @@ Rectangle //вступительная заставка к новому уров
                     if(top_2_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("def_cold_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("def_cold_1");
                 }
             }
         }
@@ -1747,8 +1753,7 @@ Rectangle //вступительная заставка к новому уров
                     if(bottom_2_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("def_poison_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("def_poison_1");
                 }
             }
         }
@@ -1810,8 +1815,7 @@ Rectangle //вступительная заставка к новому уров
                     if(bottom_2_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("def_electriciti_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("def_electriciti_1");
                 }
             }
         }
@@ -1873,8 +1877,7 @@ Rectangle //вступительная заставка к новому уров
                     if(right_2_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("bron_life_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("bron_life_1");
                 }
             }
         }
@@ -1936,8 +1939,7 @@ Rectangle //вступительная заставка к новому уров
                     if(right_2_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("bron_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("bron_2");
                 }
             }
         }
@@ -1998,8 +2000,7 @@ Rectangle //вступительная заставка к новому уров
                     if(left_3_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("damage_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("damage_2");
                 }
             }
         }
@@ -2061,8 +2062,7 @@ Rectangle //вступительная заставка к новому уров
                     if(left_3_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("damage_ushas_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("damage_ushas_1");
                 }
             }
         }
@@ -2124,8 +2124,7 @@ Rectangle //вступительная заставка к новому уров
                     if(left_3_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("damage_all_team_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("damage_all_team_1");
                 }
             }
         }
@@ -2186,8 +2185,7 @@ Rectangle //вступительная заставка к новому уров
                     if(top_3_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("toshnost_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("toshnost_2");
                 }
             }
         }
@@ -2249,8 +2247,7 @@ Rectangle //вступительная заставка к новому уров
                     if(top_3_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("def_fier_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("def_fier_2");
                 }
             }
         }
@@ -2312,8 +2309,7 @@ Rectangle //вступительная заставка к новому уров
                     if(top_3_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("def_cold_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("def_cold_2");
                 }
             }
         }
@@ -2374,8 +2370,7 @@ Rectangle //вступительная заставка к новому уров
                     if(bottom_3_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("inishiativa_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("inishiativa_2");
                 }
             }
         }
@@ -2437,8 +2432,7 @@ Rectangle //вступительная заставка к новому уров
                     if(bottom_3_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("def_poison_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("def_poison_2");
                 }
             }
         }
@@ -2500,8 +2494,7 @@ Rectangle //вступительная заставка к новому уров
                     if(bottom_3_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("def_electriciti_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("def_electriciti_2");
                 }
             }
         }
@@ -2562,8 +2555,7 @@ Rectangle //вступительная заставка к новому уров
                     if(right_3_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("bron_regen_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("bron_regen_1");
                 }
             }
         }
@@ -2625,8 +2617,7 @@ Rectangle //вступительная заставка к новому уров
                     if(right_3_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("bron_3",true);
-                    repaint_fon_2();
+                    click_button_fon_2("bron_3");
                 }
             }
         }
@@ -2688,8 +2679,7 @@ Rectangle //вступительная заставка к новому уров
                     if(right_3_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("bron_life_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("bron_life_2");
                 }
             }
         }
@@ -2751,8 +2741,7 @@ Rectangle //вступительная заставка к новому уров
                     if(left_4_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("damage_ushas_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("damage_ushas_2");
                 }
             }
         }
@@ -2814,8 +2803,7 @@ Rectangle //вступительная заставка к новому уров
                     if(left_4_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("damage_all_team_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("damage_all_team_2");
                 }
             }
         }
@@ -2877,8 +2865,7 @@ Rectangle //вступительная заставка к новому уров
                     if(left_4_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("damage_vampir_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("damage_vampir_2");
                 }
             }
         }
@@ -2940,8 +2927,7 @@ Rectangle //вступительная заставка к новому уров
                     if(left_4_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("damage_poison_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("damage_poison_2");
                 }
             }
         }
@@ -3003,8 +2989,7 @@ Rectangle //вступительная заставка к новому уров
                     if(right_4_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("bron_shit_1",true);
-                    repaint_fon_2();
+                    click_button_fon_2("bron_shit_1");
                 }
             }
         }
@@ -3066,8 +3051,7 @@ Rectangle //вступительная заставка к новому уров
                     if(right_4_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("bron_regen_2",true);
-                    repaint_fon_2();
+                    click_button_fon_2("bron_regen_2");
                 }
             }
         }
@@ -3129,8 +3113,7 @@ Rectangle //вступительная заставка к новому уров
                     if(right_4_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("bron_life_3",true);
-                    repaint_fon_2();
+                    click_button_fon_2("bron_life_3");
                 }
             }
         }
@@ -3192,8 +3175,7 @@ Rectangle //вступительная заставка к новому уров
                     if(right_4_opisanie_use() === false)
                         return;
 
-                    global_settings.set_geroy_skill("bron_4",true);
-                    repaint_fon_2();
+                    click_button_fon_2("bron_4");
                 }
             }
         }
@@ -3235,7 +3217,7 @@ Rectangle //вступительная заставка к новому уров
             minimumPointSize: 8
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            text: "Осталось баллов: "
+            text: "Осталось баллов: " + global_settings.get_point_2();
         }
 
         Rectangle
