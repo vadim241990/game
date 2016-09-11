@@ -64,6 +64,9 @@ Rectangle
                 massiv[3] = (parseInt(massiv[3]) + global_settings.get_add_life_for_geroy(name_res)).toString();
                 massiv[2] = (parseInt(massiv[2]) + global_settings.get_add_damage_for_geroy(name_res)).toString();
                 name_geroy = name_res;
+
+                if(global_settings.get_geroy_skill("toshnost_1") === true)
+                    massiv[1] = (parseInt(massiv[1]) + 10).toString();
             }
         }
         else

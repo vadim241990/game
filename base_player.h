@@ -35,6 +35,7 @@ class Base_player : public QObject
 protected:
 	
     void create_unit(QString name,QString header,bool need_level);
+    void create_geroy_skill(QVector<QString>& massiv);
     Base_player * seatsh_player(QList<Base_player *> list,int x,int y);
     bool immunitet_def(Base_player * player);
     bool zashita_def(Base_player * player);
