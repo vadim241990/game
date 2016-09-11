@@ -67,6 +67,9 @@ Rectangle
 
                 if(global_settings.get_geroy_skill("toshnost_1") === true)
                     massiv[1] = (parseInt(massiv[1]) + 10).toString();
+
+                if(global_settings.get_geroy_skill("bron_1") === true)
+                    massiv[4] = (parseInt(massiv[4]) + 10).toString();
             }
         }
         else

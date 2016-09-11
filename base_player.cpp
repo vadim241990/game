@@ -547,6 +547,9 @@ void Base_player::create_geroy_skill(QVector<QString>& massiv)
 
     if(global->get_geroy_skill("toshnost_1") == true)
         massiv[2] = QString::number(massiv[2].toInt() + 10);
+
+    if(global->get_geroy_skill("bron_1") == true)
+        massiv[5] = QString::number(massiv[5].toInt() + 10);
 }
 
 ////////////////////////////////////////////////////////////////////////

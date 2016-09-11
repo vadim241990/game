@@ -3197,7 +3197,7 @@ Rectangle //вступительная заставка к новому уров
             minimumPointSize: 8
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            text: "Выберите умение"
+            text: "Выберите пассивное умение"
         }
 
         Text
