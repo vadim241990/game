@@ -3,7 +3,10 @@
 
 Base_player::Base_player(QObject *parent) : QObject(parent)
 {
-  
+    this->bonus_bron = 0;
+    this->bonus_damage = 0;
+    this->bonus_inichiativa = 0;
+    this->bonus_life = 0;
 }
 
 Base_player::~Base_player()
@@ -117,6 +120,46 @@ int Base_player::get_ver_damage()
 QString Base_player::get_description()
 {
     return this->description;
+}
+
+void Base_player::set_bonus_damage(int value)
+{
+    this->bonus_damage = value;
+}
+
+int Base_player::get_bonus_damage()
+{
+    return this->bonus_damage;
+}
+
+void Base_player::set_bonus_life(int value)
+{
+    this->bonus_life = value;
+}
+
+int Base_player::get_bonus_life()
+{
+    return this->bonus_life;
+}
+
+void Base_player::set_bonus_bron(int value)
+{
+    this->bonus_bron = value;
+}
+
+int Base_player::get_bonus_bron()
+{
+    return this->bonus_bron;
+}
+
+void Base_player::set_bonus_inichiativa(int value)
+{
+    this->bonus_inichiativa = value;
+}
+
+int Base_player::get_bonus_inichiativa()
+{
+    return this->bonus_inichiativa;
 }
 
 Base_player * Base_player::seatsh_player(QList<Base_player *> list,int x,int y)
@@ -415,6 +458,7 @@ Result Base_player::result_damage(Base_player * player)
     int life = player->get_real_life();
     int def = player->get_bron();
     int uron = this->get_damage();
+    uron = uron * ((double)(100 + this->get_bonus_damage())/100); //коректировка с учотом бонусов
 
     // для упрощения завел переменные
     res.uron = (((double)(100 - def)/100) * uron); //TODO добавить просмотр эффектов
@@ -550,6 +594,9 @@ void Base_player::create_geroy_skill(QVector<QString>& massiv)
 
     if(global->get_geroy_skill("bron_1") == true)
         massiv[5] = QString::number(massiv[5].toInt() + 10);
+
+    if(global->get_geroy_skill("damage_1") == true)
+        this->set_bonus_damage(10);
 }
 
 ////////////////////////////////////////////////////////////////////////

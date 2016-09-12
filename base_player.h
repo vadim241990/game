@@ -27,6 +27,12 @@ class Base_player : public QObject
     QString immunitet;
     QString shel_attack;
     QString description;
+
+    //добавляют характеристики в процентном соотношении
+    int bonus_damage;
+    int bonus_life;
+    int bonus_bron;
+    int bonus_inichiativa;
     
     int point_X;
     int point_Y;
@@ -71,6 +77,15 @@ public:
     void set_real_life(int number);
     int get_damage();
     int get_bron();
+
+    void set_bonus_damage(int value);
+    int get_bonus_damage();
+    void set_bonus_life(int value);
+    int get_bonus_life();
+    void set_bonus_bron(int value);
+    int get_bonus_bron();
+    void set_bonus_inichiativa(int value);
+    int get_bonus_inichiativa();
 	
     virtual QString attack(int x, int y,QList<Base_player *> list);
     virtual Result result_damage(Base_player * player);

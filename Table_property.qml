@@ -24,7 +24,12 @@ Rectangle
 
     function update_damage_for_geroy()
     {
+        var bonus_damage = 1;
+        if(global_settings.get_geroy_skill("damage_1") === true)
+            bonus_damage = 1.1;
+
         var damage = (parseInt(base_damage) + global_settings.get_add_damage_for_geroy(name_geroy)).toString();
+        damage = parseInt((parseInt(damage) * bonus_damage)).toString();
         model_list.setProperty(2,"value_model",damage);
     }
 
@@ -59,6 +64,7 @@ Rectangle
             name_otrad_text.text = global_settings.get_real_name_geroy();
             if(name !== "")
             {
+                var bonus_damage = 1;
                 base_life = massiv[3];
                 base_damage = massiv[2];
                 massiv[3] = (parseInt(massiv[3]) + global_settings.get_add_life_for_geroy(name_res)).toString();
@@ -70,6 +76,11 @@ Rectangle
 
                 if(global_settings.get_geroy_skill("bron_1") === true)
                     massiv[4] = (parseInt(massiv[4]) + 10).toString();
+
+                if(global_settings.get_geroy_skill("damage_1") === true)
+                    bonus_damage = 1.1;
+
+                massiv[2] = (parseInt(parseInt(massiv[2]) * bonus_damage)).toString();
             }
         }
         else
