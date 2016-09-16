@@ -342,7 +342,7 @@ bool Base_player::damage_popal()
 bool Base_player::immunitet_def(Base_player * player)
 {
     int len = 0;
-    int start_index = 0;
+    int start_index;
     int end_index = 0;
     QVector<QString> immunitet;
 
@@ -352,6 +352,7 @@ bool Base_player::immunitet_def(Base_player * player)
 
     while(1) //перезапись в отдельные строки
     {
+      start_index = 0;
       end_index = stroka.indexOf(";",start_index);
       if(end_index == -1)
       {
@@ -362,6 +363,7 @@ bool Base_player::immunitet_def(Base_player * player)
       len = end_index - start_index;
       immunitet.push_back(stroka.mid(start_index,len));
       start_index = end_index + 1;
+      stroka = stroka.mid(start_index,stroka.length() - start_index);
     }
 
     for(int i = 0; i < immunitet.size();i++)
@@ -383,7 +385,7 @@ bool Base_player::zashita_def(Base_player * player)
 {
     int static number_zashita = 0;
     int len = 0;
-    int start_index = 0;
+    int start_index;
     int end_index = 0;
     int res;
     QVector<QString> zashita;
@@ -398,6 +400,7 @@ bool Base_player::zashita_def(Base_player * player)
 
     while(1) //перезапись в отдельные строки
     {
+      start_index = 0;
       end_index = stroka.indexOf(";",start_index);
       if(end_index == -1)
       {
@@ -408,6 +411,7 @@ bool Base_player::zashita_def(Base_player * player)
       len = end_index - start_index;
       zashita.push_back(stroka.mid(start_index,len));
       start_index = end_index + 1;
+      stroka = stroka.mid(start_index,stroka.length() - start_index);
     }
 
     for(int i = 0; i < zashita.size();i++)
@@ -562,11 +566,17 @@ void Base_player::create_unit(QString name,QString header,bool need_level)
       this->life = massiv.at(4).toInt();
   }
 
+  if(need_level == true) //true - создается дружественный отряд для героя
+  {
+      if(global->get_geroy_skill("inishiativa_1") == true)
+          this->set_bonus_inichiativa(15);
+  }
+
   this->ver_damage = massiv.at(2).toInt();
 
   this->real_life = this->life;
   this->bron = massiv.at(5).toInt();
-  this->inichiativa = massiv.at(6).toInt();
+  this->inichiativa = massiv.at(6).toInt() * (double)(100 + this->get_bonus_inichiativa())/100;
   this->shel = massiv.at(7);
   
   if(massiv.at(8) == "")
@@ -589,6 +599,9 @@ void Base_player::create_geroy_skill(QVector<QString>& massiv)
     if(global == nullptr)
       return;
 
+    QString immunitet_stroka = "";
+    QString zashita_stroka   = "";
+
     if(global->get_geroy_skill("toshnost_1") == true)
         massiv[2] = QString::number(massiv[2].toInt() + 10);
 
@@ -597,6 +610,56 @@ void Base_player::create_geroy_skill(QVector<QString>& massiv)
 
     if(global->get_geroy_skill("damage_1") == true)
         this->set_bonus_damage(10);
+
+    if(global->get_geroy_skill("inishiativa_1") == true)
+        this->set_bonus_inichiativa(15);
+
+    if(global->get_geroy_skill("def_fier_2") == true)
+    {
+        if(immunitet_stroka == "")     immunitet_stroka = "Огонь";
+        else                            immunitet_stroka += ";Огонь";
+    }
+    else if(global->get_geroy_skill("def_fier_1") == true)
+    {
+        if(zashita_stroka == "")   zashita_stroka = "Огонь";
+        else                        zashita_stroka += ";Огонь";
+    }
+
+    if(global->get_geroy_skill("def_cold_2") == true)
+    {
+        if(immunitet_stroka == "")     immunitet_stroka = "Холод";
+        else                            immunitet_stroka += ";Холод";
+    }
+    else if(global->get_geroy_skill("def_cold_1") == true)
+    {
+        if(zashita_stroka == "")   zashita_stroka = "Холод";
+        else                        zashita_stroka += ";Холод";
+    }
+
+    if(global->get_geroy_skill("def_electriciti_2") == true)
+    {
+        if(immunitet_stroka == "")     immunitet_stroka = "Молния";
+        else                            immunitet_stroka += ";Молния";
+    }
+    else if(global->get_geroy_skill("def_electriciti_1") == true)
+    {
+        if(zashita_stroka == "")   zashita_stroka = "Молния";
+        else                        zashita_stroka += ";Молния";
+    }
+
+    if(global->get_geroy_skill("def_poison_2") == true)
+    {
+        if(immunitet_stroka == "")     immunitet_stroka = "Яд";
+        else                            immunitet_stroka += ";Яд";
+    }
+    else if(global->get_geroy_skill("def_poison_1") == true)
+    {
+        if(zashita_stroka == "")   zashita_stroka = "Яд";
+        else                        zashita_stroka += ";Яд";
+    }
+
+    massiv[8] = zashita_stroka;
+    massiv[9] = immunitet_stroka;
 }
 
 ////////////////////////////////////////////////////////////////////////

@@ -65,6 +65,9 @@ Rectangle
             if(name !== "")
             {
                 var bonus_damage = 1;
+                var bonus_inishiativa = 1;
+                var immunitet_stroka = "";
+                var zashita_stroka = "";
                 base_life = massiv[3];
                 base_damage = massiv[2];
                 massiv[3] = (parseInt(massiv[3]) + global_settings.get_add_life_for_geroy(name_res)).toString();
@@ -80,7 +83,58 @@ Rectangle
                 if(global_settings.get_geroy_skill("damage_1") === true)
                     bonus_damage = 1.1;
 
+                if(global_settings.get_geroy_skill("inishiativa_1") === true)
+                    bonus_inishiativa = 1.15;
+
+                if(global_settings.get_geroy_skill("def_fier_2") === true)
+                {
+                    if(immunitet_stroka === "")     immunitet_stroka = "Огонь";
+                    else                            immunitet_stroka += ";Огонь";
+                }
+                else if(global_settings.get_geroy_skill("def_fier_1") === true)
+                {
+                    if(zashita_stroka === "")   zashita_stroka = "Огонь";
+                    else                        zashita_stroka += ";Огонь";
+                }
+
+                if(global_settings.get_geroy_skill("def_cold_2") === true)
+                {
+                    if(immunitet_stroka === "")     immunitet_stroka = "Холод";
+                    else                            immunitet_stroka += ";Холод";
+                }
+                else if(global_settings.get_geroy_skill("def_cold_1") === true)
+                {
+                    if(zashita_stroka === "")   zashita_stroka = "Холод";
+                    else                        zashita_stroka += ";Холод";
+                }
+
+                if(global_settings.get_geroy_skill("def_electriciti_2") === true)
+                {
+                    if(immunitet_stroka === "")     immunitet_stroka = "Молния";
+                    else                            immunitet_stroka += ";Молния";
+                }
+                else if(global_settings.get_geroy_skill("def_electriciti_1") === true)
+                {
+                    if(zashita_stroka === "")   zashita_stroka = "Молния";
+                    else                        zashita_stroka += ";Молния";
+                }
+
+                if(global_settings.get_geroy_skill("def_poison_2") === true)
+                {
+                    if(immunitet_stroka === "")     immunitet_stroka = "Яд";
+                    else                            immunitet_stroka += ";Яд";
+                }
+                else if(global_settings.get_geroy_skill("def_poison_1") === true)
+                {
+                    if(zashita_stroka === "")   zashita_stroka = "Яд";
+                    else                        zashita_stroka += ";Яд";
+                }
+
+                massiv[7] = zashita_stroka;
+                massiv[8] = immunitet_stroka;
+
                 massiv[2] = (parseInt(parseInt(massiv[2]) * bonus_damage)).toString();
+                massiv[5] = (parseInt(parseInt(massiv[5]) * bonus_inishiativa)).toString();
             }
         }
         else
