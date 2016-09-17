@@ -74,7 +74,9 @@ Rectangle
                 massiv[2] = (parseInt(massiv[2]) + global_settings.get_add_damage_for_geroy(name_res)).toString();
                 name_geroy = name_res;
 
-                if(global_settings.get_geroy_skill("toshnost_1") === true)
+                if(global_settings.get_geroy_skill("toshnost_2") === true)
+                    massiv[1] = (parseInt(massiv[1]) + 20).toString();
+                else if(global_settings.get_geroy_skill("toshnost_1") === true)
                     massiv[1] = (parseInt(massiv[1]) + 10).toString();
 
                 if(global_settings.get_geroy_skill("bron_1") === true)
@@ -83,7 +85,9 @@ Rectangle
                 if(global_settings.get_geroy_skill("damage_1") === true)
                     bonus_damage = 1.1;
 
-                if(global_settings.get_geroy_skill("inishiativa_1") === true)
+                if(global_settings.get_geroy_skill("inishiativa_2") === true)
+                    bonus_inishiativa = 1.4;
+                else if(global_settings.get_geroy_skill("inishiativa_1") === true)
                     bonus_inishiativa = 1.15;
 
                 if(global_settings.get_geroy_skill("def_fier_2") === true)
@@ -154,6 +158,7 @@ Rectangle
             model_list.set(2, {"name_model":"Урон:", "value_model": massiv[2], "value_color": "white"});
         }
 
+        massiv[1] = massiv[1] + "%";
         model_list.set(0, {"name_model":"Тип оружия:", "value_model": massiv[0], "value_color": "white"});
         model_list.set(1, {"name_model":"Вероятность попадения:", "value_model": massiv[1], "value_color": "white"});
         model_list.set(3, {"name_model":"Жизнь:", "value_model": massiv[3], "value_color": "red"});

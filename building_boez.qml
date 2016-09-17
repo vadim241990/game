@@ -67,6 +67,7 @@ Rectangle
             model_list.set(2, {"name_model":"Урон:", "value_model": massiv[2], "value_color": "white"});
         }
 
+        massiv[1] = massiv[1] + "%";
         model_list.set(0, {"name_model":"Тип оружия:", "value_model": massiv[0], "value_color": "white"});
         model_list.set(1, {"name_model":"Вероятность попадения:", "value_model": massiv[1], "value_color": "white"});
         model_list.set(3, {"name_model":"Жизнь:", "value_model": massiv[3], "value_color": "red"});

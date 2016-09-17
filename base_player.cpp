@@ -568,7 +568,9 @@ void Base_player::create_unit(QString name,QString header,bool need_level)
 
   if(need_level == true) //true - создается дружественный отряд для героя
   {
-      if(global->get_geroy_skill("inishiativa_1") == true)
+      if(global->get_geroy_skill("inishiativa_2") == true)
+          this->set_bonus_inichiativa(40);
+      else if(global->get_geroy_skill("inishiativa_1") == true)
           this->set_bonus_inichiativa(15);
   }
 
@@ -602,7 +604,9 @@ void Base_player::create_geroy_skill(QVector<QString>& massiv)
     QString immunitet_stroka = "";
     QString zashita_stroka   = "";
 
-    if(global->get_geroy_skill("toshnost_1") == true)
+    if(global->get_geroy_skill("toshnost_2") == true)
+        massiv[2] = QString::number(massiv[2].toInt() + 20);
+    else if(global->get_geroy_skill("toshnost_1") == true)
         massiv[2] = QString::number(massiv[2].toInt() + 10);
 
     if(global->get_geroy_skill("bron_1") == true)
@@ -611,7 +615,9 @@ void Base_player::create_geroy_skill(QVector<QString>& massiv)
     if(global->get_geroy_skill("damage_1") == true)
         this->set_bonus_damage(10);
 
-    if(global->get_geroy_skill("inishiativa_1") == true)
+    if(global->get_geroy_skill("inishiativa_2") == true)
+        this->set_bonus_inichiativa(40);
+    else if(global->get_geroy_skill("inishiativa_1") == true)
         this->set_bonus_inichiativa(15);
 
     if(global->get_geroy_skill("def_fier_2") == true)
