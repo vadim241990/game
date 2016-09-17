@@ -426,6 +426,9 @@ Rectangle //вступительная заставка к новому уров
     {
         if(global_settings.get_point_2() > 0)
         {
+            if(global_settings.get_geroy_skill(name_mag) === true)
+                return;
+
             global_settings.set_geroy_skill(name_mag,true);
             repaint_fon_2();
             global_settings.set_point_2(global_settings.get_point_2() - 1);
