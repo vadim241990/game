@@ -609,8 +609,13 @@ void Base_player::create_geroy_skill(QVector<QString>& massiv)
     else if(global->get_geroy_skill("toshnost_1") == true)
         massiv[2] = QString::number(massiv[2].toInt() + 10);
 
-    if(global->get_geroy_skill("bron_1") == true)
+    if(global->get_geroy_skill("bron_2") == true)
+        massiv[5] = QString::number(massiv[5].toInt() + 25);
+    else if(global->get_geroy_skill("bron_1") == true)
         massiv[5] = QString::number(massiv[5].toInt() + 10);
+
+    if(global->get_geroy_skill("bron_life_1") == true)
+        this->life = (static_cast<float>(this->life) * static_cast<float>(1.2));
 
     if(global->get_geroy_skill("damage_1") == true)
         this->set_bonus_damage(10);

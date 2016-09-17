@@ -18,7 +18,12 @@ Rectangle
 
     function update_life_for_geroy()
     {
+        var bonus_life = 1;
+        if(global_settings.get_geroy_skill("bron_life_1") === true)
+            bonus_life = 1.2;
+
         var life = (parseInt(base_life) + global_settings.get_add_life_for_geroy(name_geroy)).toString();
+        life = parseInt((parseInt(life) * bonus_life)).toString();
         model_list.setProperty(3,"value_model",life);
     }
 
@@ -66,6 +71,7 @@ Rectangle
             {
                 var bonus_damage = 1;
                 var bonus_inishiativa = 1;
+                var bonus_life = 1;
                 var immunitet_stroka = "";
                 var zashita_stroka = "";
                 base_life = massiv[3];
@@ -79,7 +85,9 @@ Rectangle
                 else if(global_settings.get_geroy_skill("toshnost_1") === true)
                     massiv[1] = (parseInt(massiv[1]) + 10).toString();
 
-                if(global_settings.get_geroy_skill("bron_1") === true)
+                if(global_settings.get_geroy_skill("bron_2") === true)
+                    massiv[4] = (parseInt(massiv[4]) + 25).toString();
+                else if(global_settings.get_geroy_skill("bron_1") === true)
                     massiv[4] = (parseInt(massiv[4]) + 10).toString();
 
                 if(global_settings.get_geroy_skill("damage_1") === true)
@@ -89,6 +97,9 @@ Rectangle
                     bonus_inishiativa = 1.4;
                 else if(global_settings.get_geroy_skill("inishiativa_1") === true)
                     bonus_inishiativa = 1.15;
+
+                if(global_settings.get_geroy_skill("bron_life_1") === true)
+                    bonus_life = 1.2;
 
                 if(global_settings.get_geroy_skill("def_fier_2") === true)
                 {
@@ -138,6 +149,7 @@ Rectangle
                 massiv[8] = immunitet_stroka;
 
                 massiv[2] = (parseInt(parseInt(massiv[2]) * bonus_damage)).toString();
+                massiv[3] = (parseInt(parseInt(massiv[3]) * bonus_life)).toString();
                 massiv[5] = (parseInt(parseInt(massiv[5]) * bonus_inishiativa)).toString();
             }
         }
