@@ -668,7 +668,7 @@ Rectangle //вступительная заставка к новому уров
                 image_select_1.visible = true;
                 image_select_2.visible = true;
                 image_select_1.source = "file:///" + applicationDirPath + "/image/up_level/magic/fire_strela.jpg";
-                image_select_2.source = "file:///" + applicationDirPath + "/image/up_level/magic/cold_line.jpeg";
+                image_select_2.source = "file:///" + applicationDirPath + "/image/up_level/magic/cold_line.jpg";
             }
         }
         else
@@ -696,7 +696,7 @@ Rectangle //вступительная заставка к новому уров
         }
         else
         {
-            opisanie_3_text.text = "<h3>Луч холода</h3> <p>Наносит выбранному отряду 10 единиц урона от Холода с вероятностью обморожения 70% на один ход с уроном 20.</p>";
+            opisanie_3_text.text = "<h3>Луч холода</h3> <p>Наносит выбранному отряду 15 единиц урона от Холода с вероятностью обморожения 70% на один ход с уроном 20.</p>";
             name_magic = "Луч холода";
         }
     }
