@@ -12,6 +12,8 @@ import QtQuick.Controls 1.3
             {
                 background:Rectangle
                 {
+                    border.width: 4
+                    border.color: "white"
                     radius: start_game.height * 0.5
                     gradient: Gradient
                     {
@@ -38,6 +40,8 @@ import QtQuick.Controls 1.3
             {
                 background:Rectangle
                 {
+                    border.width: 4
+                    border.color: "white"
                     radius: start_game.height * 0.5
                     gradient: Gradient
                     {
@@ -64,6 +68,8 @@ import QtQuick.Controls 1.3
             {
                 background:Rectangle
                 {
+                    border.width: 4
+                    border.color: "white"
                     radius: start_game.height * 0.5
                     gradient: Gradient
                     {

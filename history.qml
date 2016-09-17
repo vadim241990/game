@@ -67,9 +67,9 @@ Rectangle //вступительная заставка к новому уров
             height: 50
             width: label_text.width * 0.5
             anchors.bottom: main_rect.bottom
-            anchors.bottomMargin: main_rect.height * 0.1
+            anchors.bottomMargin: main_rect.height * 0.05
             anchors.right: main_rect.right
-            anchors.rightMargin: main_rect.width * 0.1
+            anchors.rightMargin: main_rect.width * 0.05
 
             onClicked:
             {
