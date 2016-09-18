@@ -46,7 +46,6 @@ protected:
     bool immunitet_def(Base_player * player);
     bool zashita_def(Base_player * player);
     bool damage_popal();
-    QString base_res_stroka(Base_player * player);
 
     //вспомогательные методы
     QString help_attack_in_one(QList<Base_player *> list,int x,int y,QString image);
@@ -56,6 +55,8 @@ public:
 
     explicit Base_player(QObject *parent = 0);
     ~Base_player();
+
+    QString base_res_stroka(Base_player * player);
 
 	int set_point_X(int number);
 	int get_point_X();

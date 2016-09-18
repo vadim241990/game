@@ -9,7 +9,8 @@ QT += testlib
 SOURCES += main.cpp \
     global_settings.cpp \
     base_player.cpp \
-    battle.cpp
+    battle.cpp \
+    effect.cpp
 
 RESOURCES += qml.qrc \
     image_files.qrc
@@ -23,4 +24,5 @@ include(deployment.pri)
 HEADERS += \
     global_settings.h \
     base_player.h \
-    battle.h
+    battle.h \
+    effect.h
