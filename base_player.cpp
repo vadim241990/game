@@ -776,7 +776,38 @@ Team20_arbaletshik::Team20_arbaletshik()
 
 Team20_arbaletshik::~Team20_arbaletshik()
 {
-	
+
+}
+
+Result Team20_arbaletshik::result_damage(Base_player * player)
+{
+    Result res;
+    int life = player->get_real_life();
+    int def = player->get_bron();
+    int uron = this->get_damage();
+    int uron_add = (player->get_life()/100) * 1; //1 на первом уровне потом TODO
+
+    res.uron = (((double)(100 - def)/100) * (uron + uron_add));
+
+    life -= res.uron;
+    if(life <= 0)
+    {
+        life = 0;
+        player->set_real_life(life);
+        res.kill = true;
+        return res;
+    }
+
+    player->set_real_life(life);
+    res.kill = false;
+    return res;
+}
+
+QString Team20_arbaletshik::attack(int x, int y,QList<Base_player *> list)
+{
+    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/bolt.png";
+    QString res = this->help_attack_in_one(list,x,y,image);
+    return res;
 }
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -810,6 +841,13 @@ Team20_dark_mag::Team20_dark_mag()
 Team20_dark_mag::~Team20_dark_mag()
 {
 	
+}
+
+QString Team20_dark_mag::attack(int x, int y,QList<Base_player *> list)
+{
+    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/dark_mag.png";
+    QString res = this->help_attack_in_all(list,x,y,image);
+    return res;
 }
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -895,6 +933,13 @@ Team20_fire_mag::Team20_fire_mag()
 Team20_fire_mag::~Team20_fire_mag()
 {
 	
+}
+
+QString Team20_fire_mag::attack(int x, int y,QList<Base_player *> list)
+{
+    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/fier_mag.png";
+    QString res = this->help_attack_in_all(list,x,y,image);
+    return res;
 }
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -1065,6 +1110,13 @@ Team20_vsadnik::Team20_vsadnik()
 Team20_vsadnik::~Team20_vsadnik()
 {
 	
+}
+
+QString Team20_vsadnik::attack(int x, int y,QList<Base_player *> list)
+{
+    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/kosa.png";
+    QString res = this->help_attack_in_one(list,x,y,image);
+    return res;
 }
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
