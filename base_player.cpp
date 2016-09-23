@@ -309,6 +309,32 @@ QString Base_player::help_attack_in_all(QList<Base_player *> list,int x,int y,QS
 }
 
 /**
+ * @brief veroatnost - вспомогательная функция вероятности попадения
+ *
+ * @param [in] procent_good_result - процент для положительного исхода
+ *
+ * @return false - если не попал иначе true
+ */
+bool Base_player::veroatnost(int procent_good_result)
+{
+    int static number = 0;
+    qsrand(static_cast<quint64>(QTime::currentTime().msecsSinceStartOfDay()));
+    QVector<int> arr;
+    for(int i = 0; i < 6; i++)
+        arr.push_back(qrand());
+
+    int res = arr.at(number) % 100;
+    number++;
+    if(number == 6)
+        number = 0;
+
+    if(res <= procent_good_result)
+        return true;
+    else
+        return false;
+}
+
+/**
  * @brief damage_popal - попал ли в цель рандом
  *
  * @return false - если не попал иначе true
@@ -980,6 +1006,13 @@ Team20_luchnik::~Team20_luchnik()
 {
 	
 }
+
+QString Team20_luchnik::attack(int x, int y,QList<Base_player *> list)
+{
+    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/strela_2.png";
+    QString res = this->help_attack_in_one(list,x,y,image);
+    return res;
+}
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -992,6 +1025,39 @@ Team20_molniy_mag::Team20_molniy_mag()
 Team20_molniy_mag::~Team20_molniy_mag()
 {
 	
+}
+
+QString Team20_molniy_mag::attack(int x, int y,QList<Base_player *> list)
+{
+    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/molniy.png";
+    QString res = this->help_attack_in_all(list,x,y,image);
+    return res;
+}
+
+Result Team20_molniy_mag::result_damage(Base_player * player)
+{
+    Result res;
+    int life = player->get_real_life();
+    int def = player->get_bron();
+    int uron = this->get_damage();
+
+    if(this->veroatnost(5) == true)
+        uron = uron * 2;
+
+    res.uron = (((double)(100 - def)/100) * uron);
+
+    life -= res.uron;
+    if(life <= 0)
+    {
+        life = 0;
+        player->set_real_life(life);
+        res.kill = true;
+        return res;
+    }
+
+    player->set_real_life(life);
+    res.kill = false;
+    return res;
 }
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

@@ -46,6 +46,7 @@ protected:
     bool immunitet_def(Base_player * player);
     bool zashita_def(Base_player * player);
     bool damage_popal();
+    bool veroatnost(int procent_good_result);
 
     //вспомогательные методы
     QString help_attack_in_one(QList<Base_player *> list,int x,int y,QString image);
@@ -240,6 +241,8 @@ class Team20_luchnik : public Base_player
 public:
 	explicit Team20_luchnik();
 	~Team20_luchnik();
+
+    QString attack(int x, int y,QList<Base_player *> list);
 };
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -249,6 +252,9 @@ class Team20_molniy_mag : public Base_player
 public:
 	explicit Team20_molniy_mag();
 	~Team20_molniy_mag();
+
+    QString attack(int x, int y,QList<Base_player *> list);
+    Result result_damage(Base_player * player);
 };
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
