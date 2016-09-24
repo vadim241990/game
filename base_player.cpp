@@ -993,6 +993,32 @@ Team20_lekar::~Team20_lekar()
 {
 	
 }
+
+QString Team20_lekar::attack(int x, int y,QList<Base_player *> list)
+{
+    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/help.png";
+    QString res = this->help_attack_in_one(list,x,y,image);
+    return res;
+}
+
+Result Team20_lekar::result_damage(Base_player * player)
+{
+    Result res;
+    int life = player->get_real_life();
+    int uron = this->get_damage();
+
+    life += uron;
+    res.uron = uron;
+    if(life > player->get_life())   //если превышен предел максимального здоровья
+    {
+        res.uron -= (life - player->get_life());
+        life = player->get_life();
+    }
+
+    player->set_real_life(life);
+    res.kill = false;
+    return res;
+}
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -1117,6 +1143,32 @@ Team20_shelitel::Team20_shelitel()
 Team20_shelitel::~Team20_shelitel()
 {
 	
+}
+
+QString Team20_shelitel::attack(int x, int y,QList<Base_player *> list)
+{
+    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/help.png";
+    QString res = this->help_attack_in_all(list,x,y,image);
+    return res;
+}
+
+Result Team20_shelitel::result_damage(Base_player * player)
+{
+    Result res;
+    int life = player->get_real_life();
+    int uron = this->get_damage();
+
+    life += uron;
+    res.uron = uron;
+    if(life > player->get_life())   //если превышен предел максимального здоровья
+    {
+        res.uron -= (life - player->get_life());
+        life = player->get_life();
+    }
+
+    player->set_real_life(life);
+    res.kill = false;
+    return res;
 }
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

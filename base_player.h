@@ -232,6 +232,9 @@ class Team20_lekar : public Base_player
 public:
 	explicit Team20_lekar();
 	~Team20_lekar();
+
+    QString attack(int x, int y,QList<Base_player *> list);
+    Result result_damage(Base_player * player);
 };
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -293,6 +296,9 @@ class Team20_shelitel : public Base_player
 public:
 	explicit Team20_shelitel();
 	~Team20_shelitel();
+
+    QString attack(int x, int y,QList<Base_player *> list);
+    Result result_damage(Base_player * player);
 };
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

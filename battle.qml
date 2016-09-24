@@ -312,7 +312,7 @@ Rectangle //поле боя
                         massiv_kill[5] = 1;
                 }
 
-                help_damage(massiv_one_player[0],massiv_one_player[1],massiv_one_player[6]);
+                help_damage(massiv_one_player[0],massiv_one_player[1],massiv_one_player[6],global_settings.get_first_in_osheredi_x());
             }
         }
     }
@@ -330,7 +330,7 @@ Rectangle //поле боя
         return;
     }
 
-    function help_damage(x,y,uron)
+    function help_damage(x,y,uron,x_man_attack)
     {
         var text = "";
         if(uron === "Иммунитет")    text = uron;
@@ -338,7 +338,20 @@ Rectangle //поле боя
         else if(uron === "Промах")  text = uron;
         else
         {
-            text = "-" + uron;
+            if((x_man_attack === 0) || (x_man_attack === 1)) //атакующий в синей команде
+            {
+                if((x === "0") || (x === "1"))
+                    text = "+" + uron;    //атакует свой отряд значит накладывает положительные чары
+                else
+                    text = "-" + uron;
+            }
+            else    //действия для пк
+            {
+                if((x === "2") || (x === "3"))
+                    text = "+" + uron;
+                else
+                    text = "-" + uron;
+            }
         }
 
         if((x === "2") && (y === "0"))
