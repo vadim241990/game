@@ -592,7 +592,7 @@ QString Battle::get_full_info_otrad(int x,int y)
     res += "#";
     res += QString::number(this->all_team[number]->get_ver_damage());
     res += "#";
-    res += QString::number(this->all_team[number]->get_damage() * ((double)(100 + this->all_team[number]->get_bonus_damage())/100));
+    res += QString::number(static_cast<int>(this->all_team[number]->get_damage() * ((double)(100 + this->all_team[number]->get_bonus_damage())/100)));
     res += "#";
     res += QString::number(this->all_team[number]->get_real_life()) +"/"+ QString::number(this->all_team[number]->get_life());
     res += "#";

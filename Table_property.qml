@@ -23,7 +23,7 @@ Rectangle
             bonus_life = 1.2;
 
         var life = (parseInt(base_life) + global_settings.get_add_life_for_geroy(name_geroy)).toString();
-        life = parseInt((parseInt(life) * bonus_life)).toString();
+        life = (parseInt(parseInt(life) * bonus_life)).toString();
         model_list.setProperty(3,"value_model",life);
     }
 
@@ -34,7 +34,7 @@ Rectangle
             bonus_damage = 1.1;
 
         var damage = (parseInt(base_damage) + global_settings.get_add_damage_for_geroy(name_geroy)).toString();
-        damage = parseInt((parseInt(damage) * bonus_damage)).toString();
+        damage = (parseInt(parseInt(damage) * bonus_damage)).toString();
         model_list.setProperty(2,"value_model",damage);
     }
 
@@ -161,7 +161,7 @@ Rectangle
         if(massiv[8] === "")
             massiv[8] = "Нет";
 
-        if((name === "lekar") || (name === "shelitel"))
+        if((name === "lekar") || (name === "shelitel") || (name_res === "Лекарь") || (name_res === "Целитель"))
         {
             model_list.set(2, {"name_model":"Лечение:", "value_model": massiv[2], "value_color": "white"});
         }
