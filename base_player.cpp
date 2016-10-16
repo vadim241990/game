@@ -162,6 +162,26 @@ int Base_player::get_bonus_inichiativa()
     return this->bonus_inichiativa;
 }
 
+void Base_player::add_plus_effect(QString name)
+{
+    this->plus.push_back(Effect::Create_effect(name));
+}
+
+int Base_player::size_plus_effect()
+{
+    return this->plus.size();
+}
+
+void Base_player::add_minus_effect(QString name)
+{
+    this->minus.push_back(Effect::Create_effect(name));
+}
+
+int Base_player::size_minus_effect()
+{
+    return this->minus.size();
+}
+
 Base_player * Base_player::seatsh_player(QList<Base_player *> list,int x,int y)
 {
     for(int i = 0; i < list.size(); i++) //поиск нужного игрока
@@ -699,6 +719,39 @@ void Base_player::create_geroy_skill(QVector<QString>& massiv)
     massiv[9] = immunitet_stroka;
 }
 
+QString Base_player::use_effect()
+{
+    QString start_res = "";     //возможна смерть отряда
+    QString end_res = "";       //не может быть смерти отряда
+
+    for(int i = 0; i < this->minus.size(); i++)
+    {
+        if(this->minus[i]->get_type() == type_effect::PARALISH)
+        {
+            Effect_paralish * paralish = static_cast<Effect_paralish *>(this->minus[i]);
+
+            paralish->set_dlitelnost(paralish->get_dlitelnost() - 1);
+            if(paralish->get_dlitelnost() <= 0)
+                paralish->set_ready(false);
+
+            end_res += "PARALISH$";
+            end_res += paralish->get_image() + "$";
+            end_res += "#";
+        }
+    }
+
+    //удаляем все отработанные эффекты
+    for(int i = 0; i < this->minus.size(); i++)
+    {
+        if(this->minus[i]->get_ready() == false)
+        {
+            delete this->minus[i];
+            this->minus.removeAt(i);
+        }
+    }
+
+    return (start_res + end_res);
+}
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -1117,6 +1170,37 @@ Team20_paralish::Team20_paralish()
 Team20_paralish::~Team20_paralish()
 {
 	
+}
+
+QString Team20_paralish::attack(int x, int y,QList<Base_player *> list)
+{
+    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/ushas.png";
+    QString res = this->help_attack_in_one(list,x,y,image);
+    return res;
+}
+
+Result Team20_paralish::result_damage(Base_player * player)
+{
+    Result res;
+    int life = player->get_real_life();
+    int def = player->get_bron();
+    int uron = this->get_damage();
+
+    res.uron = (((double)(100 - def)/100) * uron);
+
+    life -= res.uron;
+    if(life <= 0)
+    {
+        life = 0;
+        player->set_real_life(life);
+        res.kill = true;
+        return res;
+    }
+
+    player->add_minus_effect("Паралич_1");
+    player->set_real_life(life);
+    res.kill = false;
+    return res;
 }
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

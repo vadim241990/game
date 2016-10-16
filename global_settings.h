@@ -186,6 +186,8 @@ public:
     Q_INVOKABLE void set_geroy_skill(QString key,bool value);
     // end функции связанные с уровнем героя
 
+    Q_INVOKABLE QString use_effect();
+
 signals:
 
 public slots:

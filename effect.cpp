@@ -30,6 +30,16 @@ QString Effect::get_name()
     return this->name;
 }
 
+void Effect::set_image(QString name)
+{
+    this->image = name;
+}
+
+QString Effect::get_image()
+{
+    return this->image;
+}
+
 void Effect::set_job(job_effect value)
 {
     this->job = value;
@@ -61,6 +71,23 @@ bool Effect::get_ready()
 }
 
 /**
+ * @brief Create_effect - создание эффекта
+ *
+ * @param [in] name - несколько разных имен могут относиться к одному классу
+ *
+ * @return указатель на Effect
+ */
+Effect * Effect::Create_effect(QString name)
+{
+    Effect * eff = nullptr;
+
+    if(name == "Паралич_1")
+        eff = new Effect_paralish(1);
+
+    return eff;
+}
+
+/**
  * @brief processing_type_damage - формирование строки для типа DAMAGE
  *
  * @param [in] player - указатель на отряд с этим эффектом
@@ -68,49 +95,34 @@ bool Effect::get_ready()
  *
  * @return сформированную строку с результатами последствий от DAMAGE
  */
-QString Effect::processing_type_damage(Base_player * player, QString image, int damage)
-{
-    QString res;
-    QString pop_back = "";
-    QString push_back_res = "false$";
+//QString Effect::processing_type_damage(Base_player * player, QString image, int damage)
+//{
+//    QString res;
+//    QString pop_back = "";
+//    QString push_back_res = "false$";
 
-    Result message = this->result_damage(player,damage);
+//    Result message = this->result_damage(player,damage);
 
-    if(message.kill == true)  //нанесен ли смертельный урон(смерть - true)
-    {
-        //"*" -разделитель координат //"@" - разделитель отрядов //"^" - разделитель на направление интерфейс и реализация
-        pop_back = QString::number(player->get_point_X()) + "*" + QString::number(player->get_point_Y()) + "*" + "@" + "^"; //строка для обработки удаления отряда
-        push_back_res = "true$";
-    }
+//    if(message.kill == true)  //нанесен ли смертельный урон(смерть - true)
+//    {
+//        //"*" -разделитель координат //"@" - разделитель отрядов //"^" - разделитель на направление интерфейс и реализация
+//        pop_back = QString::number(player->get_point_X()) + "*" + QString::number(player->get_point_Y()) + "*" + "@" + "^"; //строка для обработки удаления отряда
+//        push_back_res = "true$";
+//    }
 
-    res = "DAMAGE$";
-    res += player->base_res_stroka(player);
-    res += image + "$";   //картинка удара
-    res += push_back_res;
-    res += QString::number(message.uron) + "$";
+//    res = "DAMAGE$";
+//    res += player->base_res_stroka(player);
+//    res += image + "$";   //картинка удара
+//    res += push_back_res;
+//    res += QString::number(message.uron) + "$";
 
-    if(pop_back != "")
-        res = pop_back + res;
+//    if(pop_back != "")
+//        res = pop_back + res;
 
-    res += "#"; //конец
+//    res += "#"; //конец
 
-    return res;
-}
-
-/**
- * @brief processing_type_paralish - формирование строки для типа PARALISH
- *
- * @param [in] image - строка с адресом картинки
- *
- * @return сформированную строку с результатами от PARALISH
- */
-QString Effect::processing_type_paralish(Base_player * player, QString image)
-{
-    QString res = "PARALISH$";
-    res += player->base_res_stroka(player);
-    res += image + "#";
-    return res;
-}
+//    return res;
+//}
 
 /**
  * @brief result_damage - формирование последствий от применения эффекта с типом DAMAGE
@@ -120,70 +132,70 @@ QString Effect::processing_type_paralish(Base_player * player, QString image)
  *
  * @return результат убит ли отряд и сколько нанесено урона
  */
-Result Effect::result_damage(Base_player * player,int damage)
-{
-    Result res;
-    int life = player->get_real_life();
-    int def = player->get_bron();
+//Result Effect::result_damage(Base_player * player,int damage)
+//{
+//    Result res;
+//    int life = player->get_real_life();
+//    int def = player->get_bron();
 
-    // для упрощения завел переменные
-    res.uron = (((double)(100 - def)/100) * damage);
-    life -= res.uron;
-    if(life <= 0)
-    {
-        life = 0;
-        player->set_real_life(life);
-        res.kill = true;
-        return res;
-    }
+//    // для упрощения завел переменные
+//    res.uron = (((double)(100 - def)/100) * damage);
+//    life -= res.uron;
+//    if(life <= 0)
+//    {
+//        life = 0;
+//        player->set_real_life(life);
+//        res.kill = true;
+//        return res;
+//    }
 
-    player->set_real_life(life);
-    res.kill = false;
-    return res;
-}
+//    player->set_real_life(life);
+//    res.kill = false;
+//    return res;
+//}
 
-QString Effect::use_effect(Base_player * player)
-{
+//QString Effect::use_effect(Base_player * player)
+//{
 
-}
+//}
 
 /////////////////////////////////////
 /////////////////////////////////////
 /////////////////////////////////////
 
-Effect_deferred_damage::Effect_deferred_damage(int number_hod,int damage)
-{
-    this->set_name("Возмездие");
-    this->set_job(job_effect::BEGIN_HOD);
-    this->set_type(type_effect::DAMAGE);
-    this->schetchik = number_hod;
-    this->damage = damage;
-    this->set_ready(true);
-}
+//Effect_deferred_damage::Effect_deferred_damage(int number_hod,int damage)
+//{
+//    this->set_name("Возмездие");
+//    this->set_job(job_effect::BEGIN_HOD);
+//    this->set_type(type_effect::DAMAGE);
+//    this->schetchik = number_hod;
+//    this->damage = damage;
+//    this->set_ready(true);
+//}
 
-Effect_deferred_damage::~Effect_deferred_damage()
-{
+//Effect_deferred_damage::~Effect_deferred_damage()
+//{
 
-}
+//}
 
-QString Effect_deferred_damage::use_effect(Base_player * player)
-{
-    QString res = "";
+//QString Effect_deferred_damage::use_effect(Base_player * player)
+//{
+//    QString res = "";
 
-    if(this->schetchik == 0)
-    {
-        //сменить картинку TODO
-        QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/led.png";
-        res = this->processing_type_damage(player,image,this->damage);
-        this->set_ready(false);
-    }
-    else
-    {
-        this->schetchik--;
-    }
+//    if(this->schetchik == 0)
+//    {
+//        //сменить картинку TODO
+//        QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/led.png";
+//        res = this->processing_type_damage(player,image,this->damage);
+//        this->set_ready(false);
+//    }
+//    else
+//    {
+//        this->schetchik--;
+//    }
 
-    return res;
-}
+//    return res;
+//}
 
 /////////////////////////////////////
 /////////////////////////////////////
@@ -192,6 +204,7 @@ QString Effect_deferred_damage::use_effect(Base_player * player)
 Effect_paralish::Effect_paralish(int dlitelnost)
 {
     this->set_name("Паралич");
+    this->set_image("file:///" + QApplication::applicationDirPath() + "/image/battle/image_effect/shep.png");
     this->set_job(job_effect::BEGIN_HOD);
     this->set_type(type_effect::PARALISH);
     this->dlitelnost = dlitelnost;
@@ -203,72 +216,66 @@ Effect_paralish::~Effect_paralish()
 
 }
 
-QString Effect_paralish::use_effect(Base_player * player)
+void Effect_paralish::set_dlitelnost(int number)
 {
-    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/led.png";
-    QString res = this->processing_type_paralish(player,image);
-
-    this->dlitelnost--;
-    if(this->dlitelnost <= 0)
-        this->set_ready(false);
-
-    return res;
+    this->dlitelnost = number;
 }
 
-/////////////////////////////////////
-/////////////////////////////////////
-/////////////////////////////////////
-
-Effect_oslablenie::Effect_oslablenie(QString name,int dlitelnost,int o_uron,int o_bron,int o_toshnost,int o_inishiativa, \
-int pro_uron,int pro_bron,int pro_toshnost,int pro_inishiativa)
+int Effect_paralish::get_dlitelnost()
 {
-    this->set_name(name);
-    this->dlitelnost = dlitelnost;
-    this->oslab_uron = o_uron;
-    this->oslab_bron = o_bron;
-    this->oslab_toshnost = o_toshnost;
-    this->oslab_inishiativa = o_inishiativa;
-    this->oslab_in_pro_uron = pro_uron;
-    this->oslab_in_pro_bron = pro_bron;
-    this->oslab_in_pro_toshnost = pro_toshnost;
-    this->oslab_in_pro_inishiativa = pro_inishiativa;
+    return this->dlitelnost;
 }
 
-Effect_oslablenie::Effect_oslablenie(QString name,int dlitelnost,bool type,int uron,int bron,int toshnost,int inishiativa)
-{
-    this->set_name(name);
-    this->dlitelnost = dlitelnost;
+//Effect_oslablenie::Effect_oslablenie(QString name,int dlitelnost,int o_uron,int o_bron,int o_toshnost,int o_inishiativa, \
+//int pro_uron,int pro_bron,int pro_toshnost,int pro_inishiativa)
+//{
+//    this->set_name(name);
+//    this->dlitelnost = dlitelnost;
+//    this->oslab_uron = o_uron;
+//    this->oslab_bron = o_bron;
+//    this->oslab_toshnost = o_toshnost;
+//    this->oslab_inishiativa = o_inishiativa;
+//    this->oslab_in_pro_uron = pro_uron;
+//    this->oslab_in_pro_bron = pro_bron;
+//    this->oslab_in_pro_toshnost = pro_toshnost;
+//    this->oslab_in_pro_inishiativa = pro_inishiativa;
+//}
 
-    if(type == true)
-    {
-        this->oslab_in_pro_uron = uron;
-        this->oslab_in_pro_bron = bron;
-        this->oslab_in_pro_toshnost = toshnost;
-        this->oslab_in_pro_inishiativa = inishiativa;
-        this->oslab_uron = 0;
-        this->oslab_bron = 0;
-        this->oslab_toshnost = 0;
-        this->oslab_inishiativa = 0;
-    }
-    else
-    {
-        this->oslab_uron = uron;
-        this->oslab_bron = bron;
-        this->oslab_toshnost = toshnost;
-        this->oslab_inishiativa = inishiativa;
-        this->oslab_in_pro_uron = 0;
-        this->oslab_in_pro_bron = 0;
-        this->oslab_in_pro_toshnost = 0;
-        this->oslab_in_pro_inishiativa = 0;
-    }
-}
+//Effect_oslablenie::Effect_oslablenie(QString name,int dlitelnost,bool type,int uron,int bron,int toshnost,int inishiativa)
+//{
+//    this->set_name(name);
+//    this->dlitelnost = dlitelnost;
 
-Effect_oslablenie::~Effect_oslablenie()
-{
+//    if(type == true)
+//    {
+//        this->oslab_in_pro_uron = uron;
+//        this->oslab_in_pro_bron = bron;
+//        this->oslab_in_pro_toshnost = toshnost;
+//        this->oslab_in_pro_inishiativa = inishiativa;
+//        this->oslab_uron = 0;
+//        this->oslab_bron = 0;
+//        this->oslab_toshnost = 0;
+//        this->oslab_inishiativa = 0;
+//    }
+//    else
+//    {
+//        this->oslab_uron = uron;
+//        this->oslab_bron = bron;
+//        this->oslab_toshnost = toshnost;
+//        this->oslab_inishiativa = inishiativa;
+//        this->oslab_in_pro_uron = 0;
+//        this->oslab_in_pro_bron = 0;
+//        this->oslab_in_pro_toshnost = 0;
+//        this->oslab_in_pro_inishiativa = 0;
+//    }
+//}
 
-}
+//Effect_oslablenie::~Effect_oslablenie()
+//{
 
-QString Effect_oslablenie::use_effect(Base_player * player)
-{
-    //TODO
-}
+//}
+
+//QString Effect_oslablenie::use_effect(Base_player * player)
+//{
+//    //TODO
+//}

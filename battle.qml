@@ -20,10 +20,164 @@ Rectangle //поле боя
     property bool lock: false         //блокировка действий мыши пока идет расчет удара и его анимация
     property int x_hover: -1          //если не сходить с иконки игрока для удара будет некорректное отображение
     property int y_hover: -1
+    property int mode: 1              //0 - обработка эффектов 1 - обработка удара
+    property variant massiv_effect: [0,0] //0 - не обрабатывать 1 - обрабатывать
+    ///1 элемент - Обрабатывать паралич(переход хода)
     property variant massiv_kill: [0,0,0,0,0,0,0,0,0,0,0,0] //0-элемент не обрабатывался //1-элемент надо обработать //2-прошол обработку
     ///pos_1_1 - pos_1_2 || pos_2_1 - pos_2_2  massiv_kill[0] - massiv_kill[1]  ||  massiv_kill[6] - massiv_kill[7]
     ///pos_1_3 - pos_1_4 || pos_2_3 - pos_2_4  massiv_kill[2] - massiv_kill[3]  ||  massiv_kill[8] - massiv_kill[9]
     ///pos_1_5 - pos_1_6 || pos_2_5 - pos_2_6  massiv_kill[4] - massiv_kill[5]  ||  massiv_kill[10] - massiv_kill[11]
+
+    function job_effect()
+    {
+        var res = global_settings.use_effect();
+        if(res === "")
+            return;
+
+        var start_index = 0;
+        var end_index = 0;
+        var start_index_2 = 0;
+        var end_index_2 = 0;
+        var element = "";
+        var name = "";
+        var image_eff = "";
+        var x = 0;
+        var y = 0;
+
+        //очистим предварительно прошлые действия эффектов
+        for(var i = 0; i < massiv_effect.length; i++)
+        {
+            massiv_effect[i] = 0;
+        }
+
+        while(1)
+        {
+            end_index = res.indexOf("#",start_index + 1);
+            if(end_index === -1)
+                break;
+
+            element = res.slice(start_index,end_index);
+            start_index = end_index + 1;
+
+            end_index_2 = element.indexOf("$",start_index_2 + 1);
+            if(end_index_2 === -1)
+                continue;
+
+            name = element.slice(start_index_2,end_index_2);
+            start_index_2 = end_index_2 + 1;
+
+            if(name === "PARALISH")
+            {
+                x = global_settings.get_first_in_osheredi_x();
+                y = global_settings.get_first_in_osheredi_y();
+                end_index_2 = element.indexOf("$",start_index_2);
+                image_eff = element.slice(start_index_2,end_index_2);
+                var text = "Паралич";
+
+                if((x === 2) && (y === 0))
+                {
+                    pos_2_1_backgrounde.visible = true;
+                    pos_2_1_backgrounde.source = image_eff;
+                    pos_2_1_animation.start();
+                    pos_2_1_backgrounde_text.visible = true;
+                    pos_2_1_backgrounde_text.text = text;
+                }
+                else if((x === 3) && (y === 0))
+                {
+                    pos_2_2_backgrounde.visible = true;
+                    pos_2_2_backgrounde.source = image_eff;
+                    pos_2_2_animation.start();
+                    pos_2_2_backgrounde_text.visible = true;
+                    pos_2_2_backgrounde_text.text = text;
+                }
+                else if((x === 2) && (y === 1))
+                {
+                    pos_2_3_backgrounde.visible = true;
+                    pos_2_3_backgrounde.source = image_eff;
+                    pos_2_3_animation.start();
+                    pos_2_3_backgrounde_text.visible = true;
+                    pos_2_3_backgrounde_text.text = text;
+                }
+                else if((x === 3) && (y === 1))
+                {
+                    pos_2_4_backgrounde.visible = true;
+                    pos_2_4_backgrounde.source = image_eff;
+                    pos_2_4_animation.start();
+                    pos_2_4_backgrounde_text.visible = true;
+                    pos_2_4_backgrounde_text.text = text;
+                }
+                else if((x === 2) && (y === 2))
+                {
+                    pos_2_5_backgrounde.visible = true;
+                    pos_2_5_backgrounde.source = image_eff;
+                    pos_2_5_animation.start();
+                    pos_2_5_backgrounde_text.visible = true;
+                    pos_2_5_backgrounde_text.text = text;
+                }
+                else if((x === 3) && (y === 2))
+                {
+                    pos_2_6_backgrounde.visible = true;
+                    pos_2_6_backgrounde.source = image_eff;
+                    pos_2_6_animation.start();
+                    pos_2_6_backgrounde_text.visible = true;
+                    pos_2_6_backgrounde_text.text = text;
+                }
+                else if((x === 0) && (y === 0))
+                {
+                    pos_1_1_backgrounde.visible = true;
+                    pos_1_1_backgrounde.source = image_eff;
+                    pos_1_1_animation.start();
+                    pos_1_1_backgrounde_text.visible = true;
+                    pos_1_1_backgrounde_text.text = text;
+                }
+                else if((x === 1) && (y === 0))
+                {
+                    pos_1_2_backgrounde.visible = true;
+                    pos_1_2_backgrounde.source = image_eff;
+                    pos_1_2_animation.start();
+                    pos_1_2_backgrounde_text.visible = true;
+                    pos_1_2_backgrounde_text.text = text;
+                }
+                else if((x === 0) && (y === 1))
+                {
+                    pos_1_3_backgrounde.visible = true;
+                    pos_1_3_backgrounde.source = image_eff;
+                    pos_1_3_animation.start();
+                    pos_1_3_backgrounde_text.visible = true;
+                    pos_1_3_backgrounde_text.text = text;
+                }
+                else if((x === 1) && (y === 1))
+                {
+                    pos_1_4_backgrounde.visible = true;
+                    pos_1_4_backgrounde.source = image_eff;
+                    pos_1_4_animation.start();
+                    pos_1_4_backgrounde_text.visible = true;
+                    pos_1_4_backgrounde_text.text = text;
+                }
+                else if((x === 0) && (y === 2))
+                {
+                    pos_1_5_backgrounde.visible = true;
+                    pos_1_5_backgrounde.source = image_eff;
+                    pos_1_5_animation.start();
+                    pos_1_5_backgrounde_text.visible = true;
+                    pos_1_5_backgrounde_text.text = text;
+                }
+                else if((x === 1) && (y === 2))
+                {
+                    pos_1_6_backgrounde.visible = true;
+                    pos_1_6_backgrounde.source = image_eff;
+                    pos_1_6_animation.start();
+                    pos_1_6_backgrounde_text.visible = true;
+                    pos_1_6_backgrounde_text.text = text;
+                }
+
+                massiv_effect[0] = 1;
+                number_animation++;
+                return false;
+            }
+        }
+
+    }
 
     function hod_pc()
     {
@@ -74,6 +228,8 @@ Rectangle //поле боя
             repaint_select_disable_mouse(0,0);
             repaint_select_disable_mouse(2,0);
             who_create_hod();
+            if(job_effect() === false)
+                return;
 
             if(my_hod === false)
             {
@@ -1607,27 +1763,37 @@ Rectangle //поле боя
 
                 onStopped:
                 {
-                    if(massiv_kill[1] === 1) //юнит умер
+                    if(mode === 1)
+                    {
+                        if(massiv_kill[1] === 1) //юнит умер
+                        {
+                            pos_1_2_backgrounde_text.visible = false;
+                            pos_1_2_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
+                            massiv_kill[1] = 2;
+                            disable_life_pos_1_2();
+                            pos_1_2.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+                            effect_pos_1_2.color = "blue";
+                            pos_1_2_animation.restart();
+                            return;
+                        }
+                        else if(massiv_kill[1] === 2) //продолжение обработки смерти
+                        {
+                            update_oshered_hodov();
+                            who_win();
+                        }
+
+                        pos_1_2_backgrounde_text.visible = false;
+                        pos_1_2_backgrounde.visible = false;
+                        perehod_hoda();
+                    }
+                    else if(mode === 0)
                     {
                         pos_1_2_backgrounde_text.visible = false;
-                        pos_1_2_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
-                        massiv_kill[1] = 2;
-                        disable_life_pos_1_2();
-                        pos_1_2.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
-                        effect_pos_1_2.color = "blue";
-                        pos_1_2_animation.restart();
-                        return;
+                        pos_1_2_backgrounde.visible = false;
+                        if(massiv_effect[0] === 1)
+                            perehod_hoda();
                     }
-                    else if(massiv_kill[1] === 2) //продолжение обработки смерти
-                    {
-                        update_oshered_hodov();
-                        who_win();
-                    }
-
-                    pos_1_2_backgrounde_text.visible = false;
-                    pos_1_2_backgrounde.visible = false;
-                    perehod_hoda();
-                }
+                }//onStopped
             }
         }
 
@@ -1799,27 +1965,37 @@ Rectangle //поле боя
 
                 onStopped:
                 {
-                    if(massiv_kill[0] === 1)
+                    if(mode === 1)
+                    {
+                        if(massiv_kill[0] === 1)
+                        {
+                            pos_1_1_backgrounde_text.visible = false;
+                            pos_1_1_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
+                            massiv_kill[0] = 2;
+                            disable_life_pos_1_1();
+                            pos_1_1.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+                            effect_pos_1_1.color = "blue";
+                            pos_1_1_animation.restart();
+                            return;
+                        }
+                        else if(massiv_kill[0] === 2)
+                        {
+                            update_oshered_hodov();
+                            who_win();
+                        }
+
+                        pos_1_1_backgrounde_text.visible = false;
+                        pos_1_1_backgrounde.visible = false;
+                        perehod_hoda();
+                    }
+                    else if(mode === 0)
                     {
                         pos_1_1_backgrounde_text.visible = false;
-                        pos_1_1_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
-                        massiv_kill[0] = 2;
-                        disable_life_pos_1_1();
-                        pos_1_1.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
-                        effect_pos_1_1.color = "blue";
-                        pos_1_1_animation.restart();
-                        return;
+                        pos_1_1_backgrounde.visible = false;
+                        if(massiv_effect[0] === 1)
+                            perehod_hoda();
                     }
-                    else if(massiv_kill[0] === 2)
-                    {
-                        update_oshered_hodov();
-                        who_win();
-                    }
-
-                    pos_1_1_backgrounde_text.visible = false;
-                    pos_1_1_backgrounde.visible = false;
-                    perehod_hoda();
-                }
+                }//onStopped
             }
         }
 
@@ -1990,27 +2166,37 @@ Rectangle //поле боя
 
                 onStopped:
                 {
-                    if(massiv_kill[3] === 1)
+                    if(mode === 1)
+                    {
+                        if(massiv_kill[3] === 1)
+                        {
+                            pos_1_4_backgrounde_text.visible = false;
+                            pos_1_4_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
+                            massiv_kill[3] = 2;
+                            disable_life_pos_1_4();
+                            pos_1_4.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+                            effect_pos_1_4.color = "blue";
+                            pos_1_4_animation.restart();
+                            return;
+                        }
+                        else if(massiv_kill[3] === 2)
+                        {
+                            update_oshered_hodov();
+                            who_win();
+                        }
+
+                        pos_1_4_backgrounde_text.visible = false;
+                        pos_1_4_backgrounde.visible = false;
+                        perehod_hoda();
+                    }
+                    else if(mode === 0)
                     {
                         pos_1_4_backgrounde_text.visible = false;
-                        pos_1_4_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
-                        massiv_kill[3] = 2;
-                        disable_life_pos_1_4();
-                        pos_1_4.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
-                        effect_pos_1_4.color = "blue";
-                        pos_1_4_animation.restart();
-                        return;
+                        pos_1_4_backgrounde.visible = false;
+                        if(massiv_effect[0] === 1)
+                            perehod_hoda();
                     }
-                    else if(massiv_kill[3] === 2)
-                    {
-                        update_oshered_hodov();
-                        who_win();
-                    }
-
-                    pos_1_4_backgrounde_text.visible = false;
-                    pos_1_4_backgrounde.visible = false;
-                    perehod_hoda();
-                }
+                }//onStopped
             }
         }
 
@@ -2181,27 +2367,37 @@ Rectangle //поле боя
 
                 onStopped:
                 {
-                    if(massiv_kill[2] === 1)
+                    if(mode === 1)
+                    {
+                        if(massiv_kill[2] === 1)
+                        {
+                            pos_1_3_backgrounde_text.visible = false;
+                            pos_1_3_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
+                            massiv_kill[2] = 2;
+                            disable_life_pos_1_3();
+                            pos_1_3.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+                            effect_pos_1_3.color = "blue";
+                            pos_1_3_animation.restart();
+                            return;
+                        }
+                        else if(massiv_kill[2] === 2)
+                        {
+                            update_oshered_hodov();
+                            who_win();
+                        }
+
+                        pos_1_3_backgrounde_text.visible = false;
+                        pos_1_3_backgrounde.visible = false;
+                        perehod_hoda();
+                    }
+                    else if(mode === 0)
                     {
                         pos_1_3_backgrounde_text.visible = false;
-                        pos_1_3_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
-                        massiv_kill[2] = 2;
-                        disable_life_pos_1_3();
-                        pos_1_3.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
-                        effect_pos_1_3.color = "blue";
-                        pos_1_3_animation.restart();
-                        return;
+                        pos_1_3_backgrounde.visible = false;
+                        if(massiv_effect[0] === 1)
+                            perehod_hoda();
                     }
-                    else if(massiv_kill[2] === 2)
-                    {
-                        update_oshered_hodov();
-                        who_win();
-                    }
-
-                    pos_1_3_backgrounde_text.visible = false;
-                    pos_1_3_backgrounde.visible = false;
-                    perehod_hoda();
-                }
+                }//onStopped
             }
         }
 
@@ -2372,27 +2568,37 @@ Rectangle //поле боя
 
                 onStopped:
                 {
-                    if(massiv_kill[5] === 1)
+                    if(mode === 1)
+                    {
+                        if(massiv_kill[5] === 1)
+                        {
+                            pos_1_6_backgrounde_text.visible = false;
+                            pos_1_6_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
+                            massiv_kill[5] = 2;
+                            disable_life_pos_1_6();
+                            pos_1_6.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+                            effect_pos_1_6.color = "blue";
+                            pos_1_6_animation.restart();
+                            return;
+                        }
+                        else if(massiv_kill[5] === 2)
+                        {
+                            update_oshered_hodov();
+                            who_win();
+                        }
+
+                        pos_1_6_backgrounde_text.visible = false;
+                        pos_1_6_backgrounde.visible = false;
+                        perehod_hoda();
+                    }
+                    else if(mode === 0)
                     {
                         pos_1_6_backgrounde_text.visible = false;
-                        pos_1_6_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
-                        massiv_kill[5] = 2;
-                        disable_life_pos_1_6();
-                        pos_1_6.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
-                        effect_pos_1_6.color = "blue";
-                        pos_1_6_animation.restart();
-                        return;
+                        pos_1_6_backgrounde.visible = false;
+                        if(massiv_effect[0] === 1)
+                            perehod_hoda();
                     }
-                    else if(massiv_kill[5] === 2)
-                    {
-                        update_oshered_hodov();
-                        who_win();
-                    }
-
-                    pos_1_6_backgrounde_text.visible = false;
-                    pos_1_6_backgrounde.visible = false;
-                    perehod_hoda();
-                }
+                }//onStopped
             }
         }
 
@@ -2563,26 +2769,36 @@ Rectangle //поле боя
 
                 onStopped:
                 {
-                    if(massiv_kill[4] === 1)
+                    if(mode === 1)
+                    {
+                        if(massiv_kill[4] === 1)
+                        {
+                            pos_1_5_backgrounde_text.visible = false;
+                            pos_1_5_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
+                            massiv_kill[4] = 2;
+                            disable_life_pos_1_5();
+                            pos_1_5.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+                            effect_pos_1_5.color = "blue";
+                            pos_1_5_animation.restart();
+                            return;
+                        }
+                        else if(massiv_kill[4] === 2)
+                        {
+                            update_oshered_hodov();
+                            who_win();
+                        }
+
+                        pos_1_5_backgrounde_text.visible = false;
+                        pos_1_5_backgrounde.visible = false;
+                        perehod_hoda();
+                    }
+                    else if(mode === 0)
                     {
                         pos_1_5_backgrounde_text.visible = false;
-                        pos_1_5_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
-                        massiv_kill[4] = 2;
-                        disable_life_pos_1_5();
-                        pos_1_5.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
-                        effect_pos_1_5.color = "blue";
-                        pos_1_5_animation.restart();
-                        return;
+                        pos_1_5_backgrounde.visible = false;
+                        if(massiv_effect[0] === 1)
+                            perehod_hoda();
                     }
-                    else if(massiv_kill[4] === 2)
-                    {
-                        update_oshered_hodov();
-                        who_win();
-                    }
-
-                    pos_1_5_backgrounde_text.visible = false;
-                    pos_1_5_backgrounde.visible = false;
-                    perehod_hoda();
                 }
             }
         }
@@ -2754,27 +2970,37 @@ Rectangle //поле боя
 
                 onStopped:
                 {
-                    if(massiv_kill[6] === 1)
+                    if(mode === 1)
+                    {
+                        if(massiv_kill[6] === 1)
+                        {
+                            pos_2_1_backgrounde_text.visible = false;
+                            pos_2_1_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
+                            massiv_kill[6] = 2;
+                            disable_life_pos_2_1();
+                            pos_2_1.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+                            effect_pos_2_1.color = "red";
+                            pos_2_1_animation.restart();
+                            return;
+                        }
+                        else if(massiv_kill[6] === 2)
+                        {
+                            update_oshered_hodov();
+                            who_win();
+                        }
+
+                        pos_2_1_backgrounde_text.visible = false;
+                        pos_2_1_backgrounde.visible = false;
+                        perehod_hoda();
+                    }
+                    else if(mode === 0)
                     {
                         pos_2_1_backgrounde_text.visible = false;
-                        pos_2_1_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
-                        massiv_kill[6] = 2;
-                        disable_life_pos_2_1();
-                        pos_2_1.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
-                        effect_pos_2_1.color = "red";
-                        pos_2_1_animation.restart();
-                        return;
+                        pos_2_1_backgrounde.visible = false;
+                        if(massiv_effect[0] === 1)
+                            perehod_hoda();
                     }
-                    else if(massiv_kill[6] === 2)
-                    {
-                        update_oshered_hodov();
-                        who_win();
-                    }
-
-                    pos_2_1_backgrounde_text.visible = false;
-                    pos_2_1_backgrounde.visible = false;
-                    perehod_hoda();
-                }
+                }//onStopped
             }
         }
 
@@ -2945,27 +3171,37 @@ Rectangle //поле боя
 
                 onStopped:
                 {
-                    if(massiv_kill[7] === 1)
+                    if(mode === 1)
+                    {
+                        if(massiv_kill[7] === 1)
+                        {
+                            pos_2_2_backgrounde_text.visible = false;
+                            pos_2_2_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
+                            massiv_kill[7] = 2;
+                            disable_life_pos_2_2();
+                            pos_2_2.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+                            effect_pos_2_2.color = "red";
+                            pos_2_2_animation.restart();
+                            return;
+                        }
+                        else if(massiv_kill[7] === 2)
+                        {
+                            update_oshered_hodov();
+                            who_win();
+                        }
+
+                        pos_2_2_backgrounde_text.visible = false;
+                        pos_2_2_backgrounde.visible = false;
+                        perehod_hoda();
+                    }
+                    else if(mode === 0)
                     {
                         pos_2_2_backgrounde_text.visible = false;
-                        pos_2_2_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
-                        massiv_kill[7] = 2;
-                        disable_life_pos_2_2();
-                        pos_2_2.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
-                        effect_pos_2_2.color = "red";
-                        pos_2_2_animation.restart();
-                        return;
+                        pos_2_2_backgrounde.visible = false;
+                        if(massiv_effect[0] === 1)
+                            perehod_hoda();
                     }
-                    else if(massiv_kill[7] === 2)
-                    {
-                        update_oshered_hodov();
-                        who_win();
-                    }
-
-                    pos_2_2_backgrounde_text.visible = false;
-                    pos_2_2_backgrounde.visible = false;
-                    perehod_hoda();
-                }
+                }//onStopped
             }
         }
 
@@ -3136,27 +3372,37 @@ Rectangle //поле боя
 
                 onStopped:
                 {
-                    if(massiv_kill[8] === 1)
+                    if(mode === 1)
+                    {
+                        if(massiv_kill[8] === 1)
+                        {
+                            pos_2_3_backgrounde_text.visible = false;
+                            pos_2_3_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
+                            massiv_kill[8] = 2;
+                            disable_life_pos_2_3();
+                            pos_2_3.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+                            effect_pos_2_3.color = "red";
+                            pos_2_3_animation.restart();
+                            return;
+                        }
+                        else if(massiv_kill[8] === 2)
+                        {
+                            update_oshered_hodov();
+                            who_win();
+                        }
+
+                        pos_2_3_backgrounde_text.visible = false;
+                        pos_2_3_backgrounde.visible = false;
+                        perehod_hoda();
+                    }
+                    else if(mode === 0)
                     {
                         pos_2_3_backgrounde_text.visible = false;
-                        pos_2_3_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
-                        massiv_kill[8] = 2;
-                        disable_life_pos_2_3();
-                        pos_2_3.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
-                        effect_pos_2_3.color = "red";
-                        pos_2_3_animation.restart();
-                        return;
+                        pos_2_3_backgrounde.visible = false;
+                        if(massiv_effect[0] === 1)
+                            perehod_hoda();
                     }
-                    else if(massiv_kill[8] === 2)
-                    {
-                        update_oshered_hodov();
-                        who_win();
-                    }
-
-                    pos_2_3_backgrounde_text.visible = false;
-                    pos_2_3_backgrounde.visible = false;
-                    perehod_hoda();
-                }
+                }//onStopped
             }
         }
 
@@ -3327,27 +3573,37 @@ Rectangle //поле боя
 
                 onStopped:
                 {
-                    if(massiv_kill[9] === 1)
+                    if(mode === 1)
+                    {
+                        if(massiv_kill[9] === 1)
+                        {
+                            pos_2_4_backgrounde_text.visible = false;
+                            pos_2_4_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
+                            massiv_kill[9] = 2;
+                            disable_life_pos_2_4();
+                            pos_2_4.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+                            effect_pos_2_4.color = "red";
+                            pos_2_4_animation.restart();
+                            return;
+                        }
+                        else if(massiv_kill[9] === 2)
+                        {
+                            update_oshered_hodov();
+                            who_win();
+                        }
+
+                        pos_2_4_backgrounde_text.visible = false;
+                        pos_2_4_backgrounde.visible = false;
+                        perehod_hoda();
+                    }
+                    else if(mode === 0)
                     {
                         pos_2_4_backgrounde_text.visible = false;
-                        pos_2_4_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
-                        massiv_kill[9] = 2;
-                        disable_life_pos_2_4();
-                        pos_2_4.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
-                        effect_pos_2_4.color = "red";
-                        pos_2_4_animation.restart();
-                        return;
+                        pos_2_4_backgrounde.visible = false;
+                        if(massiv_effect[0] === 1)
+                            perehod_hoda();
                     }
-                    else if(massiv_kill[9] === 2)
-                    {
-                        update_oshered_hodov();
-                        who_win();
-                    }
-
-                    pos_2_4_backgrounde_text.visible = false;
-                    pos_2_4_backgrounde.visible = false;
-                    perehod_hoda();
-                }
+                }//onStopped
             }
         }
 
@@ -3518,27 +3774,37 @@ Rectangle //поле боя
 
                 onStopped:
                 {
-                    if(massiv_kill[10] === 1)
+                    if(mode === 1)
+                    {
+                        if(massiv_kill[10] === 1)
+                        {
+                            pos_2_5_backgrounde_text.visible = false;
+                            pos_2_5_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
+                            massiv_kill[10] = 2;
+                            disable_life_pos_2_5();
+                            pos_2_5.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+                            effect_pos_2_5.color = "red";
+                            pos_2_5_animation.restart();
+                            return;
+                        }
+                        else if(massiv_kill[10] === 2)
+                        {
+                            update_oshered_hodov();
+                            who_win();
+                        }
+
+                        pos_2_5_backgrounde_text.visible = false;
+                        pos_2_5_backgrounde.visible = false;
+                        perehod_hoda();
+                    }
+                    else if(mode === 0)
                     {
                         pos_2_5_backgrounde_text.visible = false;
-                        pos_2_5_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
-                        massiv_kill[10] = 2;
-                        disable_life_pos_2_5();
-                        pos_2_5.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
-                        effect_pos_2_5.color = "red";
-                        pos_2_5_animation.restart();
-                        return;
+                        pos_2_5_backgrounde.visible = false;
+                        if(massiv_effect[0] === 1)
+                            perehod_hoda();
                     }
-                    else if(massiv_kill[10] === 2)
-                    {
-                        update_oshered_hodov();
-                        who_win();
-                    }
-
-                    pos_2_5_backgrounde_text.visible = false;
-                    pos_2_5_backgrounde.visible = false;
-                    perehod_hoda();
-                }
+                }//onStopped
             }
         }
 
@@ -3709,27 +3975,37 @@ Rectangle //поле боя
 
                 onStopped:
                 {
-                    if(massiv_kill[11] === 1)
+                    if(mode === 1)
+                    {
+                        if(massiv_kill[11] === 1)
+                        {
+                            pos_2_6_backgrounde_text.visible = false;
+                            pos_2_6_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
+                            massiv_kill[11] = 2;
+                            disable_life_pos_2_6();
+                            pos_2_6.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+                            effect_pos_2_6.color = "red";
+                            pos_2_6_animation.restart();
+                            return;
+                        }
+                        else if(massiv_kill[11] === 2)
+                        {
+                            update_oshered_hodov();
+                            who_win();
+                        }
+
+                        pos_2_6_backgrounde_text.visible = false;
+                        pos_2_6_backgrounde.visible = false;
+                        perehod_hoda();
+                    }
+                    else if(mode === 0)
                     {
                         pos_2_6_backgrounde_text.visible = false;
-                        pos_2_6_backgrounde.source = "file:///" + applicationDirPath + "/image/battle/sherep.jpg";
-                        massiv_kill[11] = 2;
-                        disable_life_pos_2_6();
-                        pos_2_6.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
-                        effect_pos_2_6.color = "red";
-                        pos_2_6_animation.restart();
-                        return;
+                        pos_2_6_backgrounde.visible = false;
+                        if(massiv_effect[0] === 1)
+                            perehod_hoda();
                     }
-                    else if(massiv_kill[11] === 2)
-                    {
-                        update_oshered_hodov();
-                        who_win();
-                    }
-
-                    pos_2_6_backgrounde_text.visible = false;
-                    pos_2_6_backgrounde.visible = false;
-                    perehod_hoda();
-                }
+                }//onStopped
             }
         }
 

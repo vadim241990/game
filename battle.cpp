@@ -613,3 +613,14 @@ QString Battle::get_full_info_otrad(int x,int y)
 
     return res;
 }
+
+/**
+ * @brief use_effect - применение эффекта к первому отряду
+ *
+ * @return строку результата
+ */
+QString Battle::use_effect()
+{
+    QString res = this->all_team[0]->use_effect();
+    return res;
+}

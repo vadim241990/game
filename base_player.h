@@ -2,7 +2,7 @@
 #define BASE_PLAYER_H
 
 #include <QObject>
-#include <QtTest/QTest>
+#include "effect.h"
 
 struct Result //вспомогательная структура
 {
@@ -37,6 +37,9 @@ class Base_player : public QObject
     int point_X;
     int point_Y;
     int real_life;   //текущий показатель здоровья
+
+    QList<Effect *> plus;
+    QList<Effect *> minus;
     
 protected:
 	
@@ -58,6 +61,7 @@ public:
     ~Base_player();
 
     QString base_res_stroka(Base_player * player);
+    QString use_effect();
 
 	int set_point_X(int number);
 	int get_point_X();
@@ -88,6 +92,11 @@ public:
     int get_bonus_bron();
     void set_bonus_inichiativa(int value);
     int get_bonus_inichiativa();
+
+    void add_plus_effect(QString name);
+    int size_plus_effect();
+    void add_minus_effect(QString name);
+    int size_minus_effect();
 	
     virtual QString attack(int x, int y,QList<Base_player *> list);
     virtual Result result_damage(Base_player * player);
@@ -278,6 +287,9 @@ class Team20_paralish : public Base_player
 public:
 	explicit Team20_paralish();
 	~Team20_paralish();
+
+    QString attack(int x, int y,QList<Base_player *> list);
+    Result result_damage(Base_player * player);
 };
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

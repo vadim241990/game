@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QVector>
 #include <QString>
+#include <QTime>
 #include "base_player.h"
 
 class Battle : public QObject
@@ -40,6 +41,8 @@ public:
     QString get_first_name();
     QString get_first_in_osheredi_shel();
     QString get_first_in_osheredi_shel_attack();
+
+    QString use_effect();
 
     void set_name_battle(QString name);
     QString get_name_battle();
