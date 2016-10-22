@@ -83,6 +83,7 @@ public:
     void set_real_life(int number);
     int get_damage();
     int get_bron();
+    void set_bron(int value);
 
     void set_bonus_damage(int value);
     int get_bonus_damage();
@@ -93,10 +94,14 @@ public:
     void set_bonus_inichiativa(int value);
     int get_bonus_inichiativa();
 
-    void add_plus_effect(QString name);
+    void add_plus_effect(QString name,QVector<int> &parametr);
     int size_plus_effect();
-    void add_minus_effect(QString name);
+    void clear_plus_effect();
+
+    void add_minus_effect(QString name,QVector<int> &parametr);
+    Effect * get_minus_at(int index);
     int size_minus_effect();
+    void clear_minus_effect();
 	
     virtual QString attack(int x, int y,QList<Base_player *> list);
     virtual Result result_damage(Base_player * player);
@@ -299,6 +304,9 @@ class Team20_proklynaet : public Base_player
 public:
 	explicit Team20_proklynaet();
 	~Team20_proklynaet();
+
+    QString attack(int x, int y,QList<Base_player *> list);
+    Result result_damage(Base_player * player);
 };
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

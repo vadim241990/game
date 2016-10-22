@@ -29,6 +29,8 @@ void Battle::clear()
 {
     for(int i = 0; i < this->all_team.size(); i++)
     {
+        this->all_team[i]->clear_minus_effect();
+        this->all_team[i]->clear_plus_effect();
         delete this->all_team[i];
     }
     this->all_team.clear();
@@ -87,6 +89,8 @@ QString Battle::parsing_kill(QString res)
                 {
                     if((this->red_team[t]->get_point_X() == this->all_team[z]->get_point_X()) && (this->red_team[t]->get_point_Y() == this->all_team[z]->get_point_Y()))
                     {
+                        this->red_team[t]->clear_minus_effect();
+                        this->red_team[t]->clear_plus_effect();
                         delete this->red_team[t];
                         this->red_team.removeAt(t);
                         this->all_team.removeAt(z);
@@ -106,6 +110,8 @@ QString Battle::parsing_kill(QString res)
                 {
                     if((this->blue_team[v]->get_point_X() == this->all_team[z]->get_point_X()) && (this->blue_team[v]->get_point_Y() == this->all_team[z]->get_point_Y()))
                     {
+                        this->blue_team[v]->clear_minus_effect();
+                        this->blue_team[v]->clear_plus_effect();
                         delete this->blue_team[v];
                         this->blue_team.removeAt(v);
                         this->all_team.removeAt(z);

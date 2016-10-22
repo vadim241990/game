@@ -887,6 +887,9 @@ Rectangle //поле боя
         {
             if(shel === "6")
             {
+                if(select_x > 1)
+                    return;
+
                 if(life_pos_1_1.visible === true)
                     effect_pos_1_1.color = "yellow";
                 if(life_pos_1_2.visible === true)

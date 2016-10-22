@@ -77,12 +77,14 @@ bool Effect::get_ready()
  *
  * @return указатель на Effect
  */
-Effect * Effect::Create_effect(QString name)
+Effect * Effect::Create_effect(QString name,QVector<int> &parametr)
 {
     Effect * eff = nullptr;
 
     if(name == "Паралич_1")
         eff = new Effect_paralish(1);
+    else if(name == "Ослабление_1")
+        eff = new Effect_oslablenie(name,2,parametr.at(0),parametr.at(1),parametr.at(2),parametr.at(3),parametr.at(4),parametr.at(5));
 
     return eff;
 }
@@ -226,56 +228,104 @@ int Effect_paralish::get_dlitelnost()
     return this->dlitelnost;
 }
 
-//Effect_oslablenie::Effect_oslablenie(QString name,int dlitelnost,int o_uron,int o_bron,int o_toshnost,int o_inishiativa, \
-//int pro_uron,int pro_bron,int pro_toshnost,int pro_inishiativa)
-//{
-//    this->set_name(name);
-//    this->dlitelnost = dlitelnost;
-//    this->oslab_uron = o_uron;
-//    this->oslab_bron = o_bron;
-//    this->oslab_toshnost = o_toshnost;
-//    this->oslab_inishiativa = o_inishiativa;
-//    this->oslab_in_pro_uron = pro_uron;
-//    this->oslab_in_pro_bron = pro_bron;
-//    this->oslab_in_pro_toshnost = pro_toshnost;
-//    this->oslab_in_pro_inishiativa = pro_inishiativa;
-//}
+/////////////////////////////////////
+/////////////////////////////////////
+/////////////////////////////////////
 
-//Effect_oslablenie::Effect_oslablenie(QString name,int dlitelnost,bool type,int uron,int bron,int toshnost,int inishiativa)
-//{
-//    this->set_name(name);
-//    this->dlitelnost = dlitelnost;
+Effect_oslablenie::Effect_oslablenie(QString name,int dlitelnost,int o_uron,int o_bron,int o_toshnost, \
+int pro_uron,int pro_bron,int pro_toshnost)
+{
+    this->dlitelnost = dlitelnost;
+    this->set_job(job_effect::BEGIN_HOD);
+    this->set_type(type_effect::OSLABLENIE);
+    this->set_ready(true);
 
-//    if(type == true)
-//    {
-//        this->oslab_in_pro_uron = uron;
-//        this->oslab_in_pro_bron = bron;
-//        this->oslab_in_pro_toshnost = toshnost;
-//        this->oslab_in_pro_inishiativa = inishiativa;
-//        this->oslab_uron = 0;
-//        this->oslab_bron = 0;
-//        this->oslab_toshnost = 0;
-//        this->oslab_inishiativa = 0;
-//    }
-//    else
-//    {
-//        this->oslab_uron = uron;
-//        this->oslab_bron = bron;
-//        this->oslab_toshnost = toshnost;
-//        this->oslab_inishiativa = inishiativa;
-//        this->oslab_in_pro_uron = 0;
-//        this->oslab_in_pro_bron = 0;
-//        this->oslab_in_pro_toshnost = 0;
-//        this->oslab_in_pro_inishiativa = 0;
-//    }
-//}
+    this->oslab_uron = 0;
+    this->oslab_bron = 0;
+    this->oslab_toshnost = 0;
+    this->oslab_in_pro_uron = 0;
+    this->oslab_in_pro_bron = 0;
+    this->oslab_in_pro_toshnost = 0;
 
-//Effect_oslablenie::~Effect_oslablenie()
-//{
+    if(name == "Ослабление_1")
+    {
+        this->set_name("Ослабление");
+        this->use_oslab_in_pro_uron = pro_uron;
+        this->oslab_in_pro_uron = 20;
+        this->use_oslab_bron = o_bron;
+        this->oslab_bron = 15;
+    }
+}
 
-//}
+Effect_oslablenie::~Effect_oslablenie()
+{
 
-//QString Effect_oslablenie::use_effect(Base_player * player)
-//{
-//    //TODO
-//}
+}
+
+int Effect_oslablenie::get_dlitelnost()
+{
+    return this->dlitelnost;
+}
+
+int Effect_oslablenie::set_dlitelnost(int value)
+{
+    this->dlitelnost = value;
+}
+
+int Effect_oslablenie::get_use_oslab_uron()
+{
+    return this->use_oslab_uron;
+}
+
+int Effect_oslablenie::get_use_oslab_bron()
+{
+    return this->use_oslab_bron;
+}
+
+int Effect_oslablenie::get_use_oslab_toshnost()
+{
+    return this->use_oslab_toshnost;
+}
+
+int Effect_oslablenie::get_use_oslab_in_pro_uron()
+{
+    return this->use_oslab_in_pro_uron;
+}
+int Effect_oslablenie::get_use_oslab_in_pro_bron()
+{
+    return this->use_oslab_in_pro_bron;
+}
+int Effect_oslablenie::get_use_oslab_in_pro_toshnost()
+{
+    return this->use_oslab_in_pro_toshnost;
+}
+
+int Effect_oslablenie::get_oslab_uron()
+{
+    return this->oslab_uron;
+}
+
+int Effect_oslablenie::get_oslab_bron()
+{
+    return this->oslab_bron;
+}
+
+int Effect_oslablenie::get_oslab_toshnost()
+{
+    return this->oslab_toshnost;
+}
+
+int Effect_oslablenie::get_oslab_in_pro_uron()
+{
+    return this->oslab_in_pro_uron;
+}
+
+int Effect_oslablenie::get_oslab_in_pro_bron()
+{
+    return this->oslab_in_pro_bron;
+}
+
+int Effect_oslablenie::get_oslab_in_pro_toshnost()
+{
+    return this->oslab_in_pro_toshnost;
+}
