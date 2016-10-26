@@ -1292,6 +1292,54 @@ QString Team20_proklynaet::attack(int x, int y,QList<Base_player *> list)
 {
     QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/totem.png";
     QString res = this->help_attack_in_all(list,x,y,image);
+
+    QString parsing = "";
+    QString one_otrad = "";
+    QString element = "";
+    QString mid = "Слабость$";
+    int index_start = 0;
+    int index_end = 0;
+    int index_start_2 = 0;
+    int index_end_2 = 0;
+    int len = 0;
+    int len_2 = 0;
+    int count = 0;
+
+    while(1)
+    {
+        count = 0;
+        index_start_2 = 0;
+        index_end = res.indexOf("#",index_start);
+        if(index_end == -1)
+            break;
+
+        len = index_end - index_start;
+        one_otrad = res.mid(index_start,len);
+        index_start = index_end + 1;
+
+        while(1)
+        {
+            index_end_2 = one_otrad.indexOf("$",index_start_2);
+            if(index_end_2 == -1)
+            {
+                parsing += "#";
+                break;
+            }
+
+            len_2 = index_end_2 - index_start_2;
+            element = one_otrad.mid(index_start_2,len_2);
+            index_start_2 = index_end_2 + 1;
+
+            if((count != 6) || (element == "Промах"))
+                parsing += element + "$";
+            else
+                parsing += mid;
+
+            count++;
+        }
+    }
+    res = parsing;
+
     return res;
 }
 

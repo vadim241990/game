@@ -489,9 +489,10 @@ Rectangle //поле боя
     function help_damage(x,y,uron,x_man_attack)
     {
         var text = "";
-        if(uron === "Иммунитет")    text = uron;
-        else if(uron === "Защита")  text = uron;
-        else if(uron === "Промах")  text = uron;
+        if(uron === "Иммунитет")        text = uron;
+        else if(uron === "Защита")      text = uron;
+        else if(uron === "Промах")      text = uron;
+        else if(uron === "Слабость")    text = uron;
         else
         {
             if((x_man_attack === 0) || (x_man_attack === 1)) //атакующий в синей команде
