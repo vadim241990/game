@@ -78,10 +78,16 @@ public:
     QString get_type_damage();
     QString get_description();
     int get_ver_damage();
+
     int get_life();
+    void set_life(int number);
+
     int get_real_life();
     void set_real_life(int number);
+
     int get_damage();
+    void set_damage(int number);
+
     int get_bron();
     void set_bron(int value);
 
@@ -102,6 +108,8 @@ public:
     Effect * get_minus_at(int index);
     int size_minus_effect();
     void clear_minus_effect();
+
+    QString parsing_result_for_update(QString parsing_text,QString text);
 	
     virtual QString attack(int x, int y,QList<Base_player *> list);
     virtual Result result_damage(Base_player * player);
@@ -328,6 +336,9 @@ class Team20_simbiot : public Base_player
 public:
 	explicit Team20_simbiot();
 	~Team20_simbiot();
+
+    QString attack(int x, int y,QList<Base_player *> list);
+    Result result_damage(Base_player * player);
 };
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

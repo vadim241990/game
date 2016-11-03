@@ -67,6 +67,11 @@ int Base_player::get_life()
     return this->life;
 }
 
+void Base_player::set_life(int number)
+{
+    this->life = number;
+}
+
 int Base_player::get_real_life()
 {
     return this->real_life;
@@ -100,6 +105,11 @@ QString Base_player::get_immunitet()
 int Base_player::get_damage()
 {
     return this->damage;
+}
+
+void Base_player::set_damage(int number)
+{
+    this->damage = number;
 }
 
 int Base_player::get_bron()
@@ -823,6 +833,55 @@ QString Base_player::use_effect()
 
     return (start_res + end_res);
 }
+
+QString Base_player::parsing_result_for_update(QString parsing_text,QString text)
+{
+    QString parsing = "";
+    QString one_otrad = "";
+    QString element = "";
+    int index_start = 0;
+    int index_end = 0;
+    int index_start_2 = 0;
+    int index_end_2 = 0;
+    int len = 0;
+    int len_2 = 0;
+    int count = 0;
+
+    while(1)
+    {
+        count = 0;
+        index_start_2 = 0;
+        index_end = parsing_text.indexOf("#",index_start);
+        if(index_end == -1)
+            break;
+
+        len = index_end - index_start;
+        one_otrad = parsing_text.mid(index_start,len);
+        index_start = index_end + 1;
+
+        while(1)
+        {
+            index_end_2 = one_otrad.indexOf("$",index_start_2);
+            if(index_end_2 == -1)
+            {
+                parsing += "#";
+                break;
+            }
+
+            len_2 = index_end_2 - index_start_2;
+            element = one_otrad.mid(index_start_2,len_2);
+            index_start_2 = index_end_2 + 1;
+
+            if((count != 6) || (element == "Промах"))
+                parsing += element + "$";
+            else
+                parsing += text + "$";
+
+            count++;
+        }
+    }
+    return parsing;
+}
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -1292,54 +1351,7 @@ QString Team20_proklynaet::attack(int x, int y,QList<Base_player *> list)
 {
     QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/totem.png";
     QString res = this->help_attack_in_all(list,x,y,image);
-
-    QString parsing = "";
-    QString one_otrad = "";
-    QString element = "";
-    QString mid = "Слабость$";
-    int index_start = 0;
-    int index_end = 0;
-    int index_start_2 = 0;
-    int index_end_2 = 0;
-    int len = 0;
-    int len_2 = 0;
-    int count = 0;
-
-    while(1)
-    {
-        count = 0;
-        index_start_2 = 0;
-        index_end = res.indexOf("#",index_start);
-        if(index_end == -1)
-            break;
-
-        len = index_end - index_start;
-        one_otrad = res.mid(index_start,len);
-        index_start = index_end + 1;
-
-        while(1)
-        {
-            index_end_2 = one_otrad.indexOf("$",index_start_2);
-            if(index_end_2 == -1)
-            {
-                parsing += "#";
-                break;
-            }
-
-            len_2 = index_end_2 - index_start_2;
-            element = one_otrad.mid(index_start_2,len_2);
-            index_start_2 = index_end_2 + 1;
-
-            if((count != 6) || (element == "Промах"))
-                parsing += element + "$";
-            else
-                parsing += mid;
-
-            count++;
-        }
-    }
-    res = parsing;
-
+    res = this->parsing_result_for_update(res,"Слабость");
     return res;
 }
 
@@ -1438,6 +1450,46 @@ Team20_simbiot::Team20_simbiot()
 Team20_simbiot::~Team20_simbiot()
 {
 	
+}
+
+QString Team20_simbiot::attack(int x, int y,QList<Base_player *> list)
+{
+    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/simbiot.png";
+    QString res = this->help_attack_in_one(list,x,y,image);
+    res = this->parsing_result_for_update(res,"Эволюция");
+
+    QString add_res = QString::number(this->get_point_X()) + "$";
+    add_res += QString::number(this->get_point_Y()) + "$";
+    add_res += QString::number(this->get_life()) + "$";
+    add_res += QString::number(this->get_real_life()) + "$";
+    add_res += "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/simbiot.png";
+    add_res += "$true$Эволюция$#";
+
+    QString pop_back = QString::number(this->get_point_X()) + "*" + QString::number(this->get_point_Y())+ "*" + "@" + "^";
+    res = pop_back + res + add_res;
+    return res;
+}
+
+Result Team20_simbiot::result_damage(Base_player * player)
+{
+    Result res;
+    int life = player->get_life();
+    int life_real = player->get_real_life();
+    int uron = player->get_damage();
+
+    int up = 70;
+    int bonus_life = life * ((double)up/100);
+
+    life = life + bonus_life;
+    uron = uron + (uron * ((double)up/100));
+
+    player->set_life(life);
+    player->set_real_life(life_real + bonus_life);
+    player->set_damage(uron);
+
+    res.uron = 0;
+    res.kill = false;
+    return res;
 }
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

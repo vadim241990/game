@@ -23,7 +23,7 @@ Rectangle //поле боя
     property int mode: 1              //0 - обработка эффектов 1 - обработка удара
     property variant massiv_effect: [0,0] //0 - не обрабатывать 1 - обрабатывать
     ///1 элемент - Обрабатывать паралич(переход хода)
-    property variant massiv_kill: [0,0,0,0,0,0,0,0,0,0,0,0] //0-элемент не обрабатывался //1-элемент надо обработать //2-прошол обработку
+    property variant massiv_kill: [0,0,0,0,0,0,0,0,0,0,0,0] //0-элемент не обрабатывался //1-элемент надо обработать //2-прошол обработку //3-закреплен за симбиотом
     ///pos_1_1 - pos_1_2 || pos_2_1 - pos_2_2  massiv_kill[0] - massiv_kill[1]  ||  massiv_kill[6] - massiv_kill[7]
     ///pos_1_3 - pos_1_4 || pos_2_3 - pos_2_4  massiv_kill[2] - massiv_kill[3]  ||  massiv_kill[8] - massiv_kill[9]
     ///pos_1_5 - pos_1_6 || pos_2_5 - pos_2_6  massiv_kill[4] - massiv_kill[5]  ||  massiv_kill[10] - massiv_kill[11]
@@ -176,7 +176,121 @@ Rectangle //поле боя
                 return false;
             }
         }
+    }
 
+    function help_simbiot(x,y)
+    {
+        if((x === 0) && (y === 0))
+        {
+            disable_life_pos_1_1();
+            pos_1_1.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+            effect_pos_1_1.color = "blue";
+            pos_1_1_backgrounde_text.visible = false;
+            pos_1_1_backgrounde.visible = false;
+            update_oshered_hodov();
+
+            //не допустить ложной обработки(из-за потоков)
+            if(number_animation > 1)
+            {
+                pos_1_1_animation.restart();
+                return;
+            }
+        }
+        else if((x === 1) && (y === 0))
+        {
+            disable_life_pos_1_2();
+            pos_1_2.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+            effect_pos_1_2.color = "blue";
+            pos_1_2_backgrounde_text.visible = false;
+            pos_1_2_backgrounde.visible = false;
+            update_oshered_hodov();
+
+            if(number_animation > 1)
+            {
+                pos_1_2_animation.restart();
+                return;
+            }
+        }
+        else if((x === 0) && (y === 1))
+        {
+            disable_life_pos_1_3();
+            pos_1_3.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+            effect_pos_1_3.color = "blue";
+            pos_1_3_backgrounde_text.visible = false;
+            pos_1_3_backgrounde.visible = false;
+            update_oshered_hodov();
+
+            if(number_animation > 1)
+            {
+                pos_1_3_animation.restart();
+                return;
+            }
+        }
+        else if((x === 1) && (y === 1))
+        {
+            disable_life_pos_1_4();
+            pos_1_4.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+            effect_pos_1_4.color = "blue";
+            pos_1_4_backgrounde_text.visible = false;
+            pos_1_4_backgrounde.visible = false;
+            update_oshered_hodov();
+
+            if(number_animation > 1)
+            {
+                pos_1_4_animation.restart();
+                return;
+            }
+        }
+        else if((x === 0) && (y === 2))
+        {
+            disable_life_pos_1_5();
+            pos_1_5.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+            effect_pos_1_5.color = "blue";
+            pos_1_5_backgrounde_text.visible = false;
+            pos_1_5_backgrounde.visible = false;
+            update_oshered_hodov();
+
+            if(number_animation > 1)
+            {
+                pos_1_5_animation.restart();
+                return;
+            }
+        }
+        else if((x === 1) && (y === 2))
+        {
+            disable_life_pos_1_6();
+            pos_1_6.source = "file:///" + applicationDirPath + "/image/battle/black.jpg";
+            effect_pos_1_6.color = "blue";
+            pos_1_6_backgrounde_text.visible = false;
+            pos_1_6_backgrounde.visible = false;
+            update_oshered_hodov();
+
+            if(number_animation > 1)
+            {
+                pos_1_6_animation.restart();
+                return;
+            }
+        }
+
+        number_animation--;
+
+        who_create_hod();
+        if(my_hod === false)
+        {
+            disable_select_move();
+            hod_pc();
+        }
+        else
+        {
+            lock = false;
+            if(x_hover !== -1)
+            {
+                repaint_select_mouse(x_hover,y_hover);
+                disable_select_move();
+                select_move(x_hover,y_hover);
+            }
+        }
+        return;
     }
 
     function hod_pc()
@@ -322,7 +436,12 @@ Rectangle //поле боя
                     pos_2_1_animation.start();
                     number_animation++;
                     if(massiv_one_player[5] === "true")
-                        massiv_kill[6] = 1;
+                    {
+                        if(massiv_one_player[6] === "Эволюция")
+                            massiv_kill[6] = 3;
+                        else
+                            massiv_kill[6] = 1;
+                    }
                 }
                 else if((massiv_one_player[0] === "3") && (massiv_one_player[1] === "0"))
                 {
@@ -335,7 +454,12 @@ Rectangle //поле боя
                     pos_2_2_animation.start();
                     number_animation++;
                     if(massiv_one_player[5] === "true")
-                        massiv_kill[7] = 1;
+                    {
+                        if(massiv_one_player[6] === "Эволюция")
+                            massiv_kill[7] = 3;
+                        else
+                            massiv_kill[7] = 1;
+                    }
                 }
                 else if((massiv_one_player[0] === "2") && (massiv_one_player[1] === "1"))
                 {
@@ -348,7 +472,12 @@ Rectangle //поле боя
                     pos_2_3_animation.start();
                     number_animation++;
                     if(massiv_one_player[5] === "true")
-                        massiv_kill[8] = 1;
+                    {
+                        if(massiv_one_player[6] === "Эволюция")
+                            massiv_kill[8] = 3;
+                        else
+                            massiv_kill[8] = 1;
+                    }
                 }
                 else if((massiv_one_player[0] === "3") && (massiv_one_player[1] === "1"))
                 {
@@ -361,7 +490,12 @@ Rectangle //поле боя
                     pos_2_4_animation.start();
                     number_animation++;
                     if(massiv_one_player[5] === "true")
-                        massiv_kill[9] = 1;
+                    {
+                        if(massiv_one_player[6] === "Эволюция")
+                            massiv_kill[9] = 3;
+                        else
+                            massiv_kill[9] = 1;
+                    }
                 }
                 else if((massiv_one_player[0] === "2") && (massiv_one_player[1] === "2"))
                 {
@@ -374,7 +508,12 @@ Rectangle //поле боя
                     pos_2_5_animation.start();
                     number_animation++;
                     if(massiv_one_player[5] === "true")
-                        massiv_kill[10] = 1;
+                    {
+                        if(massiv_one_player[6] === "Эволюция")
+                            massiv_kill[10] = 3;
+                        else
+                            massiv_kill[10] = 1;
+                    }
                 }
                 else if((massiv_one_player[0] === "3") && (massiv_one_player[1] === "2"))
                 {
@@ -387,7 +526,12 @@ Rectangle //поле боя
                     pos_2_6_animation.start();
                     number_animation++;
                     if(massiv_one_player[5] === "true")
-                        massiv_kill[11] = 1;
+                    {
+                        if(massiv_one_player[6] === "Эволюция")
+                            massiv_kill[11] = 3;
+                        else
+                            massiv_kill[11] = 1;
+                    }
                 }
                 else if((massiv_one_player[0] === "0") && (massiv_one_player[1] === "0"))
                 {
@@ -400,7 +544,12 @@ Rectangle //поле боя
                     pos_1_1_animation.start();
                     number_animation++;
                     if(massiv_one_player[5] === "true")
-                        massiv_kill[0] = 1;
+                    {
+                        if(massiv_one_player[6] === "Эволюция")
+                            massiv_kill[12] = 3;
+                        else
+                            massiv_kill[12] = 1;
+                    }
                 }
                 else if((massiv_one_player[0] === "1") && (massiv_one_player[1] === "0"))
                 {
@@ -413,7 +562,12 @@ Rectangle //поле боя
                     pos_1_2_animation.start();
                     number_animation++;
                     if(massiv_one_player[5] === "true")
-                        massiv_kill[1] = 1;
+                    {
+                        if(massiv_one_player[6] === "Эволюция")
+                            massiv_kill[1] = 3;
+                        else
+                            massiv_kill[1] = 1;
+                    }
                 }
                 else if((massiv_one_player[0] === "0") && (massiv_one_player[1] === "1"))
                 {
@@ -426,7 +580,12 @@ Rectangle //поле боя
                     pos_1_3_animation.start();
                     number_animation++;
                     if(massiv_one_player[5] === "true")
-                        massiv_kill[2] = 1;
+                    {
+                        if(massiv_one_player[6] === "Эволюция")
+                            massiv_kill[2] = 3;
+                        else
+                            massiv_kill[2] = 1;
+                    }
                 }
                 else if((massiv_one_player[0] === "1") && (massiv_one_player[1] === "1"))
                 {
@@ -439,7 +598,12 @@ Rectangle //поле боя
                     pos_1_4_animation.start();
                     number_animation++;
                     if(massiv_one_player[5] === "true")
-                        massiv_kill[3] = 1;
+                    {
+                        if(massiv_one_player[6] === "Эволюция")
+                            massiv_kill[3] = 3;
+                        else
+                            massiv_kill[3] = 1;
+                    }
                 }
                 else if((massiv_one_player[0] === "0") && (massiv_one_player[1] === "2"))
                 {
@@ -452,7 +616,12 @@ Rectangle //поле боя
                     pos_1_5_animation.start();
                     number_animation++;
                     if(massiv_one_player[5] === "true")
-                        massiv_kill[4] = 1;
+                    {
+                        if(massiv_one_player[6] === "Эволюция")
+                            massiv_kill[4] = 3;
+                        else
+                            massiv_kill[4] = 1;
+                    }
                 }
                 else if((massiv_one_player[0] === "1") && (massiv_one_player[1] === "2"))
                 {
@@ -465,7 +634,12 @@ Rectangle //поле боя
                     pos_1_6_animation.start();
                     number_animation++;
                     if(massiv_one_player[5] === "true")
-                        massiv_kill[5] = 1;
+                    {
+                        if(massiv_one_player[6] === "Эволюция")
+                            massiv_kill[5] = 3;
+                        else
+                            massiv_kill[5] = 1;
+                    }
                 }
 
                 help_damage(massiv_one_player[0],massiv_one_player[1],massiv_one_player[6],global_settings.get_first_in_osheredi_x());
@@ -493,6 +667,7 @@ Rectangle //поле боя
         else if(uron === "Защита")      text = uron;
         else if(uron === "Промах")      text = uron;
         else if(uron === "Слабость")    text = uron;
+        else if(uron === "Эволюция")    text = uron;
         else
         {
             if((x_man_attack === 0) || (x_man_attack === 1)) //атакующий в синей команде
@@ -906,6 +1081,12 @@ Rectangle //поле боя
             }
             else
             {
+                if(global_settings.get_first_in_osheredi_name() === "Team20 Симбиот")
+                {
+                    if(can_damage(select_x,select_y) === false)
+                        return;
+                }
+
                 if((select_x === 0) && (select_y === 0))
                     effect_pos_1_1.color = "yellow";
                 else if((select_x === 1) && (select_y === 0))
@@ -927,6 +1108,9 @@ Rectangle //поле боя
         if(my_hod === false)
             return;
 
+        var y = 0;
+        var x = 0;
+
         var shel = global_settings.get_first_in_osheredi_shel();
         var shel_attack = global_settings.get_first_in_osheredi_shel_attack();
 
@@ -943,8 +1127,8 @@ Rectangle //поле боя
             }
             else
             {
-                var y = global_settings.get_first_in_osheredi_y();
-                var x = global_settings.get_first_in_osheredi_x();
+                y = global_settings.get_first_in_osheredi_y();
+                x = global_settings.get_first_in_osheredi_x();
 
                 if((x === 0) && (help_use_one_rad() === true))//если игрок стоит во втором ряду и в 1-м ряду есть отряд
                     return false;
@@ -1005,8 +1189,75 @@ Rectangle //поле боя
         }
         else if(shel_attack === "Свой отряд")
         {
-                if(select_x <= 1)
+            if(global_settings.get_first_in_osheredi_name() === "Team20 Симбиот")
+            {
+                //сперва проверим не указываем ли мы на себя
+                y = global_settings.get_first_in_osheredi_y();
+                x = global_settings.get_first_in_osheredi_x();
+
+                if((x === select_x) && (y === select_y))
+                    return false;
+
+                //проверка что выбор героя недопустим(для проверки source строго литерал(var не работает))
+                if((select_x === 0) && (select_y === 0) && (life_pos_1_1.visible === true))
+                {
+                    if((pos_1_1.source == "file:///" + applicationDirPath + "/image/person/person_geroi_lush.jpg")||
+                       (pos_1_1.source == "file:///" + applicationDirPath + "/image/person/person_geroi_voin.jpg")||
+                       (pos_1_1.source == "file:///" + applicationDirPath + "/image/person/person_geroi_mag.jpg"))
+                       {return false;}
+                }
+                else if((select_x === 1) && (select_y === 0) && (life_pos_1_2.visible === true))
+                {
+                    if((pos_1_2.source == "file:///" + applicationDirPath + "/image/person/person_geroi_lush.jpg")||
+                       (pos_1_2.source == "file:///" + applicationDirPath + "/image/person/person_geroi_voin.jpg")||
+                       (pos_1_2.source == "file:///" + applicationDirPath + "/image/person/person_geroi_mag.jpg"))
+                       {return false;}
+                }
+                else if((select_x === 0) && (select_y === 1) && (life_pos_1_3.visible === true))
+                {
+                    if((pos_1_3.source == "file:///" + applicationDirPath + "/image/person/person_geroi_lush.jpg")||
+                       (pos_1_3.source == "file:///" + applicationDirPath + "/image/person/person_geroi_voin.jpg")||
+                       (pos_1_3.source == "file:///" + applicationDirPath + "/image/person/person_geroi_mag.jpg"))
+                       {return false;}
+                }
+                else if((select_x === 1) && (select_y === 1) && (life_pos_1_4.visible === true))
+                {
+                    if((pos_1_4.source == "file:///" + applicationDirPath + "/image/person/person_geroi_lush.jpg")||
+                       (pos_1_4.source == "file:///" + applicationDirPath + "/image/person/person_geroi_voin.jpg")||
+                       (pos_1_4.source == "file:///" + applicationDirPath + "/image/person/person_geroi_mag.jpg"))
+                       {return false;}
+                }
+                else if((select_x === 0) && (select_y === 2) && (life_pos_1_5.visible === true))
+                {
+                    if((pos_1_5.source == "file:///" + applicationDirPath + "/image/person/person_geroi_lush.jpg")||
+                       (pos_1_5.source == "file:///" + applicationDirPath + "/image/person/person_geroi_voin.jpg")||
+                       (pos_1_5.source == "file:///" + applicationDirPath + "/image/person/person_geroi_mag.jpg"))
+                       {return false;}
+                }
+                else if((select_x === 1) && (select_y === 2) && (life_pos_1_6.visible === true))
+                {
+                    if((pos_1_6.source == "file:///" + applicationDirPath + "/image/person/person_geroi_lush.jpg")||
+                       (pos_1_6.source == "file:///" + applicationDirPath + "/image/person/person_geroi_voin.jpg")||
+                       (pos_1_6.source == "file:///" + applicationDirPath + "/image/person/person_geroi_mag.jpg"))
+                       {return false;}
+                }
+            }
+
+            if(select_x <= 1)
+            {
+                if((select_x === 0) && (select_y === 0) && (life_pos_1_1.visible === true))
                     return true;
+                else if((select_x === 1) && (select_y === 0) && (life_pos_1_2.visible === true))
+                    return true;
+                else if((select_x === 0) && (select_y === 1) && (life_pos_1_3.visible === true))
+                    return true;
+                else if((select_x === 1) && (select_y === 1) && (life_pos_1_4.visible === true))
+                    return true;
+                else if((select_x === 0) && (select_y === 2) && (life_pos_1_5.visible === true))
+                    return true;
+                else if((select_x === 1) && (select_y === 2) && (life_pos_1_6.visible === true))
+                    return true;
+            }
         }
         return false;
     }
@@ -1785,6 +2036,10 @@ Rectangle //поле боя
                             update_oshered_hodov();
                             who_win();
                         }
+                        else if(massiv_kill[1] === 3)
+                        {
+                            help_simbiot(1,0);
+                        }
 
                         pos_1_2_backgrounde_text.visible = false;
                         pos_1_2_backgrounde.visible = false;
@@ -1987,6 +2242,10 @@ Rectangle //поле боя
                             update_oshered_hodov();
                             who_win();
                         }
+                        else if(massiv_kill[0] === 3)
+                        {
+                            help_simbiot(0,0);
+                        }
 
                         pos_1_1_backgrounde_text.visible = false;
                         pos_1_1_backgrounde.visible = false;
@@ -2187,6 +2446,10 @@ Rectangle //поле боя
                         {
                             update_oshered_hodov();
                             who_win();
+                        }
+                        else if(massiv_kill[3] === 3)
+                        {
+                            help_simbiot(1,1);
                         }
 
                         pos_1_4_backgrounde_text.visible = false;
@@ -2389,6 +2652,10 @@ Rectangle //поле боя
                             update_oshered_hodov();
                             who_win();
                         }
+                        else if(massiv_kill[2] === 3)
+                        {
+                            help_simbiot(0,1);
+                        }
 
                         pos_1_3_backgrounde_text.visible = false;
                         pos_1_3_backgrounde.visible = false;
@@ -2590,6 +2857,10 @@ Rectangle //поле боя
                             update_oshered_hodov();
                             who_win();
                         }
+                        else if(massiv_kill[5] === 3)
+                        {
+                            help_simbiot(1,2);
+                        }
 
                         pos_1_6_backgrounde_text.visible = false;
                         pos_1_6_backgrounde.visible = false;
@@ -2790,6 +3061,10 @@ Rectangle //поле боя
                         {
                             update_oshered_hodov();
                             who_win();
+                        }
+                        else if(massiv_kill[4] === 3)
+                        {
+                            help_simbiot(0,2);
                         }
 
                         pos_1_5_backgrounde_text.visible = false;

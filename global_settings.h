@@ -104,6 +104,7 @@ public:
 
     Q_INVOKABLE QString get_first_in_osheredi_shel_attack();
     Q_INVOKABLE QString get_first_in_osheredi_shel();
+    Q_INVOKABLE QString get_first_in_osheredi_name();
 
     Q_INVOKABLE void add_can_buy_otrad(QString value);
     Q_INVOKABLE QString get_can_buy_otrad(int number);
