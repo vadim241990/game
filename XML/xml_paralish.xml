@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<paralish level = "1">
+			<name>Призрак</name>
+			<type_damage>Яд</type_damage>
+			<ver_damage>70</ver_damage>
+
+    			<damage>5</damage>
+
+			<life>180</life>
+
+			<bron>0</bron>
+
+			<inichiativa>25</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-2-ряд</shel_attack>
+
+    			<description>Накладывает проклятие на пропуск следующего хода.</description>
+
+  		</paralish>
+  
+		<paralish level = "5">
+
+    			<name>Призрак</name>
+    
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>80</ver_damage>
+
+			<damage>0</damage>
+
+    			<life>310</life>
+
+			<bron>10</bron>
+
+    			<inichiativa>30</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Оружие</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Накладывает проклятие на пропуск следующего хода.</description>
+
+		</paralish>
+
+		<paralish level = "10">
+
+    			<name>Призрак</name>
+
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>90</ver_damage>
+
+			<damage>0</damage>
+
+			<life>470</life>
+
+			<bron>15</bron>
+
+			<inichiativa>30</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Оружие</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Накладывает проклятие на пропуск следующего хода.</description>
+
+		</paralish>
+
+		<paralish level = "17">
+
+			<name>Призрак</name>
+
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>50</ver_damage>
+
+			<damage>0</damage>
+
+			<life>600</life>
+
+			<bron>20</bron>
+
+			<inichiativa>35</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Оружие</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Накладывает проклятие на пропуск следующего хода.</description>
+
+		</paralish>
+
+		<paralish level = "25">
+
+			<name>Призрак</name>
+
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>60</ver_damage>
+
+			<damage>0</damage>
+
+			<life>750</life>
+
+			<bron>25</bron>
+
+			<inichiativa>35</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Оружие</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Накладывает проклятие на пропуск следующего хода.</description>
+
+		</paralish>
+
+	</root>

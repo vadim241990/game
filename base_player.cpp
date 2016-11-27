@@ -819,6 +819,10 @@ QString Base_player::use_effect()
                 }
             }
         }//type_effect::OSLABLENIE
+        else if(this->minus[i]->get_type() == type_effect::DAMAGE)
+        {
+
+        }
     }
 
     //удаляем все отработанные эффекты
@@ -1070,6 +1074,39 @@ Team20_elemental_cold::Team20_elemental_cold()
 Team20_elemental_cold::~Team20_elemental_cold()
 {
 	
+}
+
+QString Team20_elemental_cold::attack(int x, int y,QList<Base_player *> list)
+{
+    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/elemental_cold.png";
+    QString res = this->help_attack_in_one(list,x,y,image);
+    return res;
+}
+
+Result Team20_elemental_cold::result_damage(Base_player * player)
+{
+    Result res;
+    int life = player->get_real_life();
+    int def = player->get_bron();
+    int uron = this->get_damage();
+
+    res.uron = (((double)(100 - def)/100) * uron);
+
+    life -= res.uron;
+    if(life <= 0)
+    {
+        life = 0;
+        player->set_real_life(life);
+        res.kill = true;
+        return res;
+    }
+
+    player->set_real_life(life);
+    res.kill = false;
+
+    //TODO дописать
+
+    return res;
 }
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
@@ -1464,6 +1501,7 @@ QString Team20_simbiot::attack(int x, int y,QList<Base_player *> list)
     add_res += QString::number(this->get_real_life()) + "$";
     add_res += "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/simbiot.png";
     add_res += "$true$Эволюция$#";
+    add_res += "!void";
 
     QString pop_back = QString::number(this->get_point_X()) + "*" + QString::number(this->get_point_Y())+ "*" + "@" + "^";
     res = pop_back + res + add_res;

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<simbiot level = "1">
+			<name>Симбиот</name>
+			<type_damage>Нет</type_damage>
+			<ver_damage>100</ver_damage>
+
+    			<damage>0</damage>
+
+			<life>80</life>
+
+			<bron>0</bron>
+
+			<inichiativa>80</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>Свой отряд</shel_attack>
+
+    			<description>Увеличивает здоровье носителя(не героя) и урон на 70%(при этом изчезает с поля боя и умирает с носителем).</description>
+
+  		</simbiot>
+  
+		<simbiot level = "5">
+
+    			<name>Симбиот</name>
+    
+			<type_damage>Нет</type_damage>
+
+			<ver_damage>100</ver_damage>
+
+			<damage>0</damage>
+
+    			<life>120</life>
+
+			<bron>0</bron>
+
+    			<inichiativa>85</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>Свой отряд</shel_attack>
+
+			<description>Увеличивает здоровье носителя(не героя) и урон на 80%(при этом изчезает с поля боя и умирает с носителем).</description>
+
+		</simbiot>
+
+		<simbiot level = "10">
+
+    			<name>Симбиот</name>
+
+			<type_damage>Нет</type_damage>
+
+			<ver_damage>100</ver_damage>
+
+			<damage>0</damage>
+
+			<life>150</life>
+
+			<bron>0</bron>
+
+			<inichiativa>90</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>Свой отряд</shel_attack>
+
+			<description>Увеличивает здоровье носителя(не героя) и урон на 90%(при этом изчезает с поля боя и умирает с носителем).</description>
+
+		</simbiot>
+
+		<simbiot level = "17">
+
+			<name>Симбиот</name>
+
+			<type_damage>Нет</type_damage>
+
+			<ver_damage>100</ver_damage>
+
+			<damage>0</damage>
+
+			<life>200</life>
+
+			<bron>10</bron>
+
+			<inichiativa>90</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>Свой отряд</shel_attack>
+
+			<description>Увеличивает здоровье носителя(не героя) и урон на 100%(при этом изчезает с поля боя и умирает с носителем).</description>
+
+		</simbiot>
+
+		<simbiot level = "25">
+
+			<name>Симбиот</name>
+
+			<type_damage>Нет</type_damage>
+
+			<ver_damage>100</ver_damage>
+
+			<damage>0</damage>
+
+			<life>250</life>
+
+			<bron>10</bron>
+
+			<inichiativa>95</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>Свой отряд</shel_attack>
+
+			<description>Увеличивает здоровье носителя(не героя) и урон на 120%(при этом изчезает с поля боя и умирает с носителем).</description>
+
+		</simbiot>
+
+	</root>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+  
+		<main>
+		
+		    <name>Тал</name>
+  
+		    <type_damage>Огонь</type_damage>
+
+		    <ver_damage>75</ver_damage>
+
+		    <damage>40</damage>
+
+		    <life>700</life>
+
+		    <bron>10</bron>
+
+		    <inichiativa>51</inichiativa>
+
+		    <shel>6</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-2-ряд</shel_attack>
+
+		    <description>Повелитель замка.</description>
+
+	       </main>
+
+	</root>

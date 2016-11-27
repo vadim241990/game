@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<elemental_cold level = "1">
+			<name>Элементаль холода</name>
+			<type_damage>Холод</type_damage>
+			<ver_damage>30</ver_damage>
+
+    			<damage>40</damage>
+
+			<life>140</life>
+
+			<bron>0</bron>
+
+			<inichiativa>30</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Холод</zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-2-ряд</shel_attack>
+
+    			<description>Накладывает проклятие(через 3 хода нанисит 80 единиц урона, эффект не суммируется).</description>
+
+  		</elemental_cold>
+  
+		<elemental_cold level = "5">
+
+    			<name>Элементаль холода</name>
+    
+			<type_damage>Холод</type_damage>
+
+			<ver_damage>35</ver_damage>
+
+			<damage>70</damage>
+
+    			<life>220</life>
+
+			<bron>5</bron>
+
+    			<inichiativa>35</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Холод</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Накладывает проклятие(через 3 хода нанисит 120 единиц урона, эффект не суммируется).</description>
+
+		</elemental_cold>
+
+		<elemental_cold level = "10">
+
+    			<name>Элементаль холода</name>
+
+			<type_damage>Холод</type_damage>
+
+			<ver_damage>40</ver_damage>
+
+			<damage>100</damage>
+
+			<life>290</life>
+
+			<bron>10</bron>
+
+			<inichiativa>38</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Холод</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Накладывает проклятие(через 4 хода нанисит 170 единиц урона, эффект не суммируется).</description>
+
+		</elemental_cold>
+
+		<elemental_cold level = "17">
+
+			<name>Элементаль холода</name>
+
+			<type_damage>Холод</type_damage>
+
+			<ver_damage>43</ver_damage>
+
+			<damage>130</damage>
+
+			<life>410</life>
+
+			<bron>15</bron>
+
+			<inichiativa>43</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Холод</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Накладывает проклятие(через 4 хода нанисит 220 единиц урона, эффект не суммируется).</description>
+
+		</elemental_cold>
+
+		<elemental_cold level = "25">
+
+			<name>Элементаль холода</name>
+
+			<type_damage>Холод</type_damage>
+
+			<ver_damage>45</ver_damage>
+
+			<damage>160</damage>
+
+			<life>520</life>
+
+			<bron>20</bron>
+
+			<inichiativa>45</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Холод</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Накладывает проклятие(через 4 хода нанисит 270 единиц урона, эффект не суммируется).</description>
+
+		</elemental_cold>
+
+	</root>

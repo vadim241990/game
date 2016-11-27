@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+  
+		<main_strash>
+		
+		    <name>Страж</name>
+  
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>70</ver_damage>
+
+		    <damage>40</damage>
+
+		    <life>500</life>
+
+		    <bron>10</bron>
+
+		    <inichiativa>40</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>Главный воин в охране замка.</description>
+
+	       </main_strash>
+
+	</root>

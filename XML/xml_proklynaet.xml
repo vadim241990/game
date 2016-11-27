@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<proklynaet level = "1">
+			<name>Шаман</name>
+			<type_damage>Яд</type_damage>
+			<ver_damage>60</ver_damage>
+
+    			<damage>0</damage>
+
+			<life>170</life>
+
+			<bron>0</bron>
+
+			<inichiativa>35</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Яд</zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-2-ряд</shel_attack>
+
+    			<description>Накладывает проклятие: защита -15, урон -20%(на 2 хода, эффект суммируется).</description>
+
+  		</proklynaet>
+  
+		<proklynaet level = "5">
+
+    			<name>Шаман</name>
+    
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>82</ver_damage>
+
+			<damage>0</damage>
+
+    			<life>270</life>
+
+			<bron>5</bron>
+
+    			<inichiativa>40</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Накладывает проклятие: защита -15, инициатива -12, урон -20%(на 1 ход).</description>
+
+		</proklynaet>
+
+		<proklynaet level = "10">
+
+    			<name>Шаман</name>
+
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>85</ver_damage>
+
+			<damage>0</damage>
+
+			<life>390</life>
+
+			<bron>10</bron>
+
+			<inichiativa>40</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Холод</zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Накладывает проклятие: защита -20, инициатива -15, урон -22%(на 1 ход).</description>
+
+		</proklynaet>
+
+		<proklynaet level = "17">
+
+			<name>Шаман</name>
+
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>87</ver_damage>
+
+			<damage>0</damage>
+
+			<life>500</life>
+
+			<bron>15</bron>
+
+			<inichiativa>45</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Холод</zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Накладывает проклятие: защита -25, инициатива -18, урон -25%(на 1 ход).</description>
+
+		</proklynaet>
+
+		<proklynaet level = "25">
+
+			<name>Шаман</name>
+
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>90</ver_damage>
+
+			<damage>0</damage>
+
+			<life>620</life>
+
+			<bron>20</bron>
+
+			<inichiativa>50</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Холод;Молния</zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Накладывает проклятие: защита -30, инициатива -20, урон -30%(на 1 ход).</description>
+
+		</proklynaet>
+
+	</root>

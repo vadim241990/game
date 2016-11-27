@@ -274,23 +274,26 @@ Rectangle //поле боя
 
         number_animation--;
 
-        who_create_hod();
-        if(my_hod === false)
+        if(number_animation === 0)
         {
-            disable_select_move();
-            hod_pc();
-        }
-        else
-        {
-            lock = false;
-            if(x_hover !== -1)
+            who_create_hod();
+            if(my_hod === false)
             {
-                repaint_select_mouse(x_hover,y_hover);
                 disable_select_move();
-                select_move(x_hover,y_hover);
+                hod_pc();
             }
-        }
-        return;
+            else
+            {
+                lock = false;
+                if(x_hover !== -1)
+                {
+                    repaint_select_mouse(x_hover,y_hover);
+                    disable_select_move();
+                    select_move(x_hover,y_hover);
+                }
+            }
+            return;
+        }//if
     }
 
     function hod_pc()
@@ -546,9 +549,9 @@ Rectangle //поле боя
                     if(massiv_one_player[5] === "true")
                     {
                         if(massiv_one_player[6] === "Эволюция")
-                            massiv_kill[12] = 3;
+                            massiv_kill[0] = 3;
                         else
-                            massiv_kill[12] = 1;
+                            massiv_kill[0] = 1;
                     }
                 }
                 else if((massiv_one_player[0] === "1") && (massiv_one_player[1] === "0"))
@@ -647,17 +650,18 @@ Rectangle //поле боя
         }
     }
 
-    function who_win()
+    function who_win() //true - продолжаем бой, false - конец боя
     {
         var result_game = global_settings.get_result_battle();
         if(result_game === "void")
-            return;
+            return true;
         else if((result_game === "win") || (result_game === "game_over"))
         {
             item_loader_windows.settings_select("/building_home/result.qml");
+            return false;
         }
 
-        return;
+        return true;
     }
 
     function help_damage(x,y,uron,x_man_attack)
@@ -973,7 +977,8 @@ Rectangle //поле боя
         {
             if(shel === "6")
             {
-                show_select_all_other_team();
+                if(select_x > 1)
+                    show_select_all_other_team();
             }
             else
             {
@@ -1424,7 +1429,7 @@ Rectangle //поле боя
             disable_life_pos_2_5();
 
         if(text_real_life_pos_2_6.text === "")
-            disable_life_pos_2_6();
+            disable_life_pos_2_6();   
     }
 
     function update_oshered_hodov()
@@ -1559,6 +1564,11 @@ Rectangle //поле боя
             repaint_select_first_otrad_in_oshered();
             who_create_hod();
             init_battle = true;
+
+            if(my_hod === false)  //пк начнет игру первый
+            {
+                init_timer.start();
+            }
         }
 
         if(global_settings.get_level_game() === 1)
@@ -1576,6 +1586,18 @@ Rectangle //поле боя
       width: parent.width
       height: parent.height
       source: init()
+    }
+
+    Timer
+    {
+        id: init_timer
+        interval: 1000
+        onTriggered:
+        {
+            disable_select_move();
+            hod_pc();
+            init_timer.stop();
+        }
     }
     
     //модуль очередности хода
@@ -2034,11 +2056,13 @@ Rectangle //поле боя
                         else if(massiv_kill[1] === 2) //продолжение обработки смерти
                         {
                             update_oshered_hodov();
-                            who_win();
+                            if(who_win() === false)
+                                return;
                         }
                         else if(massiv_kill[1] === 3)
                         {
                             help_simbiot(1,0);
+                            return;
                         }
 
                         pos_1_2_backgrounde_text.visible = false;
@@ -2240,11 +2264,13 @@ Rectangle //поле боя
                         else if(massiv_kill[0] === 2)
                         {
                             update_oshered_hodov();
-                            who_win();
+                            if(who_win() === false)
+                                return;
                         }
                         else if(massiv_kill[0] === 3)
                         {
                             help_simbiot(0,0);
+                            return;
                         }
 
                         pos_1_1_backgrounde_text.visible = false;
@@ -2445,11 +2471,13 @@ Rectangle //поле боя
                         else if(massiv_kill[3] === 2)
                         {
                             update_oshered_hodov();
-                            who_win();
+                            if(who_win() === false)
+                                return;
                         }
                         else if(massiv_kill[3] === 3)
                         {
                             help_simbiot(1,1);
+                            return;
                         }
 
                         pos_1_4_backgrounde_text.visible = false;
@@ -2650,11 +2678,13 @@ Rectangle //поле боя
                         else if(massiv_kill[2] === 2)
                         {
                             update_oshered_hodov();
-                            who_win();
+                            if(who_win() === false)
+                                return;
                         }
                         else if(massiv_kill[2] === 3)
                         {
                             help_simbiot(0,1);
+                            return;
                         }
 
                         pos_1_3_backgrounde_text.visible = false;
@@ -2855,11 +2885,13 @@ Rectangle //поле боя
                         else if(massiv_kill[5] === 2)
                         {
                             update_oshered_hodov();
-                            who_win();
+                            if(who_win() === false)
+                                return;
                         }
                         else if(massiv_kill[5] === 3)
                         {
                             help_simbiot(1,2);
+                            return;
                         }
 
                         pos_1_6_backgrounde_text.visible = false;
@@ -3060,11 +3092,13 @@ Rectangle //поле боя
                         else if(massiv_kill[4] === 2)
                         {
                             update_oshered_hodov();
-                            who_win();
+                            if(who_win() === false)
+                                return;
                         }
                         else if(massiv_kill[4] === 3)
                         {
                             help_simbiot(0,2);
+                            return;
                         }
 
                         pos_1_5_backgrounde_text.visible = false;
@@ -3265,7 +3299,8 @@ Rectangle //поле боя
                         else if(massiv_kill[6] === 2)
                         {
                             update_oshered_hodov();
-                            who_win();
+                            if(who_win() === false)
+                                return;
                         }
 
                         pos_2_1_backgrounde_text.visible = false;
@@ -3466,7 +3501,8 @@ Rectangle //поле боя
                         else if(massiv_kill[7] === 2)
                         {
                             update_oshered_hodov();
-                            who_win();
+                            if(who_win() === false)
+                                return;
                         }
 
                         pos_2_2_backgrounde_text.visible = false;
@@ -3667,7 +3703,8 @@ Rectangle //поле боя
                         else if(massiv_kill[8] === 2)
                         {
                             update_oshered_hodov();
-                            who_win();
+                            if(who_win() === false)
+                                return;
                         }
 
                         pos_2_3_backgrounde_text.visible = false;
@@ -3868,7 +3905,8 @@ Rectangle //поле боя
                         else if(massiv_kill[9] === 2)
                         {
                             update_oshered_hodov();
-                            who_win();
+                            if(who_win() === false)
+                                return;
                         }
 
                         pos_2_4_backgrounde_text.visible = false;
@@ -4069,7 +4107,8 @@ Rectangle //поле боя
                         else if(massiv_kill[10] === 2)
                         {
                             update_oshered_hodov();
-                            who_win();
+                            if(who_win() === false)
+                                return;
                         }
 
                         pos_2_5_backgrounde_text.visible = false;
@@ -4270,7 +4309,8 @@ Rectangle //поле боя
                         else if(massiv_kill[11] === 2)
                         {
                             update_oshered_hodov();
-                            who_win();
+                            if(who_win() === false)
+                                return;
                         }
 
                         pos_2_6_backgrounde_text.visible = false;

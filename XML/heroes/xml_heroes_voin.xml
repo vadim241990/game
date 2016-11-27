@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+  
+		<voin>
+		
+    <name>Воин</name>
+  
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>80</ver_damage>
+
+		    <damage>50</damage>
+
+		    <life>350</life>
+
+		    <bron>0</bron>
+
+		    <inichiativa>50</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>В идеале владеет холодным оружием, а дополнительные навыки только это подчеркивают. Вся сила и ярость атак направлена на ближайших врагов.</description>
+
+	       </voin>
+
+	</root>

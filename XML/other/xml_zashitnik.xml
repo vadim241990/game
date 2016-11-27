@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+  
+		<zashitnik>
+		
+		    <name>Прислужник</name>
+  
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>65</ver_damage>
+
+		    <damage>30</damage>
+
+		    <life>340</life>
+
+		    <bron>0</bron>
+
+		    <inichiativa>30</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>Охрана повелителя замка.</description>
+
+	       </zashitnik>
+
+	</root>

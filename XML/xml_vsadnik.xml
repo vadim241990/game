@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<vsadnik level = "1">
+			<name>Всадник смерти</name>
+			<type_damage>Яд</type_damage>
+			<ver_damage>60</ver_damage>
+
+    			<damage>30</damage>
+
+			<life>200</life>
+
+			<bron>10</bron>
+
+			<inichiativa>40</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-ряд</shel_attack>
+
+    			<description>Приходит забрать в мир иной.</description>
+
+  		</vsadnik>
+  
+		<vsadnik level = "5">
+
+    			<name>Всадник смерти</name>
+    
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>60</ver_damage>
+
+			<damage>65</damage>
+
+    			<life>390</life>
+
+			<bron>20</bron>
+
+    			<inichiativa>50</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Встреча с ним будет для вас последней.</description>
+
+		</vsadnik>
+
+		<vsadnik level = "10">
+
+    			<name>Всадник смерти</name>
+
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>65</ver_damage>
+
+			<damage>105</damage>
+
+			<life>550</life>
+
+			<bron>25</bron>
+
+			<inichiativa>60</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>При ударе накладывает отравление на один ход(срабатывает при начале хода противника нанося урон:10 Защита и броня игнорируется).</description>
+
+		</vsadnik>
+
+		<vsadnik level = "17">
+
+			<name>Всадник смерти</name>
+
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>65</ver_damage>
+
+			<damage>140</damage>
+
+			<life>720</life>
+
+			<bron>30</bron>
+
+			<inichiativa>70</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Огонь</zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>При ударе накладывает отравление на один ход(срабатывает при начале хода противника нанося урон:25 Защита и броня игнорируется).</description>
+
+		</vsadnik>
+
+		<vsadnik level = "25">
+
+			<name>Всадник смерти</name>
+
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>65</ver_damage>
+
+			<damage>180</damage>
+
+			<life>880</life>
+
+			<bron>40</bron>
+
+			<inichiativa>75</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Яд;Огонь</immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>При ударе накладывает отравление на один ход(срабатывает при начале хода противника нанося урон:50 Защита и броня игнорируется).</description>
+
+		</vsadnik>
+
+	</root>

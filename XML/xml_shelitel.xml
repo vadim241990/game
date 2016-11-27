@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<shelitel level = "1">
+			<name>Целитель</name>
+			<type_damage>Нет</type_damage>
+			<ver_damage>100</ver_damage>
+
+    			<damage>15</damage>
+
+			<life>200</life>
+
+			<bron>0</bron>
+
+			<inichiativa>10</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>Свой отряд</shel_attack>
+
+    			<description>Лечит всех в отряде.</description>
+
+  		</shelitel>
+  
+		<shelitel level = "5">
+
+    			<name>Целитель</name>
+    
+			<type_damage>Нет</type_damage>
+
+			<ver_damage>100</ver_damage>
+
+			<damage>20</damage>
+
+    			<life>330</life>
+
+			<bron>5</bron>
+
+    			<inichiativa>10</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Огонь</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>Свой отряд</shel_attack>
+
+			<description>Исцеляет себя на 20% эффективнее.</description>
+
+		</shelitel>
+
+		<shelitel level = "10">
+
+    			<name>Целитель</name>
+
+			<type_damage>Нет</type_damage>
+
+			<ver_damage>100</ver_damage>
+
+			<damage>35</damage>
+
+			<life>550</life>
+
+			<bron>10</bron>
+
+			<inichiativa>10</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Яд;Огонь</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>Свой отряд</shel_attack>
+
+			<description>Исцеляет себя на 40% эффективнее.</description>
+
+		</shelitel>
+
+		<shelitel level = "17">
+
+			<name>Целитель</name>
+
+			<type_damage>Нет</type_damage>
+
+			<ver_damage>100</ver_damage>
+
+			<damage>50</damage>
+
+			<life>700</life>
+
+			<bron>15</bron>
+
+			<inichiativa>10</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Яд</zashita>
+
+			<immunitet>Огонь</immunitet>
+
+			<shel_attack>Свой отряд</shel_attack>
+
+			<description>Исцеляет себя на 60% эффективнее.</description>
+
+		</shelitel>
+
+		<shelitel level = "25">
+
+			<name>Целитель</name>
+
+			<type_damage>Нет</type_damage>
+
+			<ver_damage>100</ver_damage>
+
+			<damage>65</damage>
+
+			<life>900</life>
+
+			<bron>20</bron>
+
+			<inichiativa>10</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Яд;Молния</zashita>
+
+			<immunitet>Огонь</immunitet>
+
+			<shel_attack>Свой отряд</shel_attack>
+
+			<description>Исцеляет себя на 80% эффективнее.</description>
+
+		</shelitel>
+
+	</root>

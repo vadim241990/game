@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+  
+		<mag>
+		
+    <name>Маг</name>
+  
+		    <type_damage>Молния</type_damage>
+
+		    <ver_damage>80</ver_damage>
+
+		    <damage>20</damage>
+
+		    <life>250</life>
+
+		    <bron>0</bron>
+
+		    <inichiativa>45</inichiativa>
+
+		    <shel>6</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-2-ряд</shel_attack>
+
+		    <description>Обрушивает атаки на всю армию противника. Имеет массу вспомогательных навыков, что делает его просто не заменимым в команде.</description>
+
+	       </mag>
+
+	</root>

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<elemental_elektrisiti level = "1">
+			<name>Элементаль молний</name>
+			<type_damage>Молния</type_damage>
+			<ver_damage>70</ver_damage>
+
+    			<damage>20</damage>
+
+			<life>120</life>
+
+			<bron>0</bron>
+
+			<inichiativa>30</inichiativa>
+
+			<shel>2</shel>
+
+			<zashita>Молния</zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-2-ряд</shel_attack>
+
+    			<description>При успешном ударе поражает случайным образом соседнюю клетку боя на 40 урона(может попасть в пустую клетку).</description>
+
+  		</elemental_elektrisiti>
+  
+		<elemental_elektrisiti level = "5">
+
+    			<name>Элементаль молний</name>
+    
+			<type_damage>Молния</type_damage>
+
+			<ver_damage>75</ver_damage>
+
+			<damage>45</damage>
+
+    			<life>170</life>
+
+			<bron>0</bron>
+
+    			<inichiativa>33</inichiativa>
+
+			<shel>2</shel>
+
+			<zashita>Молния</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>При успешном ударе поражает случайным образом соседнюю клетку боя на 70 урона(может попасть в пустую клетку).</description>
+
+		</elemental_elektrisiti>
+
+		<elemental_elektrisiti level = "10">
+
+    			<name>Элементаль молний</name>
+
+			<type_damage>Молния</type_damage>
+
+			<ver_damage>80</ver_damage>
+
+			<damage>70</damage>
+
+			<life>240</life>
+
+			<bron>0</bron>
+
+			<inichiativa>36</inichiativa>
+
+			<shel>2</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Молния</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>При успешном ударе поражает случайным образом соседнюю клетку боя на 110 урона(может попасть в пустую клетку).</description>
+
+		</elemental_elektrisiti>
+
+		<elemental_elektrisiti level = "17">
+
+			<name>Элементаль молний</name>
+
+			<type_damage>Молния</type_damage>
+
+			<ver_damage>85</ver_damage>
+
+			<damage>90</damage>
+
+			<life>290</life>
+
+			<bron>0</bron>
+
+			<inichiativa>39</inichiativa>
+
+			<shel>2</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Молния</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>При успешном ударе поражает случайным образом соседнюю клетку боя на 140 урона(может попасть в пустую клетку).</description>
+
+		</elemental_elektrisiti>
+
+		<elemental_elektrisiti level = "25">
+
+			<name>Элементаль молний</name>
+
+			<type_damage>Молния</type_damage>
+
+			<ver_damage>90</ver_damage>
+
+			<damage>110</damage>
+
+			<life>320</life>
+
+			<bron>0</bron>
+
+			<inichiativa>42</inichiativa>
+
+			<shel>2</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Молния</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>При успешном ударе поражает случайным образом соседнюю клетку боя на 170 урона(может попасть в пустую клетку).</description>
+
+		</elemental_elektrisiti>
+
+	</root>

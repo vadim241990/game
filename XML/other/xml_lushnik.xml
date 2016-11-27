@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+  
+		<lushnik>
+		
+		    <name>Лучник</name>
+  
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>60</ver_damage>
+
+		    <damage>15</damage>
+
+		    <life>180</life>
+
+		    <bron>0</bron>
+
+		    <inichiativa>28</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-2-ряд</shel_attack>
+
+		    <description>Мастер дальней дистанции.</description>
+
+	       </lushnik>
+
+	</root>

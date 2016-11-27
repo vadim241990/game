@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+  
+		<krestyanin>
+		
+		    <name>Крестьянин</name>
+  
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>50</ver_damage>
+
+		    <damage>20</damage>
+
+		    <life>250</life>
+
+		    <bron>0</bron>
+
+		    <inichiativa>30</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>Простой работяга.</description>
+
+	       </krestyanin>
+
+	</root>

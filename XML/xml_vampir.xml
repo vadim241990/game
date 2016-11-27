@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<vampir level = "1">
+			<name>Вампир</name>
+			<type_damage>Оружие</type_damage>
+			<ver_damage>65</ver_damage>
+
+    			<damage>10</damage>
+
+			<life>150</life>
+
+			<bron>0</bron>
+
+			<inichiativa>30</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-2-ряд</shel_attack>
+
+    			<description>Востанавливает себе 5 единиц здоровья.</description>
+
+  		</vampir>
+  
+		<vampir level = "5">
+
+    			<name>Вампир</name>
+    
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>70</ver_damage>
+
+			<damage>20</damage>
+
+    			<life>260</life>
+
+			<bron>5</bron>
+
+    			<inichiativa>35</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Огонь</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Востанавливает себе 10 единиц здоровья.</description>
+
+		</vampir>
+
+		<vampir level = "10">
+
+    			<name>Вампир</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>75</ver_damage>
+
+			<damage>30</damage>
+
+			<life>390</life>
+
+			<bron>10</bron>
+
+			<inichiativa>40</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Огонь;Яд</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Востанавливает всем в отряде 10 единиц здоровья.</description>
+
+		</vampir>
+
+		<vampir level = "17">
+
+			<name>Вампир</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>80</ver_damage>
+
+			<damage>40</damage>
+
+			<life>510</life>
+
+			<bron>10</bron>
+
+			<inichiativa>45</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Огонь</zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Востанавливает всем в отряде 15 единиц здоровья.</description>
+
+		</vampir>
+
+		<vampir level = "25">
+
+			<name>Вампир</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>85</ver_damage>
+
+			<damage>45</damage>
+
+			<life>620</life>
+
+			<bron>15</bron>
+
+			<inichiativa>49</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Огонь</zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Востанавливает всем в отряде 20 единиц здоровья.</description>
+
+		</vampir>
+
+	</root>

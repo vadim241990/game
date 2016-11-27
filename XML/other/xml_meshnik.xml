@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+  
+		<meshnik>
+		
+		    <name>Мечник</name>
+  
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>60</ver_damage>
+
+		    <damage>25</damage>
+
+		    <life>300</life>
+
+		    <bron>5</bron>
+
+		    <inichiativa>35</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>Воин, вооруженный мечом.</description>
+
+	       </meshnik>
+
+	</root>

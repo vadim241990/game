@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<ogr level = "1">
+			<name>Огр</name>
+			<type_damage>Оружие</type_damage>
+			<ver_damage>70</ver_damage>
+
+    			<damage>15</damage>
+
+			<life>400</life>
+
+			<bron>5</bron>
+
+			<inichiativa>50</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-ряд</shel_attack>
+
+    			<description>Наносит мало урона, но при этом живуч.</description>
+
+  		</ogr>
+  
+		<ogr level = "5">
+
+    			<name>Огр</name>
+    
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>75</ver_damage>
+
+			<damage>30</damage>
+
+    			<life>650</life>
+
+			<bron>10</bron>
+
+    			<inichiativa>55</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Набрав опыта и сил, огр возглавляет свой лагерь.</description>
+
+		</ogr>
+
+		<ogr level = "10">
+
+    			<name>Огр</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>80</ver_damage>
+
+			<damage>45</damage>
+
+			<life>900</life>
+
+			<bron>20</bron>
+
+			<inichiativa>58</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Увидав его на поле боя вас уже никогда не покинет страх.</description>
+
+		</ogr>
+
+		<ogr level = "17">
+
+			<name>Огр</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>85</ver_damage>
+
+			<damage>60</damage>
+
+			<life>1400</life>
+
+			<bron>25</bron>
+
+			<inichiativa>60</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Непробиваемые доспехи, позволяют воевать протих целых легионов.</description>
+
+		</ogr>
+
+		<ogr level = "25">
+
+			<name>Огр</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>90</ver_damage>
+
+			<damage>75</damage>
+
+			<life>2000</life>
+
+			<bron>30</bron>
+
+			<inichiativa>65</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Это вершина эволюции само совершенство.</description>
+
+		</ogr>
+
+	</root>

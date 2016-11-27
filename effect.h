@@ -55,15 +55,21 @@ public slots:
 /////////////////////////////////////
 /////////////////////////////////////
 
-//class Effect_deferred_damage : public Effect
-//{
-//    int schetchik;
-//    int damage;
+class Effect_deferred_damage : public Effect
+{
+    int schetchik;
+    int damage;
 
-//public:
-//    explicit Effect_deferred_damage(int number_hod,int damage);
-//    ~Effect_deferred_damage();
-//};
+public:
+    explicit Effect_deferred_damage(int number_hod,int damage);
+    ~Effect_deferred_damage();
+
+    void set_schetchik(int value);
+    int get_schetchik();
+
+    void set_damage(int value);
+    int get_damage();
+};
 /////////////////////////////////////
 /////////////////////////////////////
 /////////////////////////////////////
@@ -110,7 +116,7 @@ int pro_uron,int pro_bron,int pro_toshnost);
     ~Effect_oslablenie();
 
     int get_dlitelnost();
-    int set_dlitelnost(int value);
+    void set_dlitelnost(int value);
 
     int get_use_oslab_uron();
     int get_use_oslab_bron();

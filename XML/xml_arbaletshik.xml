@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<arbaletshik level = "1">
+			<name>Арбалетчик</name>
+			<type_damage>Оружие</type_damage>
+			<ver_damage>65</ver_damage>
+
+    			<damage>25</damage>
+
+			<life>150</life>
+
+			<bron>0</bron>
+
+			<inichiativa>40</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-2-ряд</shel_attack>
+
+    			<description>Наносит дополнительный урон в 1% от максимального здоровья цели.</description>
+
+  		</arbaletshik>
+  
+		<arbaletshik level = "5">
+
+    			<name>Арбалетчик</name>
+    
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>70</ver_damage>
+
+			<damage>45</damage>
+
+    			<life>250</life>
+
+			<bron>0</bron>
+
+    			<inichiativa>45</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Огонь</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Наносит дополнительный урон в 2% от максимального здоровья цели.</description>
+
+		</arbaletshik>
+
+		<arbaletshik level = "10">
+
+    			<name>Арбалетчик</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>75</ver_damage>
+
+			<damage>65</damage>
+
+			<life>350</life>
+
+			<bron>10</bron>
+
+			<inichiativa>50</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Огонь;Холод</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Наносит дополнительный урон в 3% от максимального здоровья цели.</description>
+
+		</arbaletshik>
+
+		<arbaletshik level = "17">
+
+			<name>Арбалетчик</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>80</ver_damage>
+
+			<damage>85</damage>
+
+			<life>440</life>
+
+			<bron>10</bron>
+
+			<inichiativa>55</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Холод</zashita>
+
+			<immunitet>Огонь</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Наносит дополнительный урон в 4% от максимального здоровья цели.</description>
+
+		</arbaletshik>
+
+		<arbaletshik level = "25">
+
+			<name>Арбалетчик</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>85</ver_damage>
+
+			<damage>105</damage>
+
+			<life>530</life>
+
+			<bron>15</bron>
+
+			<inichiativa>60</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Холод;Яд</zashita>
+
+			<immunitet>Огонь</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Наносит дополнительный урон в 5% от максимального здоровья цели.</description>
+
+		</arbaletshik>
+
+	</root>

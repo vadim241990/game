@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+  
+		<goblin_voin>
+		
+		    <name>Гоблин</name>
+  
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>55</ver_damage>
+
+		    <damage>23</damage>
+
+		    <life>260</life>
+
+		    <bron>0</bron>
+
+		    <inichiativa>35</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>одно из самых уродливых созданий.</description>
+
+	       </goblin_voin>
+
+	</root>

@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<golem level = "1">
+			<name>Голем</name>
+			<type_damage>Оружие</type_damage>
+			<ver_damage>75</ver_damage>
+
+    			<damage>12</damage>
+
+			<life>250</life>
+
+			<bron>50</bron>
+
+			<inichiativa>35</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд</zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-2-ряд</shel_attack>
+
+    			<description>Защитные показатели великолепны.</description>
+
+  		</golem>
+  
+		<golem level = "5">
+
+    			<name>Голем</name>
+    
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>80</ver_damage>
+
+			<damage>25</damage>
+
+    			<life>400</life>
+
+			<bron>60</bron>
+
+    			<inichiativa>40</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд;Холод</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>При попадании ложится проклятие -5 к инициативе(1 ход).</description>
+
+		</golem>
+
+		<golem level = "10">
+
+    			<name>Голем</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>85</ver_damage>
+
+			<damage>35</damage>
+
+			<life>550</life>
+
+			<bron>70</bron>
+
+			<inichiativa>45</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд;Холод;Огонь</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>При попадании ложится проклятие -10 к инициативе(1 ход).</description>
+
+		</golem>
+
+		<golem level = "17">
+
+			<name>Голем</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>90</ver_damage>
+
+			<damage>50</damage>
+
+			<life>680</life>
+
+			<bron>80</bron>
+
+			<inichiativa>50</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд;Холод;Огонь;Молния</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>При попадании ложится проклятие -15 к инициативе(1 ход).</description>
+
+		</golem>
+
+		<golem level = "25">
+
+			<name>Голем</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>90</ver_damage>
+
+			<damage>70</damage>
+
+			<life>800</life>
+
+			<bron>85</bron>
+
+			<inichiativa>55</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд;Холод;Огонь;Молния;Оружие</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>При попадании ложится проклятие -20 к инициативе(1 ход).</description>
+
+		</golem>
+
+	</root>

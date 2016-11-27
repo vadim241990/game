@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<lekar level = "1">
+			<name>Лекарь</name>
+			<type_damage>Нет</type_damage>
+			<ver_damage>100</ver_damage>
+
+    			<damage>40</damage>
+
+			<life>230</life>
+
+			<bron>0</bron>
+
+			<inichiativa>15</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>Свой отряд</shel_attack>
+
+    			<description>Спасает свой отряд от смерти.</description>
+
+  		</lekar>
+  
+		<lekar level = "5">
+
+    			<name>Лекарь</name>
+    
+			<type_damage>Нет</type_damage>
+
+			<ver_damage>100</ver_damage>
+
+			<damage>70</damage>
+
+    			<life>310</life>
+
+			<bron>5</bron>
+
+    			<inichiativa>15</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>Свой отряд</shel_attack>
+
+			<description>Накладывает щит в размере 20 пунктов здоровья(не суммируется).</description>
+
+		</lekar>
+
+		<lekar level = "10">
+
+    			<name>Лекарь</name>
+
+			<type_damage>Нет</type_damage>
+
+			<ver_damage>100</ver_damage>
+
+			<damage>120</damage>
+
+			<life>500</life>
+
+			<bron>10</bron>
+
+			<inichiativa>15</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд;Холод</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>Свой отряд</shel_attack>
+
+			<description>Накладывает щит в размере 30 пунктов здоровья(не суммируется).</description>
+
+		</lekar>
+
+		<lekar level = "17">
+
+			<name>Лекарь</name>
+
+			<type_damage>Нет</type_damage>
+
+			<ver_damage>100</ver_damage>
+
+			<damage>180</damage>
+
+			<life>670</life>
+
+			<bron>15</bron>
+
+			<inichiativa>15</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Холод</zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>Свой отряд</shel_attack>
+
+			<description>Накладывает щит в размере 40 пунктов здоровья(не суммируется),И снимает все проклятия.</description>
+
+		</lekar>
+
+		<lekar level = "25">
+
+			<name>Лекарь</name>
+
+			<type_damage>Нет</type_damage>
+
+			<ver_damage>100</ver_damage>
+
+			<damage>240</damage>
+
+			<life>850</life>
+
+			<bron>20</bron>
+
+			<inichiativa>15</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Холод;Молния</zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>Свой отряд</shel_attack>
+
+			<description>Накладывает щит в размере 50 пунктов здоровья(не суммируется),И снимает все проклятия.</description>
+
+		</lekar>
+
+	</root>

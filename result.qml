@@ -121,6 +121,7 @@ Rectangle
             if(global_settings.get_result_battle() === "game_over")
             {
                 global_settings.remove_battle();
+                global_settings.remove_clear_global_settings();
                 item_loader_windows.settings_select("main.qml");
             }
             else

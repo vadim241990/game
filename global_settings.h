@@ -150,6 +150,7 @@ public:
     Q_INVOKABLE void job_ready();
 
     Q_INVOKABLE void remove_battle();
+    Q_INVOKABLE void remove_clear_global_settings();
 
     // begin функции связанные с уровнем героя
     Q_INVOKABLE int get_point_sila();

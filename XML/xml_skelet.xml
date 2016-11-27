@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+  
+		<skelet level = "1">
+		
+    <name>Скелет</name>
+  
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>65</ver_damage>
+
+		    <damage>25</damage>
+
+		    <life>220</life>
+
+		    <bron>0</bron>
+
+		    <inichiativa>45</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>Слабый и немощный,но на "мясо" сгодится.</description>
+
+	       </skelet>
+  
+	       <skelet level = "5">
+
+		    <name>Скелет</name>
+
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>70</ver_damage>
+		
+    <damage>50</damage>
+
+		    <life>330</life>
+
+		    <bron>5</bron>
+
+		    <inichiativa>48</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+    		    <description>Побывав в десятках сражениях обычный скелет добывает на поле боя разнообразные доспехи и уже не является столь беззащитным.</description>	
+
+ 	      </skelet>
+
+  	      <skelet level = "10">	
+
+		    <name>Скелет</name>
+
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>75</ver_damage>
+
+		    <damage>75</damage>
+
+		    <life>500</life>
+
+		    <bron>10</bron>
+
+		    <inichiativa>50</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita>Молния</zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>Вызывает страх при появлении на поле боя, одним лишь только видом.</description>
+
+  	     </skelet>
+  
+	     <skelet level = "17">
+
+		    <name>Скелет</name>
+
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>80</ver_damage>
+
+		    <damage>110</damage>
+
+		    <life>700</life>
+
+		    <bron>20</bron>
+
+		    <inichiativa>57</inichiativa>
+
+ 		    <shel>2</shel>
+
+		    <zashita>Молния;Огонь</zashita>
+
+  		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>Мощь удара настолько сильна,что стоящий за атакуемым отряд получает 30% от урона.</description>
+
+  	     </skelet>
+
+	     <skelet level = "25">
+
+ 		    <name>Скелет</name>
+
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>85</ver_damage>
+
+		    <damage>140</damage>
+
+		    <life>950</life>
+
+		    <bron>25</bron>
+
+		    <inichiativa>60</inichiativa>
+
+		    <shel>2</shel>
+
+		    <zashita>Огонь</zashita>
+
+		    <immunitet>Молния</immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>Король скелетов беспощаден для врагов. При ударе стоящий за атакуемым отряд получает 50% от урона.</description>
+
+	     </skelet>
+
+	</root>

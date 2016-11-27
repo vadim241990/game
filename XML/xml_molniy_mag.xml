@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<molniy_mag level = "1">
+			<name>Маг молний</name>
+			<type_damage>Молния</type_damage>
+			<ver_damage>65</ver_damage>
+
+    			<damage>16</damage>
+
+			<life>140</life>
+
+			<bron>0</bron>
+
+			<inichiativa>25</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Молния</zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-2-ряд</shel_attack>
+
+    			<description>Вероятность 5% двойного урона(на каждом противнике индивидуально).</description>
+
+  		</molniy_mag>
+  
+		<molniy_mag level = "5">
+
+    			<name>Маг молний</name>
+    
+			<type_damage>Молния</type_damage>
+
+			<ver_damage>65</ver_damage>
+
+			<damage>24</damage>
+
+    			<life>190</life>
+
+			<bron>0</bron>
+
+    			<inichiativa>30</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Молния</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Вероятность 10% двойного урона(на каждом противнике индивидуально).</description>
+
+		</molniy_mag>
+
+		<molniy_mag level = "10">
+
+    			<name>Маг молний</name>
+
+			<type_damage>Молния</type_damage>
+
+			<ver_damage>65</ver_damage>
+
+			<damage>45</damage>
+
+			<life>250</life>
+
+			<bron>5</bron>
+
+			<inichiativa>32</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Молния</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Вероятность 15% двойного урона(на каждом противнике индивидуально).</description>
+
+		</molniy_mag>
+
+		<molniy_mag level = "17">
+
+			<name>Маг молний</name>
+
+			<type_damage>Молния</type_damage>
+
+			<ver_damage>70</ver_damage>
+
+			<damage>60</damage>
+
+			<life>320</life>
+
+			<bron>5</bron>
+
+			<inichiativa>37</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Молния</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Вероятность 20% двойного урона(на каждом противнике индивидуально).</description>
+
+		</molniy_mag>
+
+		<molniy_mag level = "25">
+
+			<name>Маг молний</name>
+
+			<type_damage>Молния</type_damage>
+
+			<ver_damage>70</ver_damage>
+
+			<damage>75</damage>
+
+			<life>370</life>
+
+			<bron>10</bron>
+
+			<inichiativa>40</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Холод</zashita>
+
+			<immunitet>Молния</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Вероятность 30% двойного урона(на каждом противнике индивидуально).</description>
+
+		</molniy_mag>
+
+	</root>

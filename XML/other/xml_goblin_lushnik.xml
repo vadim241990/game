@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+  
+		<goblin_lushnik>
+		
+		    <name>Гоблин лучник</name>
+  
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>60</ver_damage>
+
+		    <damage>10</damage>
+
+		    <life>150</life>
+
+		    <bron>0</bron>
+
+		    <inichiativa>25</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-2-ряд</shel_attack>
+
+		    <description>одно из самых уродливых созданий.</description>
+
+	       </goblin_lushnik>
+
+	</root>

@@ -204,6 +204,9 @@ class Team20_elemental_cold : public Base_player
 public:
 	explicit Team20_elemental_cold();
 	~Team20_elemental_cold();
+
+    QString attack(int x, int y,QList<Base_player *> list);
+    Result result_damage(Base_player * player);
 };
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

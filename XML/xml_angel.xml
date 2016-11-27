@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+  
+		<angel level = "1">
+		
+    <name>Темный ангел</name>
+  
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>70</ver_damage>
+
+		    <damage>30</damage>
+
+		    <life>200</life>
+
+		    <bron>0</bron>
+
+		    <inichiativa>47</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita></zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>Перешел на сторону тьмы.</description>
+
+	       </angel>
+  
+	       <angel level = "5">
+
+		    <name>Темный ангел</name>
+
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>75</ver_damage>
+		
+    <damage>60</damage>
+
+		    <life>350</life>
+
+		    <bron>5</bron>
+
+		    <inichiativa>52</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita>Яд</zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+    		    <description>При попадании вероятность парализовать(пропуск 1 хода) цель равна 5%.</description>	
+
+ 	      </angel>
+
+  	      <angel level = "10">	
+
+		    <name>Темный ангел</name>
+
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>80</ver_damage>
+
+		    <damage>95</damage>
+
+		    <life>480</life>
+
+		    <bron>10</bron>
+
+		    <inichiativa>57</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita>Яд</zashita>
+
+		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>При попадании вероятность парализовать(пропуск 1 хода) цель равна 10%.</description>
+
+  	     </angel>
+  
+	     <angel level = "17">
+
+		    <name>Темный ангел</name>
+
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>85</ver_damage>
+
+		    <damage>125</damage>
+
+		    <life>670</life>
+
+		    <bron>15</bron>
+
+		    <inichiativa>61</inichiativa>
+
+ 		    <shel>1</shel>
+
+		    <zashita>Молния;Яд</zashita>
+
+  		    <immunitet></immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>При попадании вероятность парализовать(пропуск 1 хода) цель равна 20%.</description>
+
+  	     </angel>
+
+	     <angel level = "25">
+
+ 		    <name>Темный ангел</name>
+
+		    <type_damage>Оружие</type_damage>
+
+		    <ver_damage>90</ver_damage>
+
+		    <damage>160</damage>
+
+		    <life>920</life>
+
+		    <bron>20</bron>
+
+		    <inichiativa>67</inichiativa>
+
+		    <shel>1</shel>
+
+		    <zashita>Яд</zashita>
+
+		    <immunitet>Молния</immunitet>
+
+		    <shel_attack>1-ряд</shel_attack>
+
+		    <description>При попадании вероятность парализовать(пропуск 1 хода) цель равна 30%.</description>
+
+	     </angel>
+
+	</root>

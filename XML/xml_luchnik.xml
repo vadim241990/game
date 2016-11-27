@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<luchnik level = "1">
+			<name>Лучник</name>
+			<type_damage>Оружие</type_damage>
+			<ver_damage>70</ver_damage>
+
+    			<damage>20</damage>
+
+			<life>170</life>
+
+			<bron>0</bron>
+
+			<inichiativa>45</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-2-ряд</shel_attack>
+
+    			<description>Достанет любую цель на поле боя.</description>
+
+  		</luchnik>
+  
+		<luchnik level = "5">
+
+    			<name>Лучник</name>
+    
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>75</ver_damage>
+
+			<damage>40</damage>
+
+    			<life>270</life>
+
+			<bron>0</bron>
+
+    			<inichiativa>50</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Молния</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Истребитель хрустальных отрядов.</description>
+
+		</luchnik>
+
+		<luchnik level = "10">
+
+    			<name>Лучник</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>80</ver_damage>
+
+			<damage>55</damage>
+
+			<life>390</life>
+
+			<bron>5</bron>
+
+			<inichiativa>56</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Молния;Холод</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>При попадании вероятность парализовать на 1 ход равна 20%(пропуск 1 хода).</description>
+
+		</luchnik>
+
+		<luchnik level = "17">
+
+			<name>Лучник</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>85</ver_damage>
+
+			<damage>70</damage>
+
+			<life>510</life>
+
+			<bron>10</bron>
+
+			<inichiativa>61</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Молния</zashita>
+
+			<immunitet>Холод</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>При попадании вероятность парализовать на 1 ход равна 35%(пропуск 1 хода).</description>
+
+		</luchnik>
+
+		<luchnik level = "25">
+
+			<name>Лучник</name>
+
+			<type_damage>Оружие</type_damage>
+
+			<ver_damage>90</ver_damage>
+
+			<damage>85</damage>
+
+			<life>630</life>
+
+			<bron>15</bron>
+
+			<inichiativa>66</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд;Молния</zashita>
+
+			<immunitet>Холод</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>При попадании вероятность парализовать на 1 ход равна 50%(пропуск 1 хода).</description>
+
+		</luchnik>
+
+	</root>

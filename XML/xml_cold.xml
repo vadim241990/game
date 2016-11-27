@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<cold level = "1">
+			<name>Лезвие льда</name>
+			<type_damage>Холод</type_damage>
+			<ver_damage>70</ver_damage>
+
+    			<damage>22</damage>
+
+			<life>240</life>
+
+			<bron>0</bron>
+
+			<inichiativa>40</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Холод</zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-ряд</shel_attack>
+
+    			<description>Проклятый и заточенный в ледяные доспехи человек.</description>
+
+  		</cold>
+  
+		<cold level = "5">
+
+    			<name>Лезвие льда</name>
+    
+			<type_damage>Холод</type_damage>
+
+			<ver_damage>75</ver_damage>
+
+			<damage>45</damage>
+
+    			<life>370</life>
+
+			<bron>0</bron>
+
+    			<inichiativa>45</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Холод</immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Ничего человеческого в существе уже нет.</description>
+
+		</cold>
+
+		<cold level = "10">
+
+    			<name>Лезвие льда</name>
+
+			<type_damage>Холод</type_damage>
+
+			<ver_damage>80</ver_damage>
+
+			<damage>65</damage>
+
+			<life>550</life>
+
+			<bron>5</bron>
+
+			<inichiativa>50</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Молния</zashita>
+
+			<immunitet>Холод</immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Накладывает проклятие на пораженный отряд(Следующий удар по этому отряду нанесет дополнительно 15% урона).</description>
+
+		</cold>
+
+		<cold level = "17">
+
+			<name>Лезвие льда</name>
+
+			<type_damage>Холод</type_damage>
+
+			<ver_damage>80</ver_damage>
+
+			<damage>90</damage>
+
+			<life>770</life>
+
+			<bron>10</bron>
+
+			<inichiativa>60</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Холод;Молния</immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Накладывает проклятие на пораженный отряд(Следующие 2 удара по этому отряду нанесут дополнительно 25% урона).</description>
+
+		</cold>
+
+		<cold level = "25">
+
+			<name>Лезвие льда</name>
+
+			<type_damage>Холод</type_damage>
+
+			<ver_damage>80</ver_damage>
+
+			<damage>105</damage>
+
+			<life>1000</life>
+
+			<bron>10</bron>
+
+			<inichiativa>70</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд</zashita>
+
+			<immunitet>Холод;Молния</immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Накладывает проклятие на пораженный отряд(Следующие 3 удара по этому отряду нанесут дополнительно 30% урона).</description>
+
+		</cold>
+
+	</root>

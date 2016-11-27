@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<fier level = "1">
+			<name>Владыка</name>
+			<type_damage>Огонь</type_damage>
+			<ver_damage>65</ver_damage>
+
+    			<damage>20</damage>
+
+			<life>250</life>
+
+			<bron>0</bron>
+
+			<inichiativa>45</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Огонь</zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-ряд</shel_attack>
+
+    			<description>Атакуемый противник имеющий тип урона 'Холод' получает на 50% больше повреждений(только от Владыки).</description>
+
+  		</fier>
+  
+		<fier level = "5">
+
+    			<name>Владыка</name>
+    
+			<type_damage>Огонь</type_damage>
+
+			<ver_damage>70</ver_damage>
+
+			<damage>40</damage>
+
+    			<life>400</life>
+
+			<bron>0</bron>
+
+    			<inichiativa>47</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Огонь</zashita>
+
+			<immunitet></immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Атакуемый противник имеющий тип урона 'Холод' получает на 75% больше повреждений(только от Владыки).</description>
+
+		</fier>
+
+		<fier level = "10">
+
+    			<name>Владыка</name>
+
+			<type_damage>Огонь</type_damage>
+
+			<ver_damage>80</ver_damage>
+
+			<damage>60</damage>
+
+			<life>580</life>
+
+			<bron>10</bron>
+
+			<inichiativa>51</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Огонь</immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Атакуемый противник имеющий тип урона 'Холод' получает на 125% больше повреждений(только от Владыки).</description>
+
+		</fier>
+
+		<fier level = "17">
+
+			<name>Владыка</name>
+
+			<type_damage>Огонь</type_damage>
+
+			<ver_damage>90</ver_damage>
+
+			<damage>80</damage>
+
+			<life>800</life>
+
+			<bron>10</bron>
+
+			<inichiativa>54</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Яд</zashita>
+
+			<immunitet>Огонь</immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Атакуемый противник имеющий тип урона 'Холод' получает на 200% больше повреждений(только от Владыки).</description>
+
+		</fier>
+
+		<fier level = "25">
+
+			<name>Владыка</name>
+
+			<type_damage>Огонь</type_damage>
+
+			<ver_damage>95</ver_damage>
+
+			<damage>100</damage>
+
+			<life>1050</life>
+
+			<bron>15</bron>
+
+			<inichiativa>56</inichiativa>
+
+			<shel>1</shel>
+
+			<zashita>Молния;Яд</zashita>
+
+			<immunitet>Огонь</immunitet>
+
+			<shel_attack>1-ряд</shel_attack>
+
+			<description>Атакуемый противник имеющий тип урона 'Холод' получает на 250% больше повреждений(только от Владыки).</description>
+
+		</fier>
+
+	</root>

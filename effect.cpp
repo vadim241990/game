@@ -85,6 +85,8 @@ Effect * Effect::Create_effect(QString name,QVector<int> &parametr)
         eff = new Effect_paralish(1);
     else if(name == "Ослабление_1")
         eff = new Effect_oslablenie(name,2,parametr.at(0),parametr.at(1),parametr.at(2),parametr.at(3),parametr.at(4),parametr.at(5));
+    else if(name == "Возмездие_1")
+        eff = new Effect_deferred_damage(3,80);
 
     return eff;
 }
@@ -165,20 +167,39 @@ Effect * Effect::Create_effect(QString name,QVector<int> &parametr)
 /////////////////////////////////////
 /////////////////////////////////////
 
-//Effect_deferred_damage::Effect_deferred_damage(int number_hod,int damage)
-//{
-//    this->set_name("Возмездие");
-//    this->set_job(job_effect::BEGIN_HOD);
-//    this->set_type(type_effect::DAMAGE);
-//    this->schetchik = number_hod;
-//    this->damage = damage;
-//    this->set_ready(true);
-//}
+Effect_deferred_damage::Effect_deferred_damage(int number_hod,int damage)
+{
+    this->set_name("Возмездие");
+    this->set_job(job_effect::BEGIN_HOD);
+    this->set_type(type_effect::DAMAGE);
+    this->schetchik = number_hod;
+    this->damage = damage;
+    this->set_ready(true);
+}
 
-//Effect_deferred_damage::~Effect_deferred_damage()
-//{
+Effect_deferred_damage::~Effect_deferred_damage()
+{
+}
 
-//}
+void Effect_deferred_damage::set_schetchik(int value)
+{
+    this->schetchik = value;
+}
+
+int Effect_deferred_damage::get_schetchik()
+{
+    return this->schetchik;
+}
+
+void Effect_deferred_damage::set_damage(int value)
+{
+    this->damage = value;
+}
+
+int Effect_deferred_damage::get_damage()
+{
+    return this->damage;
+}
 
 //QString Effect_deferred_damage::use_effect(Base_player * player)
 //{
@@ -267,7 +288,7 @@ int Effect_oslablenie::get_dlitelnost()
     return this->dlitelnost;
 }
 
-int Effect_oslablenie::set_dlitelnost(int value)
+void Effect_oslablenie::set_dlitelnost(int value)
 {
     this->dlitelnost = value;
 }

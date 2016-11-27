@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+	<root>
+
+		<dark_mag level = "1">
+			<name>Маг тьмы</name>
+			<type_damage>Яд</type_damage>
+			<ver_damage>75</ver_damage>
+
+    			<damage>12</damage>
+
+			<life>140</life>
+
+			<bron>5</bron>
+
+			<inichiativa>35</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Яд</zashita>
+
+			<immunitet></immunitet>
+
+    			<shel_attack>1-2-ряд</shel_attack>
+
+    			<description>Отравлены будут все.</description>
+
+  		</dark_mag>
+  
+		<dark_mag level = "5">
+
+    			<name>Маг тьмы</name>
+    
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>80</ver_damage>
+
+			<damage>15</damage>
+
+    			<life>240</life>
+
+			<bron>10</bron>
+
+    			<inichiativa>40</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Все поврежденные враги получают вероятность попадения(-5 на один ход).</description>
+
+		</dark_mag>
+
+		<dark_mag level = "10">
+
+    			<name>Маг тьмы</name>
+
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>83</ver_damage>
+
+			<damage>25</damage>
+
+			<life>380</life>
+
+			<bron>15</bron>
+
+			<inichiativa>41</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita></zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Все поврежденные враги получают вероятность попадения(-8 на один ход).</description>
+
+		</dark_mag>
+
+		<dark_mag level = "17">
+
+			<name>Маг тьмы</name>
+
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>87</ver_damage>
+
+			<damage>35</damage>
+
+			<life>540</life>
+
+			<bron>20</bron>
+
+			<inichiativa>45</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Холод</zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Все поврежденные враги получают вероятность попадения(-12 на один ход).</description>
+
+		</dark_mag>
+
+		<dark_mag level = "25">
+
+			<name>Маг тьмы</name>
+
+			<type_damage>Яд</type_damage>
+
+			<ver_damage>90</ver_damage>
+
+			<damage>45</damage>
+
+			<life>690</life>
+
+			<bron>25</bron>
+
+			<inichiativa>47</inichiativa>
+
+			<shel>6</shel>
+
+			<zashita>Холод</zashita>
+
+			<immunitet>Яд</immunitet>
+
+			<shel_attack>1-2-ряд</shel_attack>
+
+			<description>Все поврежденные враги получают вероятность попадения(-18 на один ход).</description>
+
+		</dark_mag>
+
+	</root>

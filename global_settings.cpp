@@ -773,6 +773,50 @@ void global_settings::remove_battle()
 {
     this->bat.clear();
 }
+
+void global_settings::remove_clear_global_settings()
+{
+    this->level_game = 0;
+    this->number_date = 0;
+
+    for(int i = 0; i < 3;i++)
+    {
+        for(int z = 0;z < 2; z++)
+        {
+            this->position_otrad[z][i] = "";
+        }
+    }
+
+    for(int j = 0; j < 10;j++)
+    {
+        this->set_seath_otrad(j,false);
+    }
+
+    this->point_1 = 0;
+    this->point_2 = 0;
+    this->point_3 = 0;
+    this->point_sila = 0;
+    this->point_lovkost = 0;
+    this->point_life = 0;
+    this->point_energy = 0;
+
+    this->books_magic.clear();
+    this->otrad.clear();
+    this->can_buy_otrad.clear();
+
+    QList<QString> list_skill = this->geroy_skill.keys();
+    for(int v = 0; v < list_skill.size(); v++)
+        this->geroy_skill[list_skill.at(v)] = false;
+
+    QList<QString> list_building = this->building.keys();
+    for(int f = 0; f < list_building.size(); f++)
+         this->building[list_building.at(f)] = false;
+
+    this->resurs.value("gold",0);
+    this->resurs.value("ruda",0);
+
+    //TODO допилить совместно с загрузкой и сохр игры
+}
 /////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
