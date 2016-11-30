@@ -628,5 +628,5 @@ QString Battle::get_full_info_otrad(int x,int y)
 QString Battle::use_effect()
 {
     QString res = this->all_team[0]->use_effect();
-    return res;
+    return parsing_kill(res);
 }

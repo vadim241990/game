@@ -759,6 +759,7 @@ QString Base_player::use_effect()
 {
     QString start_res = "";     //возможна смерть отряда
     QString end_res = "";       //не может быть смерти отряда
+    bool kill = false;          //убит ли отряд от эффектов
 
     //для кооректного расчета отключаем ослабления
     for(int z = 0; z < this->minus.size(); z++)
@@ -821,13 +822,61 @@ QString Base_player::use_effect()
         }//type_effect::OSLABLENIE
         else if(this->minus[i]->get_type() == type_effect::DAMAGE)
         {
+            Effect_deferred_damage * eff_damage = static_cast<Effect_deferred_damage *>(this->minus[i]);
+            int r_life;
+            int def;
+            int use_uron;
+            QString pop_back = "";
 
-        }
+            if(eff_damage->get_name() == "Возмездие")
+            {
+                eff_damage->set_schetchik(eff_damage->get_schetchik() - 1);
+                if(eff_damage->get_schetchik() == 0)
+                {
+                    start_res += "DAMAGE$";
+                    start_res += eff_damage->get_image() + "$";
+
+                    r_life = this->get_real_life();
+                    def = this->get_bron();
+
+                    use_uron = (((double)(100 - def)/100) * (eff_damage->get_damage()));
+
+                    r_life -= use_uron;
+                    if(r_life <= 0)
+                    {
+                        use_uron = use_uron + r_life;
+                        r_life = 0;
+                        this->set_real_life(r_life);
+                        start_res += "0$";
+                        start_res += QString::number(this->get_life()) + "$";
+                        start_res += QString::number(use_uron) + "$";
+                        start_res += "true$";              
+                        pop_back = QString::number(this->get_point_X()) + "*" + QString::number(this->get_point_Y()) + "*" + "@" + "^"; //строка для обработки удаления отряда
+                        kill = true;
+                    }
+                    else
+                    {   //живой отряд
+                        this->set_real_life(r_life);
+                        start_res += QString::number(this->get_real_life()) + "$";
+                        start_res += QString::number(this->get_life()) + "$";
+                        start_res += QString::number(use_uron) + "$";
+                        start_res += "false$";
+                    }
+
+                    start_res += "#";
+                    start_res = pop_back + start_res;
+                    eff_damage->set_ready(false);
+                }
+            }
+        }//type_effect::DAMAGE
+        if(kill == true)
+            break;
     }
 
     //удаляем все отработанные эффекты
     for(int i = 0; i < this->minus.size(); i++)
     {
+        //если действие эффекта истекает или отряд погибает от эффектов
         if(this->minus[i]->get_ready() == false)
         {
             delete this->minus[i];
