@@ -21,7 +21,8 @@ Rectangle //поле боя
     property int x_hover: -1          //если не сходить с иконки игрока для удара будет некорректное отображение
     property int y_hover: -1
     property int mode: 1              //0 - обработка эффектов 1 - обработка удара
-    property variant massiv_effect: [0,0] //0 - не обрабатывать 1 - обрабатывать
+    property string res_effect: ""
+    property variant massiv_effect: [0,0] //0 - не обрабатывать 1 - обрабатывать (элемент 0 - паралич)
     ///1 элемент - Обрабатывать паралич(переход хода)
     property variant massiv_kill: [0,0,0,0,0,0,0,0,0,0,0,0] //0-элемент не обрабатывался //1-элемент надо обработать //2-прошол обработку //3-закреплен за симбиотом
     ///pos_1_1 - pos_1_2 || pos_2_1 - pos_2_2  massiv_kill[0] - massiv_kill[1]  ||  massiv_kill[6] - massiv_kill[7]
@@ -30,19 +31,9 @@ Rectangle //поле боя
 
     function job_effect()
     {
-        var res = global_settings.use_effect();
-        if(res === "")
+        res_effect = global_settings.use_effect();
+        if(res_effect === "")
             return;
-
-        var start_index = 0;
-        var end_index = 0;
-        var start_index_2 = 0;
-        var end_index_2 = 0;
-        var element = "";
-        var name = "";
-        var image_eff = "";
-        var x = 0;
-        var y = 0;
 
         //очистим предварительно прошлые действия эффектов
         for(var i = 0; i < massiv_effect.length; i++)
@@ -50,132 +41,164 @@ Rectangle //поле боя
             massiv_effect[i] = 0;
         }
 
-        while(1)
+        var start_index = 0;
+        start_index = res_effect.indexOf("!",start_index);  //забираем результат о ходе битвы
+        if(start_index !== -1)
         {
-            end_index = res.indexOf("#",start_index + 1);
-            if(end_index === -1)
-                break;
-
-            element = res.slice(start_index,end_index);
-            start_index = end_index + 1;
-
-            end_index_2 = element.indexOf("$",start_index_2 + 1);
-            if(end_index_2 === -1)
-                continue;
-
-            name = element.slice(start_index_2,end_index_2);
-            start_index_2 = end_index_2 + 1;
-
-            if(name === "PARALISH")
-            {
-                x = global_settings.get_first_in_osheredi_x();
-                y = global_settings.get_first_in_osheredi_y();
-                end_index_2 = element.indexOf("$",start_index_2);
-                image_eff = element.slice(start_index_2,end_index_2);
-                var text = "Паралич";
-
-                if((x === 2) && (y === 0))
-                {
-                    pos_2_1_backgrounde.visible = true;
-                    pos_2_1_backgrounde.source = image_eff;
-                    pos_2_1_animation.start();
-                    pos_2_1_backgrounde_text.visible = true;
-                    pos_2_1_backgrounde_text.text = text;
-                }
-                else if((x === 3) && (y === 0))
-                {
-                    pos_2_2_backgrounde.visible = true;
-                    pos_2_2_backgrounde.source = image_eff;
-                    pos_2_2_animation.start();
-                    pos_2_2_backgrounde_text.visible = true;
-                    pos_2_2_backgrounde_text.text = text;
-                }
-                else if((x === 2) && (y === 1))
-                {
-                    pos_2_3_backgrounde.visible = true;
-                    pos_2_3_backgrounde.source = image_eff;
-                    pos_2_3_animation.start();
-                    pos_2_3_backgrounde_text.visible = true;
-                    pos_2_3_backgrounde_text.text = text;
-                }
-                else if((x === 3) && (y === 1))
-                {
-                    pos_2_4_backgrounde.visible = true;
-                    pos_2_4_backgrounde.source = image_eff;
-                    pos_2_4_animation.start();
-                    pos_2_4_backgrounde_text.visible = true;
-                    pos_2_4_backgrounde_text.text = text;
-                }
-                else if((x === 2) && (y === 2))
-                {
-                    pos_2_5_backgrounde.visible = true;
-                    pos_2_5_backgrounde.source = image_eff;
-                    pos_2_5_animation.start();
-                    pos_2_5_backgrounde_text.visible = true;
-                    pos_2_5_backgrounde_text.text = text;
-                }
-                else if((x === 3) && (y === 2))
-                {
-                    pos_2_6_backgrounde.visible = true;
-                    pos_2_6_backgrounde.source = image_eff;
-                    pos_2_6_animation.start();
-                    pos_2_6_backgrounde_text.visible = true;
-                    pos_2_6_backgrounde_text.text = text;
-                }
-                else if((x === 0) && (y === 0))
-                {
-                    pos_1_1_backgrounde.visible = true;
-                    pos_1_1_backgrounde.source = image_eff;
-                    pos_1_1_animation.start();
-                    pos_1_1_backgrounde_text.visible = true;
-                    pos_1_1_backgrounde_text.text = text;
-                }
-                else if((x === 1) && (y === 0))
-                {
-                    pos_1_2_backgrounde.visible = true;
-                    pos_1_2_backgrounde.source = image_eff;
-                    pos_1_2_animation.start();
-                    pos_1_2_backgrounde_text.visible = true;
-                    pos_1_2_backgrounde_text.text = text;
-                }
-                else if((x === 0) && (y === 1))
-                {
-                    pos_1_3_backgrounde.visible = true;
-                    pos_1_3_backgrounde.source = image_eff;
-                    pos_1_3_animation.start();
-                    pos_1_3_backgrounde_text.visible = true;
-                    pos_1_3_backgrounde_text.text = text;
-                }
-                else if((x === 1) && (y === 1))
-                {
-                    pos_1_4_backgrounde.visible = true;
-                    pos_1_4_backgrounde.source = image_eff;
-                    pos_1_4_animation.start();
-                    pos_1_4_backgrounde_text.visible = true;
-                    pos_1_4_backgrounde_text.text = text;
-                }
-                else if((x === 0) && (y === 2))
-                {
-                    pos_1_5_backgrounde.visible = true;
-                    pos_1_5_backgrounde.source = image_eff;
-                    pos_1_5_animation.start();
-                    pos_1_5_backgrounde_text.visible = true;
-                    pos_1_5_backgrounde_text.text = text;
-                }
-                else if((x === 1) && (y === 2))
-                {
-                    pos_1_6_backgrounde.visible = true;
-                    pos_1_6_backgrounde.source = image_eff;
-                    pos_1_6_animation.start();
-                    pos_1_6_backgrounde_text.visible = true;
-                    pos_1_6_backgrounde_text.text = text;
-                }
-
-                massiv_effect[0] = 1;
-                number_animation++;
-                return false;
-            }
+            var text = res_effect.slice(start_index + 1,res_effect.length);
+            global_settings.set_result_battle(text);
         }
+
+        help_job_effect(res_effect);
+    }
+
+    function help_job_effect(list_effect)
+    {
+        var start_index = 0;
+        var end_index = 0;
+        var element = "";
+        var start_index_2 = 0;
+        var end_index_2 = 0;
+        var name = "";
+
+        var image_eff = "";
+        var x = 0;
+        var y = 0;
+
+        end_index = list_effect.indexOf("#",start_index + 1);
+        if(end_index === -1)
+            return;
+        else
+            res_effect = list_effect.slice(end_index + 1,list_effect.length);
+
+        element = list_effect.slice(start_index,end_index);
+        start_index = end_index + 1;
+
+        end_index_2 = element.indexOf("$",start_index_2 + 1);
+        if(end_index_2 === -1)
+            continue;
+
+        name = element.slice(start_index_2,end_index_2);
+        start_index_2 = end_index_2 + 1;
+
+        if(name === "PARALISH")
+        {
+            if(massiv_effect[0] === 1)  //если паралич уже визуализирован переходим к следующему элементу
+                help_job_effect(res_effect);
+
+            x = global_settings.get_first_in_osheredi_x();
+            y = global_settings.get_first_in_osheredi_y();
+            end_index_2 = element.indexOf("$",start_index_2);
+            image_eff = element.slice(start_index_2,end_index_2);
+            var text = "Паралич";
+
+            massiv_effect[0] = 1;
+            number_animation++;
+
+            if((x === 2) && (y === 0))
+            {
+                pos_2_1_backgrounde.visible = true;
+                pos_2_1_backgrounde.source = image_eff;
+                pos_2_1_animation.start();
+                pos_2_1_backgrounde_text.visible = true;
+                pos_2_1_backgrounde_text.text = text;
+            }
+            else if((x === 3) && (y === 0))
+            {
+                pos_2_2_backgrounde.visible = true;
+                pos_2_2_backgrounde.source = image_eff;
+                pos_2_2_animation.start();
+                pos_2_2_backgrounde_text.visible = true;
+                pos_2_2_backgrounde_text.text = text;
+            }
+            else if((x === 2) && (y === 1))
+            {
+                pos_2_3_backgrounde.visible = true;
+                pos_2_3_backgrounde.source = image_eff;
+                pos_2_3_animation.start();
+                pos_2_3_backgrounde_text.visible = true;
+                pos_2_3_backgrounde_text.text = text;
+            }
+            else if((x === 3) && (y === 1))
+            {
+                pos_2_4_backgrounde.visible = true;
+                pos_2_4_backgrounde.source = image_eff;
+                pos_2_4_animation.start();
+                pos_2_4_backgrounde_text.visible = true;
+                pos_2_4_backgrounde_text.text = text;
+            }
+            else if((x === 2) && (y === 2))
+            {
+                pos_2_5_backgrounde.visible = true;
+                pos_2_5_backgrounde.source = image_eff;
+                pos_2_5_animation.start();
+                pos_2_5_backgrounde_text.visible = true;
+                pos_2_5_backgrounde_text.text = text;
+            }
+            else if((x === 3) && (y === 2))
+            {
+                pos_2_6_backgrounde.visible = true;
+                pos_2_6_backgrounde.source = image_eff;
+                pos_2_6_animation.start();
+                pos_2_6_backgrounde_text.visible = true;
+                pos_2_6_backgrounde_text.text = text;
+            }
+            else if((x === 0) && (y === 0))
+            {
+                pos_1_1_backgrounde.visible = true;
+                pos_1_1_backgrounde.source = image_eff;
+                pos_1_1_animation.start();
+                pos_1_1_backgrounde_text.visible = true;
+                pos_1_1_backgrounde_text.text = text;
+            }
+            else if((x === 1) && (y === 0))
+            {
+                pos_1_2_backgrounde.visible = true;
+                pos_1_2_backgrounde.source = image_eff;
+                pos_1_2_animation.start();
+                pos_1_2_backgrounde_text.visible = true;
+                pos_1_2_backgrounde_text.text = text;
+            }
+            else if((x === 0) && (y === 1))
+            {
+                pos_1_3_backgrounde.visible = true;
+                pos_1_3_backgrounde.source = image_eff;
+                pos_1_3_animation.start();
+                pos_1_3_backgrounde_text.visible = true;
+                pos_1_3_backgrounde_text.text = text;
+            }
+            else if((x === 1) && (y === 1))
+            {
+                pos_1_4_backgrounde.visible = true;
+                pos_1_4_backgrounde.source = image_eff;
+                pos_1_4_animation.start();
+                pos_1_4_backgrounde_text.visible = true;
+                pos_1_4_backgrounde_text.text = text;
+            }
+            else if((x === 0) && (y === 2))
+            {
+                pos_1_5_backgrounde.visible = true;
+                pos_1_5_backgrounde.source = image_eff;
+                pos_1_5_animation.start();
+                pos_1_5_backgrounde_text.visible = true;
+                pos_1_5_backgrounde_text.text = text;
+            }
+            else if((x === 1) && (y === 2))
+            {
+                pos_1_6_backgrounde.visible = true;
+                pos_1_6_backgrounde.source = image_eff;
+                pos_1_6_animation.start();
+                pos_1_6_backgrounde_text.visible = true;
+                pos_1_6_backgrounde_text.text = text;
+            }
+
+            return;
+        } //PARALISH
+        else if(name === "DAMAGE")
+        {
+
+        }
+
     }
 
     function help_simbiot(x,y)
