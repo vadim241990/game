@@ -1,4 +1,4 @@
-#include "global_settings.h"
+#include "../include/global_settings.h"
 
 global_settings* global_settings::address = nullptr;
 /////////////////////////////////////////////////////////////////////////////////////////////////

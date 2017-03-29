@@ -6,13 +6,17 @@ QT += qml quick widgets
 QT += xml
 QT += testlib
 
-SOURCES += main.cpp \
-    global_settings.cpp \
-    base_player.cpp \
-    battle.cpp \
-    effect.cpp
+SOURCES_DIR_CPP = src/cpp
+SOURCES_DIR_INCLUDE = src/include
+SOURCES_DIR_QML = src/qml
 
-RESOURCES += qml.qrc \
+SOURCES += $${SOURCES_DIR_CPP}/main.cpp \
+    $${SOURCES_DIR_CPP}/global_settings.cpp \
+    $${SOURCES_DIR_CPP}/base_player.cpp \
+    $${SOURCES_DIR_CPP}/battle.cpp \
+    $${SOURCES_DIR_CPP}/effect.cpp
+
+RESOURCES += $${SOURCES_DIR_QML}/qml.qrc \
     image_files.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
@@ -22,7 +26,7 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 HEADERS += \
-    global_settings.h \
-    base_player.h \
-    battle.h \
-    effect.h
+    $${SOURCES_DIR_INCLUDE}/global_settings.h \
+    $${SOURCES_DIR_INCLUDE}/base_player.h \
+    $${SOURCES_DIR_INCLUDE}/battle.h \
+    $${SOURCES_DIR_INCLUDE}/effect.h

@@ -1,5 +1,5 @@
-#include "base_player.h"
-#include "global_settings.h"
+#include "../include/base_player.h"
+#include "../include/global_settings.h"
 
 Base_player::Base_player(QObject *parent) : QObject(parent)
 {
