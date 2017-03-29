@@ -91,78 +91,6 @@ Effect * Effect::Create_effect(QString name,QVector<int> &parametr)
     return eff;
 }
 
-/**
- * @brief processing_type_damage - формирование строки для типа DAMAGE
- *
- * @param [in] player - указатель на отряд с этим эффектом
- * @param [in] image - строка с адресом картинки
- *
- * @return сформированную строку с результатами последствий от DAMAGE
- */
-//QString Effect::processing_type_damage(Base_player * player, QString image, int damage)
-//{
-//    QString res;
-//    QString pop_back = "";
-//    QString push_back_res = "false$";
-
-//    Result message = this->result_damage(player,damage);
-
-//    if(message.kill == true)  //нанесен ли смертельный урон(смерть - true)
-//    {
-//        //"*" -разделитель координат //"@" - разделитель отрядов //"^" - разделитель на направление интерфейс и реализация
-//        pop_back = QString::number(player->get_point_X()) + "*" + QString::number(player->get_point_Y()) + "*" + "@" + "^"; //строка для обработки удаления отряда
-//        push_back_res = "true$";
-//    }
-
-//    res = "DAMAGE$";
-//    res += player->base_res_stroka(player);
-//    res += image + "$";   //картинка удара
-//    res += push_back_res;
-//    res += QString::number(message.uron) + "$";
-
-//    if(pop_back != "")
-//        res = pop_back + res;
-
-//    res += "#"; //конец
-
-//    return res;
-//}
-
-/**
- * @brief result_damage - формирование последствий от применения эффекта с типом DAMAGE
- *
- * @param [in] player - указатель на отряд с этим эффектом
- * @param [in] damage - какой урон наносит эффект
- *
- * @return результат убит ли отряд и сколько нанесено урона
- */
-//Result Effect::result_damage(Base_player * player,int damage)
-//{
-//    Result res;
-//    int life = player->get_real_life();
-//    int def = player->get_bron();
-
-//    // для упрощения завел переменные
-//    res.uron = (((double)(100 - def)/100) * damage);
-//    life -= res.uron;
-//    if(life <= 0)
-//    {
-//        life = 0;
-//        player->set_real_life(life);
-//        res.kill = true;
-//        return res;
-//    }
-
-//    player->set_real_life(life);
-//    res.kill = false;
-//    return res;
-//}
-
-//QString Effect::use_effect(Base_player * player)
-//{
-
-//}
-
 /////////////////////////////////////
 /////////////////////////////////////
 /////////////////////////////////////
@@ -170,6 +98,7 @@ Effect * Effect::Create_effect(QString name,QVector<int> &parametr)
 Effect_deferred_damage::Effect_deferred_damage(int number_hod,int damage)
 {
     this->set_name("Возмездие");
+    this->set_image("file:///" + QApplication::applicationDirPath() + "/image/battle/image_effect/frostbite.png");
     this->set_job(job_effect::BEGIN_HOD);
     this->set_type(type_effect::DAMAGE);
     this->schetchik = number_hod;
@@ -200,25 +129,6 @@ int Effect_deferred_damage::get_damage()
 {
     return this->damage;
 }
-
-//QString Effect_deferred_damage::use_effect(Base_player * player)
-//{
-//    QString res = "";
-
-//    if(this->schetchik == 0)
-//    {
-//        //сменить картинку TODO
-//        QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/led.png";
-//        res = this->processing_type_damage(player,image,this->damage);
-//        this->set_ready(false);
-//    }
-//    else
-//    {
-//        this->schetchik--;
-//    }
-
-//    return res;
-//}
 
 /////////////////////////////////////
 /////////////////////////////////////

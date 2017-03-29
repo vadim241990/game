@@ -850,7 +850,9 @@ QString Base_player::use_effect()
                         start_res += "0$";
                         start_res += QString::number(this->get_life()) + "$";
                         start_res += QString::number(use_uron) + "$";
-                        start_res += "true$";              
+                        start_res += "true$";
+                        start_res += QString::number(this->get_point_X()) + "$";
+                        start_res += QString::number(this->get_point_Y()) + "$";
                         pop_back = QString::number(this->get_point_X()) + "*" + QString::number(this->get_point_Y()) + "*" + "@" + "^"; //строка для обработки удаления отряда
                         kill = true;
                     }
@@ -1135,6 +1137,7 @@ QString Team20_elemental_cold::attack(int x, int y,QList<Base_player *> list)
 Result Team20_elemental_cold::result_damage(Base_player * player)
 {
     Result res;
+    QVector<int> param;
     int life = player->get_real_life();
     int def = player->get_bron();
     int uron = this->get_damage();
@@ -1150,10 +1153,9 @@ Result Team20_elemental_cold::result_damage(Base_player * player)
         return res;
     }
 
+    player->add_minus_effect("Возмездие_1",param);
     player->set_real_life(life);
     res.kill = false;
-
-    //TODO дописать
 
     return res;
 }
@@ -1249,6 +1251,14 @@ Team20_golem::~Team20_golem()
 {
 	
 }
+
+QString Team20_golem::attack(int x, int y,QList<Base_player *> list)
+{
+    QString image = "file:///" + QApplication::applicationDirPath() + "/image/battle/image_damage/golem_arms.png";
+    QString res = this->help_attack_in_one(list,x,y,image);
+    return res;
+}
+
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////

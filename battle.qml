@@ -2,6 +2,40 @@ import QtQuick 2.4
 import QtQuick.Window 2.2
 import QtGraphicalEffects 1.0
 
+/**
+******************************************************************************
+*  <P>Список основных методов:
+*
+*  help_simbiot           - метод для обработки отряда симбиот
+*  hod_pc                 - ход компьютера
+*  perehod_hoda           - переход хода другому игроку
+*  perehod_hoda_effect    - обработка эффектов у следующего игрока
+*  help_job_effect        - вспомогательный метод для эффектов
+*  perehod_hoda_main      - передача управления следующему игроку(пк или игрок)
+*  attack                 - обработка удара
+*  who_win                - проверка есть ли победитель
+*  help_damage            - вспомогательный метод вывода урона или лечения
+*  select_move            - выделить выбранного игрока в очередности ходов оранж. цветом
+*  disable_select_move    - отменить действия метода "select_move"
+*  who_create_hod         - отмечает кто сейчас ходит
+*  help_use_one_rad       - есть ли в первом ряде синей команды отряды
+*  help_nalishie_one_rady - есть ли в первом ряде красной команды отряды
+*
+*  с disable_life_pos_1_1 по disable_life_pos_2_6   - визуальное устранение отряда из боя
+*
+*  show_select_all_other_team             - выделить ораньжевым команду ПК
+*  repaint_select_disable_mouse           - при выходе из области отряда перерисовать цвет рамки
+*  repaint_select_mouse                   - перерисовать рамки отрядов в зависимости от бьющего отряда
+*  can_damage                             - по полученным координатам смотрим возможен ли удар
+*  repaint_select_first_otrad_in_oshered  - выделить ходящего бойца зеленой рамкой
+*  init_start_game                        - вспомогательная функция для init
+*  update_oshered_hodov                   - обновить очередь ходов
+*  init                                   - инициализация формы
+*
+*  </P>
+******************************************************************************
+*/
+
 Rectangle //поле боя
 {
     id: main_windows
@@ -22,184 +56,12 @@ Rectangle //поле боя
     property int y_hover: -1
     property int mode: 1              //0 - обработка эффектов 1 - обработка удара
     property string res_effect: ""
-    property variant massiv_effect: [0,0] //0 - не обрабатывать 1 - обрабатывать (элемент 0 - паралич)
+    property variant massiv_effect: [0,0] //0 - отсутствует эффект 1 - присутствует эффект 2 - включаем активную обработку эффекта (элемент 0 - паралич)
     ///1 элемент - Обрабатывать паралич(переход хода)
     property variant massiv_kill: [0,0,0,0,0,0,0,0,0,0,0,0] //0-элемент не обрабатывался //1-элемент надо обработать //2-прошол обработку //3-закреплен за симбиотом
     ///pos_1_1 - pos_1_2 || pos_2_1 - pos_2_2  massiv_kill[0] - massiv_kill[1]  ||  massiv_kill[6] - massiv_kill[7]
     ///pos_1_3 - pos_1_4 || pos_2_3 - pos_2_4  massiv_kill[2] - massiv_kill[3]  ||  massiv_kill[8] - massiv_kill[9]
     ///pos_1_5 - pos_1_6 || pos_2_5 - pos_2_6  massiv_kill[4] - massiv_kill[5]  ||  massiv_kill[10] - massiv_kill[11]
-
-    function job_effect()
-    {
-        res_effect = global_settings.use_effect();
-        if(res_effect === "")
-            return;
-
-        //очистим предварительно прошлые действия эффектов
-        for(var i = 0; i < massiv_effect.length; i++)
-        {
-            massiv_effect[i] = 0;
-        }
-
-        var start_index = 0;
-        start_index = res_effect.indexOf("!",start_index);  //забираем результат о ходе битвы
-        if(start_index !== -1)
-        {
-            var text = res_effect.slice(start_index + 1,res_effect.length);
-            global_settings.set_result_battle(text);
-        }
-
-        help_job_effect(res_effect);
-    }
-
-    function help_job_effect(list_effect)
-    {
-        var start_index = 0;
-        var end_index = 0;
-        var element = "";
-        var start_index_2 = 0;
-        var end_index_2 = 0;
-        var name = "";
-
-        var image_eff = "";
-        var x = 0;
-        var y = 0;
-
-        end_index = list_effect.indexOf("#",start_index + 1);
-        if(end_index === -1)
-            return;
-        else
-            res_effect = list_effect.slice(end_index + 1,list_effect.length);
-
-        element = list_effect.slice(start_index,end_index);
-        start_index = end_index + 1;
-
-        end_index_2 = element.indexOf("$",start_index_2 + 1);
-        if(end_index_2 === -1)
-            continue;
-
-        name = element.slice(start_index_2,end_index_2);
-        start_index_2 = end_index_2 + 1;
-
-        if(name === "PARALISH")
-        {
-            if(massiv_effect[0] === 1)  //если паралич уже визуализирован переходим к следующему элементу
-                help_job_effect(res_effect);
-
-            x = global_settings.get_first_in_osheredi_x();
-            y = global_settings.get_first_in_osheredi_y();
-            end_index_2 = element.indexOf("$",start_index_2);
-            image_eff = element.slice(start_index_2,end_index_2);
-            var text = "Паралич";
-
-            massiv_effect[0] = 1;
-            number_animation++;
-
-            if((x === 2) && (y === 0))
-            {
-                pos_2_1_backgrounde.visible = true;
-                pos_2_1_backgrounde.source = image_eff;
-                pos_2_1_animation.start();
-                pos_2_1_backgrounde_text.visible = true;
-                pos_2_1_backgrounde_text.text = text;
-            }
-            else if((x === 3) && (y === 0))
-            {
-                pos_2_2_backgrounde.visible = true;
-                pos_2_2_backgrounde.source = image_eff;
-                pos_2_2_animation.start();
-                pos_2_2_backgrounde_text.visible = true;
-                pos_2_2_backgrounde_text.text = text;
-            }
-            else if((x === 2) && (y === 1))
-            {
-                pos_2_3_backgrounde.visible = true;
-                pos_2_3_backgrounde.source = image_eff;
-                pos_2_3_animation.start();
-                pos_2_3_backgrounde_text.visible = true;
-                pos_2_3_backgrounde_text.text = text;
-            }
-            else if((x === 3) && (y === 1))
-            {
-                pos_2_4_backgrounde.visible = true;
-                pos_2_4_backgrounde.source = image_eff;
-                pos_2_4_animation.start();
-                pos_2_4_backgrounde_text.visible = true;
-                pos_2_4_backgrounde_text.text = text;
-            }
-            else if((x === 2) && (y === 2))
-            {
-                pos_2_5_backgrounde.visible = true;
-                pos_2_5_backgrounde.source = image_eff;
-                pos_2_5_animation.start();
-                pos_2_5_backgrounde_text.visible = true;
-                pos_2_5_backgrounde_text.text = text;
-            }
-            else if((x === 3) && (y === 2))
-            {
-                pos_2_6_backgrounde.visible = true;
-                pos_2_6_backgrounde.source = image_eff;
-                pos_2_6_animation.start();
-                pos_2_6_backgrounde_text.visible = true;
-                pos_2_6_backgrounde_text.text = text;
-            }
-            else if((x === 0) && (y === 0))
-            {
-                pos_1_1_backgrounde.visible = true;
-                pos_1_1_backgrounde.source = image_eff;
-                pos_1_1_animation.start();
-                pos_1_1_backgrounde_text.visible = true;
-                pos_1_1_backgrounde_text.text = text;
-            }
-            else if((x === 1) && (y === 0))
-            {
-                pos_1_2_backgrounde.visible = true;
-                pos_1_2_backgrounde.source = image_eff;
-                pos_1_2_animation.start();
-                pos_1_2_backgrounde_text.visible = true;
-                pos_1_2_backgrounde_text.text = text;
-            }
-            else if((x === 0) && (y === 1))
-            {
-                pos_1_3_backgrounde.visible = true;
-                pos_1_3_backgrounde.source = image_eff;
-                pos_1_3_animation.start();
-                pos_1_3_backgrounde_text.visible = true;
-                pos_1_3_backgrounde_text.text = text;
-            }
-            else if((x === 1) && (y === 1))
-            {
-                pos_1_4_backgrounde.visible = true;
-                pos_1_4_backgrounde.source = image_eff;
-                pos_1_4_animation.start();
-                pos_1_4_backgrounde_text.visible = true;
-                pos_1_4_backgrounde_text.text = text;
-            }
-            else if((x === 0) && (y === 2))
-            {
-                pos_1_5_backgrounde.visible = true;
-                pos_1_5_backgrounde.source = image_eff;
-                pos_1_5_animation.start();
-                pos_1_5_backgrounde_text.visible = true;
-                pos_1_5_backgrounde_text.text = text;
-            }
-            else if((x === 1) && (y === 2))
-            {
-                pos_1_6_backgrounde.visible = true;
-                pos_1_6_backgrounde.source = image_eff;
-                pos_1_6_animation.start();
-                pos_1_6_backgrounde_text.visible = true;
-                pos_1_6_backgrounde_text.text = text;
-            }
-
-            return;
-        } //PARALISH
-        else if(name === "DAMAGE")
-        {
-
-        }
-
-    }
 
     function help_simbiot(x,y)
     {
@@ -368,23 +230,357 @@ Rectangle //поле боя
             repaint_select_disable_mouse(0,0);
             repaint_select_disable_mouse(2,0);
             who_create_hod();
-            if(job_effect() === false)
+
+            //передаем управление если есть эффекты
+            if(perehod_hoda_effect() === true)
                 return;
 
-            if(my_hod === false)
+            perehod_hoda_main();
+        }
+    }
+
+    function perehod_hoda_effect()
+    {
+        res_effect = global_settings.use_effect();
+        if(res_effect === "")
+            return false;
+
+        //очистим предварительно прошлые действия эффектов
+        for(var i = 0; i < massiv_effect.length; i++)
+        {
+            massiv_effect[i] = 0;
+        }
+
+        var start_index = 0;
+        start_index = res_effect.indexOf("!",start_index);  //забираем результат о ходе битвы
+        if(start_index !== -1)
+        {
+            var text = res_effect.slice(start_index + 1,res_effect.length);
+            global_settings.set_result_battle(text);
+        }
+
+        help_job_effect();
+        return true;
+    }
+
+    function help_job_effect()
+    {
+        //данные для парсинга
+        var start_index = 0;
+        var end_index = 0;
+        var element = "";
+        var start_index_2 = 0;
+        var end_index_2 = 0;
+
+        //результат парсинга
+        var name = "";
+        var text_in_image = "";
+        var massiv_damage = ["","","","",""]; //массив для обработки DAMAGE(0 - image_eff 1 - real_life 2 - life 3 - uron 4 - kill)
+
+        var x = global_settings.get_first_in_osheredi_x();  //общие данные для всех эффектов
+        var y = global_settings.get_first_in_osheredi_y();  //
+
+        end_index = res_effect.indexOf("#",start_index + 1);
+        if(end_index === -1)
+        {
+            if(massiv_effect[0] === 1) //паралич ставить последним в обработке
             {
-                disable_select_move();
-                hod_pc();
+                massiv_damage[0] = "file:///" + applicationDirPath + "/image/battle/image_effect/shep.png";
+                text_in_image = "Паралич";
+                massiv_effect[0] = 2;
             }
             else
             {
-                lock = false;
-                if(x_hover !== -1)
+                mode = 1;
+                perehod_hoda_main();
+                return;
+            }
+        }
+        else
+        {
+            element = res_effect.slice(start_index,end_index);
+            start_index = end_index + 1;
+
+            end_index_2 = element.indexOf("$",start_index_2 + 1);
+            if(end_index_2 === -1)
+                return;
+
+            name = element.slice(start_index_2,end_index_2);
+            start_index_2 = end_index_2 + 1;
+
+            res_effect = res_effect.slice(end_index + 1,res_effect.length);
+
+            if(name === "PARALISH")
+            {
+                if(massiv_effect[0] === 1)  //если паралич уже визуализирован переходим к следующему элементу
+                    help_job_effect();
+
+                massiv_effect[0] = 1;       //отмечаем паралич и отправляем на следующие эффекты
+                help_job_effect();
+                return;
+            }
+            else if(name === "DAMAGE")
+            {
+                for(var i = 0; i < massiv_damage.length; ++i)
                 {
-                    repaint_select_mouse(x_hover,y_hover);
-                    disable_select_move();
-                    select_move(x_hover,y_hover);
+                    end_index_2 = element.indexOf("$",start_index_2);
+                    massiv_damage[i] = element.slice(start_index_2,end_index_2);
+                    start_index_2 = end_index_2 + 1;
                 }
+
+                text_in_image = "-" + massiv_damage[3]; //формируем текст количество нанесенного урона
+            }
+
+            if(massiv_damage[4] === "true")
+            {
+                mode = 1;
+
+                end_index_2 = element.indexOf("$",start_index_2);
+                x = Number(element.slice(start_index_2,end_index_2));
+                start_index_2 = end_index_2 + 1;
+
+                end_index_2 = element.indexOf("$",start_index_2);
+                y = Number(element.slice(start_index_2,end_index_2));
+                start_index_2 = end_index_2 + 1;
+            }
+            else
+                {mode = 0;}
+        }
+
+        number_animation++;
+
+        var max;
+        var res;
+
+        if(massiv_damage[1] !== "")
+        {
+            max = (life_pos_2_1.width - width_border) - (image_life_pos_2_1.width + width_border);
+            res = Number(massiv_damage[1]) / Number(massiv_damage[2]);
+        }
+
+        if((x === 2) && (y === 0))
+        {
+            pos_2_1_backgrounde.visible = true;
+            pos_2_1_backgrounde.source = massiv_damage[0];
+            pos_2_1_backgrounde_text.visible = true;
+            pos_2_1_backgrounde_text.text = text_in_image;
+
+            //проверка что это эффект с уроном
+            if(massiv_damage[1] !== "")
+            {
+                text_real_life_pos_2_1.text = massiv_damage[1] + "/" + massiv_damage[2];
+                real_life_pos_2_1.width = max * res;
+            }
+
+            if(massiv_damage[4] === "true")
+                massiv_kill[6] = 1;
+
+            pos_2_1_animation.start();
+        }
+        else if((x === 3) && (y === 0))
+        {
+            pos_2_2_backgrounde.visible = true;
+            pos_2_2_backgrounde.source = massiv_damage[0];
+            pos_2_2_backgrounde_text.visible = true;
+            pos_2_2_backgrounde_text.text = text_in_image;
+            if(massiv_damage[1] !== "")
+            {
+                text_real_life_pos_2_2.text = massiv_damage[1] + "/" + massiv_damage[2];
+                real_life_pos_2_2.width = max * res;
+            }
+
+            if(massiv_damage[4] === "true")
+                massiv_kill[7] = 1;
+
+            pos_2_2_animation.start();
+        }
+        else if((x === 2) && (y === 1))
+        {
+            pos_2_3_backgrounde.visible = true;
+            pos_2_3_backgrounde.source = massiv_damage[0];
+            pos_2_3_backgrounde_text.visible = true;
+            pos_2_3_backgrounde_text.text = text_in_image;
+            if(massiv_damage[1] !== "")
+            {
+                text_real_life_pos_2_3.text = massiv_damage[1] + "/" + massiv_damage[2];
+                real_life_pos_2_3.width = max * res;
+            }
+
+            if(massiv_damage[4] === "true")
+                massiv_kill[8] = 1;
+
+            pos_2_3_animation.start();
+        }
+        else if((x === 3) && (y === 1))
+        {
+            pos_2_4_backgrounde.visible = true;
+            pos_2_4_backgrounde.source = massiv_damage[0];
+            pos_2_4_backgrounde_text.visible = true;
+            pos_2_4_backgrounde_text.text = text_in_image;
+            if(massiv_damage[1] !== "")
+            {
+                text_real_life_pos_2_4.text = massiv_damage[1] + "/" + massiv_damage[2];
+                real_life_pos_2_4.width = max * res;
+            }
+
+            if(massiv_damage[4] === "true")
+                massiv_kill[9] = 1;
+
+            pos_2_4_animation.start();
+        }
+        else if((x === 2) && (y === 2))
+        {
+            pos_2_5_backgrounde.visible = true;
+            pos_2_5_backgrounde.source = massiv_damage[0];
+            pos_2_5_backgrounde_text.visible = true;
+            pos_2_5_backgrounde_text.text = text_in_image;
+            if(massiv_damage[1] !== "")
+            {
+                text_real_life_pos_2_5.text = massiv_damage[1] + "/" + massiv_damage[2];
+                real_life_pos_2_5.width = max * res;
+            }
+
+            if(massiv_damage[4] === "true")
+                massiv_kill[10] = 1;
+
+            pos_2_5_animation.start();
+        }
+        else if((x === 3) && (y === 2))
+        {
+            pos_2_6_backgrounde.visible = true;
+            pos_2_6_backgrounde.source = massiv_damage[0];
+            pos_2_6_backgrounde_text.visible = true;
+            pos_2_6_backgrounde_text.text = text_in_image;
+            if(massiv_damage[1] !== "")
+            {
+                text_real_life_pos_2_6.text = massiv_damage[1] + "/" + massiv_damage[2];
+                real_life_pos_2_6.width = max * res;
+            }
+
+            if(massiv_damage[4] === "true")
+                massiv_kill[11] = 1;
+
+            pos_2_6_animation.start();
+        }
+        else if((x === 0) && (y === 0))
+        {
+            pos_1_1_backgrounde.visible = true;
+            pos_1_1_backgrounde.source = massiv_damage[0];
+            pos_1_1_backgrounde_text.visible = true;
+            pos_1_1_backgrounde_text.text = text_in_image;
+            if(massiv_damage[1] !== "")
+            {
+                text_real_life_pos_1_1.text = massiv_damage[1] + "/" + massiv_damage[2];
+                real_life_pos_1_1.width = max * res;
+            }
+
+            if(massiv_damage[4] === "true")
+                massiv_kill[0] = 1;
+
+            pos_1_1_animation.start();
+        }
+        else if((x === 1) && (y === 0))
+        {
+            pos_1_2_backgrounde.visible = true;
+            pos_1_2_backgrounde.source = massiv_damage[0];
+            pos_1_2_backgrounde_text.visible = true;
+            pos_1_2_backgrounde_text.text = text_in_image;
+            if(massiv_damage[1] !== "")
+            {
+                text_real_life_pos_1_2.text = massiv_damage[1] + "/" + massiv_damage[2];
+                real_life_pos_1_2.width = max * res;
+            }
+
+            if(massiv_damage[4] === "true")
+                massiv_kill[1] = 1;
+
+            pos_1_2_animation.start();
+        }
+        else if((x === 0) && (y === 1))
+        {
+            pos_1_3_backgrounde.visible = true;
+            pos_1_3_backgrounde.source = massiv_damage[0];
+            pos_1_3_backgrounde_text.visible = true;
+            pos_1_3_backgrounde_text.text = text_in_image;
+            if(massiv_damage[1] !== "")
+            {
+                text_real_life_pos_1_3.text = massiv_damage[1] + "/" + massiv_damage[2];
+                real_life_pos_1_3.width = max * res;
+            }
+
+            if(massiv_damage[4] === "true")
+                massiv_kill[2] = 1;
+
+            pos_1_3_animation.start();
+        }
+        else if((x === 1) && (y === 1))
+        {
+            pos_1_4_backgrounde.visible = true;
+            pos_1_4_backgrounde.source = massiv_damage[0];
+            pos_1_4_backgrounde_text.visible = true;
+            pos_1_4_backgrounde_text.text = text_in_image;
+            if(massiv_damage[1] !== "")
+            {
+                text_real_life_pos_1_4.text = massiv_damage[1] + "/" + massiv_damage[2];
+                real_life_pos_1_4.width = max * res;
+            }
+
+            if(massiv_damage[4] === "true")
+                massiv_kill[3] = 1;
+
+            pos_1_4_animation.start();
+        }
+        else if((x === 0) && (y === 2))
+        {
+            pos_1_5_backgrounde.visible = true;
+            pos_1_5_backgrounde.source = massiv_damage[0];
+            pos_1_5_backgrounde_text.visible = true;
+            pos_1_5_backgrounde_text.text = text_in_image;
+            if(massiv_damage[1] !== "")
+            {
+                text_real_life_pos_1_5.text = massiv_damage[1] + "/" + massiv_damage[2];
+                real_life_pos_1_5.width = max * res;
+            }
+
+            if(massiv_damage[4] === "true")
+                massiv_kill[4] = 1;
+
+            pos_1_5_animation.start();
+        }
+        else if((x === 1) && (y === 2))
+        {
+            pos_1_6_backgrounde.visible = true;
+            pos_1_6_backgrounde.source = massiv_damage[0];
+            pos_1_6_backgrounde_text.visible = true;
+            pos_1_6_backgrounde_text.text = text_in_image;
+            if(massiv_damage[1] !== "")
+            {
+                text_real_life_pos_1_6.text = massiv_damage[1] + "/" + massiv_damage[2];
+                real_life_pos_1_6.width = max * res;
+            }
+
+            if(massiv_damage[4] === "true")
+                massiv_kill[5] = 1;
+
+            pos_1_6_animation.start();
+        }
+    }
+
+    function perehod_hoda_main()
+    {
+        if(my_hod === false)
+        {
+            disable_select_move();
+            hod_pc();
+        }
+        else
+        {
+            lock = false;
+            if(x_hover !== -1)
+            {
+                repaint_select_mouse(x_hover,y_hover);
+                disable_select_move();
+                select_move(x_hover,y_hover);
             }
         }
     }
@@ -2096,8 +2292,15 @@ Rectangle //поле боя
                     {
                         pos_1_2_backgrounde_text.visible = false;
                         pos_1_2_backgrounde.visible = false;
-                        if(massiv_effect[0] === 1)
-                            perehod_hoda();
+
+                        if(massiv_effect[0] === 2)
+                        {
+                            perehod_hoda(); //в perehod_hoda() встроен number_animation--
+                            return;
+                        }
+
+                        number_animation--;
+                        help_job_effect();
                     }
                 }//onStopped
             }
@@ -2304,8 +2507,15 @@ Rectangle //поле боя
                     {
                         pos_1_1_backgrounde_text.visible = false;
                         pos_1_1_backgrounde.visible = false;
-                        if(massiv_effect[0] === 1)
-                            perehod_hoda();
+
+                        if(massiv_effect[0] === 2)
+                        {
+                            perehod_hoda(); //в perehod_hoda() встроен number_animation--
+                            return;
+                        }
+
+                        number_animation--;
+                        help_job_effect();
                     }
                 }//onStopped
             }
@@ -2511,8 +2721,15 @@ Rectangle //поле боя
                     {
                         pos_1_4_backgrounde_text.visible = false;
                         pos_1_4_backgrounde.visible = false;
-                        if(massiv_effect[0] === 1)
-                            perehod_hoda();
+
+                        if(massiv_effect[0] === 2)
+                        {
+                            perehod_hoda(); //в perehod_hoda() встроен number_animation--
+                            return;
+                        }
+
+                        number_animation--;
+                        help_job_effect();
                     }
                 }//onStopped
             }
@@ -2718,8 +2935,15 @@ Rectangle //поле боя
                     {
                         pos_1_3_backgrounde_text.visible = false;
                         pos_1_3_backgrounde.visible = false;
-                        if(massiv_effect[0] === 1)
-                            perehod_hoda();
+
+                        if(massiv_effect[0] === 2)
+                        {
+                            perehod_hoda(); //в perehod_hoda() встроен number_animation--
+                            return;
+                        }
+
+                        number_animation--;
+                        help_job_effect();
                     }
                 }//onStopped
             }
@@ -2925,8 +3149,15 @@ Rectangle //поле боя
                     {
                         pos_1_6_backgrounde_text.visible = false;
                         pos_1_6_backgrounde.visible = false;
-                        if(massiv_effect[0] === 1)
-                            perehod_hoda();
+
+                        if(massiv_effect[0] === 2)
+                        {
+                            perehod_hoda(); //в perehod_hoda() встроен number_animation--
+                            return;
+                        }
+
+                        number_animation--;
+                        help_job_effect();
                     }
                 }//onStopped
             }
@@ -3132,8 +3363,15 @@ Rectangle //поле боя
                     {
                         pos_1_5_backgrounde_text.visible = false;
                         pos_1_5_backgrounde.visible = false;
-                        if(massiv_effect[0] === 1)
-                            perehod_hoda();
+
+                        if(massiv_effect[0] === 2)
+                        {
+                            perehod_hoda(); //в perehod_hoda() встроен number_animation--
+                            return;
+                        }
+
+                        number_animation--;
+                        help_job_effect();
                     }
                 }
             }
@@ -3334,8 +3572,15 @@ Rectangle //поле боя
                     {
                         pos_2_1_backgrounde_text.visible = false;
                         pos_2_1_backgrounde.visible = false;
-                        if(massiv_effect[0] === 1)
-                            perehod_hoda();
+
+                        if(massiv_effect[0] === 2)
+                        {
+                            perehod_hoda(); //в perehod_hoda() встроен number_animation--
+                            return;
+                        }
+
+                        number_animation--;
+                        help_job_effect();
                     }
                 }//onStopped
             }
@@ -3536,8 +3781,15 @@ Rectangle //поле боя
                     {
                         pos_2_2_backgrounde_text.visible = false;
                         pos_2_2_backgrounde.visible = false;
-                        if(massiv_effect[0] === 1)
-                            perehod_hoda();
+
+                        if(massiv_effect[0] === 2)
+                        {
+                            perehod_hoda(); //в perehod_hoda() встроен number_animation--
+                            return;
+                        }
+
+                        number_animation--;
+                        help_job_effect();
                     }
                 }//onStopped
             }
@@ -3738,8 +3990,15 @@ Rectangle //поле боя
                     {
                         pos_2_3_backgrounde_text.visible = false;
                         pos_2_3_backgrounde.visible = false;
-                        if(massiv_effect[0] === 1)
-                            perehod_hoda();
+
+                        if(massiv_effect[0] === 2)
+                        {
+                            perehod_hoda(); //в perehod_hoda() встроен number_animation--
+                            return;
+                        }
+
+                        number_animation--;
+                        help_job_effect();
                     }
                 }//onStopped
             }
@@ -3940,8 +4199,15 @@ Rectangle //поле боя
                     {
                         pos_2_4_backgrounde_text.visible = false;
                         pos_2_4_backgrounde.visible = false;
-                        if(massiv_effect[0] === 1)
-                            perehod_hoda();
+
+                        if(massiv_effect[0] === 2)
+                        {
+                            perehod_hoda(); //в perehod_hoda() встроен number_animation--
+                            return;
+                        }
+
+                        number_animation--;
+                        help_job_effect();
                     }
                 }//onStopped
             }
@@ -4142,8 +4408,15 @@ Rectangle //поле боя
                     {
                         pos_2_5_backgrounde_text.visible = false;
                         pos_2_5_backgrounde.visible = false;
-                        if(massiv_effect[0] === 1)
-                            perehod_hoda();
+
+                        if(massiv_effect[0] === 2)
+                        {
+                            perehod_hoda(); //в perehod_hoda() встроен number_animation--
+                            return;
+                        }
+
+                        number_animation--;
+                        help_job_effect();
                     }
                 }//onStopped
             }
@@ -4344,8 +4617,14 @@ Rectangle //поле боя
                     {
                         pos_2_6_backgrounde_text.visible = false;
                         pos_2_6_backgrounde.visible = false;
-                        if(massiv_effect[0] === 1)
-                            perehod_hoda();
+                        if(massiv_effect[0] === 2)
+                        {
+                            perehod_hoda(); //в perehod_hoda() встроен number_animation--
+                            return;
+                        }
+
+                        number_animation--;
+                        help_job_effect();
                     }
                 }//onStopped
             }
