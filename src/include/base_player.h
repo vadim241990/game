@@ -2,6 +2,7 @@
 #define BASE_PLAYER_H
 
 #include <QObject>
+#include <memory>
 #include "effect.h"
 
 struct Result //вспомогательная структура
@@ -38,8 +39,8 @@ class Base_player : public QObject
     int point_Y;
     int real_life;   //текущий показатель здоровья
 
-    QList<Effect *> plus;
-    QList<Effect *> minus;
+    QList<std::shared_ptr<Effect>> plus;
+    QList<std::shared_ptr<Effect>> minus;
     
 protected:
 	
@@ -105,7 +106,7 @@ public:
     void clear_plus_effect();
 
     void add_minus_effect(QString name,QVector<int> &parametr);
-    Effect * get_minus_at(int index);
+    std::shared_ptr<Effect> get_minus_at(int index);
     int size_minus_effect();
     void clear_minus_effect();
 

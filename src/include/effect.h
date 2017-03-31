@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QApplication>
 #include <QVector>
+#include <memory>
 //////////////все классы выполняют роль структур(хранят данные)
 
 //когда действует эффект
@@ -30,7 +31,7 @@ public:
     explicit Effect(QObject *parent = 0);
     ~Effect();
 
-    static Effect * Create_effect(QString name,QVector<int> &parametr);
+    static std::shared_ptr<Effect> Create_effect(QString name,QVector<int> &parametr);
 
     void set_name(QString name);
     QString get_name();

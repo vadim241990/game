@@ -77,16 +77,16 @@ bool Effect::get_ready()
  *
  * @return указатель на Effect
  */
-Effect * Effect::Create_effect(QString name,QVector<int> &parametr)
+std::shared_ptr<Effect> Effect::Create_effect(QString name,QVector<int> &parametr)
 {
-    Effect * eff = nullptr;
+    std::shared_ptr<Effect> eff(nullptr);
 
     if(name == "Паралич_1")
-        eff = new Effect_paralish(1);
+        eff = std::make_shared<Effect_paralish>(1);
     else if(name == "Ослабление_1")
-        eff = new Effect_oslablenie(name,2,parametr.at(0),parametr.at(1),parametr.at(2),parametr.at(3),parametr.at(4),parametr.at(5));
+        eff = std::make_shared<Effect_oslablenie>(name,2,parametr.at(0),parametr.at(1),parametr.at(2),parametr.at(3),parametr.at(4),parametr.at(5));
     else if(name == "Возмездие_1")
-        eff = new Effect_deferred_damage(3,80);
+        eff = std::make_shared<Effect_deferred_damage>(3,80);
 
     return eff;
 }

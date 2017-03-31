@@ -189,10 +189,7 @@ int Base_player::size_plus_effect()
 
 void Base_player::clear_plus_effect()
 {
-    for(int i = 0; i < this->plus.size(); i++)
-    {
-        delete this->plus.at(i);
-    }
+    this->plus.clear();
 }
 
 void Base_player::add_minus_effect(QString name,QVector<int> &parametr)
@@ -200,7 +197,7 @@ void Base_player::add_minus_effect(QString name,QVector<int> &parametr)
     this->minus.push_back(Effect::Create_effect(name,parametr));
 }
 
-Effect * Base_player::get_minus_at(int index)
+std::shared_ptr<Effect> Base_player::get_minus_at(int index)
 {
     return this->minus.at(index);
 }
@@ -212,10 +209,7 @@ int Base_player::size_minus_effect()
 
 void Base_player::clear_minus_effect()
 {
-    for(int i = 0; i < this->minus.size(); i++)
-    {
-        delete this->minus.at(i);
-    }
+    this->minus.clear();
 }
 
 Base_player * Base_player::seatsh_player(QList<Base_player *> list,int x,int y)
@@ -768,7 +762,7 @@ QString Base_player::use_effect()
         {
             if(this->minus[z]->get_name() == "Ослабление")
             {
-                Effect_oslablenie * oslab = static_cast<Effect_oslablenie *>(this->minus[z]);
+                Effect_oslablenie * oslab = static_cast<Effect_oslablenie *>(this->minus[z].get());
                 this->set_bron(this->get_bron() + oslab->get_use_oslab_bron());
                 this->set_bonus_damage(this->get_bonus_damage() + oslab->get_use_oslab_in_pro_uron());
             }
@@ -778,9 +772,9 @@ QString Base_player::use_effect()
     //переходим к основной части
     for(int i = 0; i < this->minus.size(); i++)
     {
-        if(this->minus[i]->get_type() == type_effect::PARALISH)
+        if(this->minus[i].get()->get_type() == type_effect::PARALISH)
         {
-            Effect_paralish * paralish = static_cast<Effect_paralish *>(this->minus[i]);
+            Effect_paralish * paralish = static_cast<Effect_paralish *>(this->minus[i].get());
 
             paralish->set_dlitelnost(paralish->get_dlitelnost() - 1);
             if(paralish->get_dlitelnost() <= 0)
@@ -792,7 +786,7 @@ QString Base_player::use_effect()
         }
         else if(this->minus[i]->get_type() == type_effect::OSLABLENIE)
         {
-            Effect_oslablenie * oslablenie = static_cast<Effect_oslablenie *>(this->minus[i]);
+            Effect_oslablenie * oslablenie = static_cast<Effect_oslablenie *>(this->minus[i].get());
             oslablenie->set_dlitelnost(oslablenie->get_dlitelnost() - 1);
             if(oslablenie->get_dlitelnost() <= 0)
                 oslablenie->set_ready(false);
@@ -822,7 +816,7 @@ QString Base_player::use_effect()
         }//type_effect::OSLABLENIE
         else if(this->minus[i]->get_type() == type_effect::DAMAGE)
         {
-            Effect_deferred_damage * eff_damage = static_cast<Effect_deferred_damage *>(this->minus[i]);
+            Effect_deferred_damage * eff_damage = static_cast<Effect_deferred_damage *>(this->minus[i].get());
             int r_life;
             int def;
             int use_uron;
@@ -876,13 +870,12 @@ QString Base_player::use_effect()
     }
 
     //удаляем все отработанные эффекты
-    for(int i = 0; i < this->minus.size(); i++)
+    for(int i = this->minus.size(); i > 0; i--)
     {
         //если действие эффекта истекает или отряд погибает от эффектов
-        if(this->minus[i]->get_ready() == false)
+        if(this->minus[i - 1]->get_ready() == false)
         {
-            delete this->minus[i];
-            this->minus.removeAt(i);
+            this->minus.removeAt(i - 1);
         }
     }
 
@@ -1466,7 +1459,7 @@ Result Team20_proklynaet::result_damage(Base_player * player)
     {
         if(player->get_minus_at(i)->get_name() == "Ослабление")
         {
-            Effect_oslablenie * oslab = static_cast<Effect_oslablenie *>(player->get_minus_at(i));
+            Effect_oslablenie * oslab = static_cast<Effect_oslablenie *>(player->get_minus_at(i).get());
             oslab->set_dlitelnost(oslab->get_dlitelnost() + 2);
             return res;
         }
