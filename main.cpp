@@ -1,5 +1,6 @@
-#include "../include/global_settings.h"
+#include "./src/include/global_settings.h"
 #include <QQuickWindow>
+#include <QApplication>
 #include <QQmlEngine>
 #include <QQmlContext>
 #include <QQmlComponent>
