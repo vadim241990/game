@@ -1,10 +1,26 @@
-#ifndef SELECT_WINDOWS_H
-#define SELECT_WINDOWS_H
+#pragma once
 
 #include <QObject>
 #include <QApplication>
 #include <QtXml/QtXml>
 #include "battle.h"
+
+struct Hero
+{
+    int pointForBaseChar;           //очки умений на силу,ловкость,жизнь и энергию
+    int pointForPassivAbilities;    //очки на пассивные умения
+    int pointForActiveAbilities;    //очки на активные умения
+
+    int currentStrength;            //warrior   15-10-20-10 - стартовый показатель
+    int currentAgility;             //wizard    10-10-20-15
+    int currentLife;                //archer    10-15-20-10
+    int currentEnergy;
+
+    Hero():Hero(0,0,0,0,0,0,0){}
+    Hero( int pBC, int pPA, int pAA, int cS, int cA, int cL, int cE )
+    : pointForBaseChar(pBC), pointForPassivAbilities(pPA), pointForActiveAbilities(pAA)
+    , currentStrength(cS), currentAgility(cA), currentLife(cL), currentEnergy(cE) {}
+};
 
 
 class global_settings : public QObject
@@ -14,10 +30,6 @@ class global_settings : public QObject
     static global_settings * address;
 
     QApplication * app;
-
-    int level_game;
-
-    int number_date;
 
     int exp;                    //весь командный опыт
     QVector<int> exp_level;     //отметки необходимых баллов для нового уровня
@@ -43,14 +55,6 @@ class global_settings : public QObject
 
     QVector<bool> seath_otrad;
 
-    // begin связано с уровнем героя
-    int point_1; //очки умений на силу,ловкость и ...
-    int point_2; //очки на умения
-    int point_3; //очки на магию
-    int point_sila;         //voin      15-10-20-10 - стартовый показатель
-    int point_lovkost;      //mag       10-10-20-15
-    int point_life;         //lushnik   10-15-20-10
-    int point_energy;
     QVector<QString> books_magic; //книга с выбранными магиями
 
     QMap<QString,bool> geroy_skill; //какие умения прокачаны
@@ -59,11 +63,13 @@ class global_settings : public QObject
     Battle bat;
 
 protected:
-    explicit global_settings(QApplication * app,QObject * parent = 0);
+    explicit global_settings(QApplication * app,QObject * parent = nullptr);
 
 public:
     static global_settings * global_settings_public(QApplication * app);
     static global_settings * get_global_settings();
+
+    ~global_settings();
     
     //функции для других классов на c++
     QString get_address_xml(QString name_unit);
@@ -194,6 +200,8 @@ signals:
 
 public slots:
     void quit();
-};
 
-#endif // SELECT_WINDOWS_H
+private:
+    struct Impl;
+    std::unique_ptr<Impl> p_;
+};
