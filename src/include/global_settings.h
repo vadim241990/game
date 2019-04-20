@@ -5,6 +5,29 @@
 #include <QtXml/QtXml>
 #include "battle.h"
 
+namespace NameForSkill
+{
+    Q_NAMESPACE
+    enum Skill {    DAMAGE_1, DAMAGE_2,                             // 10% к урону героя и 30%
+                    POISON_DAMAGE_1, POISON_DAMAGE_2,               // урон от яда
+                    DAMAGE_FOR_ALL_TEAM_1, DAMAGE_FOR_ALL_TEAM_2,   // 15% к урону команды и 25%
+                    PARALYSIS_1, PARALYSIS_2,                       // вероятность парализовать
+                    VAMPIRISM_1, VAMPIRISM_2,                       // реген от урона
+                    PROTECT_1, PROTECT_2, PROTECT_3, PROTECT_4,     // 10 к броне, 25, 40, 60
+                    MAX_LIFE_1, MAX_LIFE_2, MAX_LIFE_3,             // 20% к максимуму жизни, 50%, 75%
+                    REGENERATION_1, REGENERATION_2,                 // реген 5% за ход , 10%
+                    SHIELD_1,                                       // наложение защитного щита
+                    INITIATIVE_1, INITIATIVE_2,                     // 15% увеличение инициативы
+                    ACCURACY_1, ACCURACY_2,                         // повышает точность до 10, 20
+                    FIRE_PROTECTION, IMMUNITY_FROM_FIRE,            // защита от огня и иммунитет от огня
+                    POISON_PROTECTION, IMMUNITY_FROM_POISON,        // защита от яда и иммунитет от яда
+                    COLD_PROTECTION, IMMUNITY_FROM_COLD,            // защита от холода и иммунитет от холода
+                    LIGHTNING_PROTECTION, IMMUNITY_FROM_LIGHTNING   // защита от молнии и иммунитет от молнии
+               };
+
+    Q_ENUM_NS(Skill)
+}
+
 struct Hero
 {
     int pointForBaseChar;           //очки умений на силу,ловкость,жизнь и энергию
@@ -15,6 +38,8 @@ struct Hero
     int currentAgility;             //wizard    10-10-20-15
     int currentLife;                //archer    10-15-20-10
     int currentEnergy;
+
+    QList< NameForSkill::Skill > passivAbilities;   //набор пассивных скиллов
 
     Hero():Hero(0,0,0,0,0,0,0){}
     Hero( int pBC, int pPA, int pAA, int cS, int cA, int cL, int cE )
@@ -56,9 +81,6 @@ class global_settings : public QObject
     QVector<bool> seath_otrad;
 
     QVector<QString> books_magic; //книга с выбранными магиями
-
-    QMap<QString,bool> geroy_skill; //какие умения прокачаны
-    // end связано с уровнем героя
     
     Battle bat;
 
@@ -190,9 +212,8 @@ public:
     Q_INVOKABLE void set_books_magic(int index, QString value);
     Q_INVOKABLE QString get_books_magic(int index);
 
-    Q_INVOKABLE bool get_geroy_skill(QString key);
-    Q_INVOKABLE void set_geroy_skill(QString key,bool value);
-    // end функции связанные с уровнем героя
+    Q_INVOKABLE bool isGeroySkill( NameForSkill::Skill skill );
+    Q_INVOKABLE void setGeroySkill( NameForSkill::Skill skill );
 
     Q_INVOKABLE QString use_effect();
 

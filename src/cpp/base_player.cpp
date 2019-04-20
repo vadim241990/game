@@ -644,9 +644,9 @@ void Base_player::create_unit(QString name,QString header,bool need_level)
 
   if(need_level == true) //true - создается дружественный отряд для героя
   {
-      if(global->get_geroy_skill("inishiativa_2") == true)
+      if( global->isGeroySkill( NameForSkill::INITIATIVE_2 ) )
           this->set_bonus_inichiativa(40);
-      else if(global->get_geroy_skill("inishiativa_1") == true)
+      else if( global->isGeroySkill( NameForSkill::INITIATIVE_1 ) )
           this->set_bonus_inichiativa(15);
   }
 
@@ -680,66 +680,66 @@ void Base_player::create_geroy_skill(QVector<QString>& massiv)
     QString immunitet_stroka = "";
     QString zashita_stroka   = "";
 
-    if(global->get_geroy_skill("toshnost_2") == true)
+    if( global->isGeroySkill( NameForSkill::ACCURACY_2 ) )
         massiv[2] = QString::number(massiv[2].toInt() + 20);
-    else if(global->get_geroy_skill("toshnost_1") == true)
+    else if( global->isGeroySkill( NameForSkill::ACCURACY_1 ) )
         massiv[2] = QString::number(massiv[2].toInt() + 10);
 
-    if(global->get_geroy_skill("bron_2") == true)
+    if( global->isGeroySkill( NameForSkill::PROTECT_2 ) )
         massiv[5] = QString::number(massiv[5].toInt() + 25);
-    else if(global->get_geroy_skill("bron_1") == true)
+    else if( global->isGeroySkill( NameForSkill::PROTECT_1 ) )
         massiv[5] = QString::number(massiv[5].toInt() + 10);
 
-    if(global->get_geroy_skill("bron_life_1") == true)
-        this->life = (static_cast<float>(this->life) * static_cast<float>(1.2));
+    if( global->isGeroySkill( NameForSkill::MAX_LIFE_1 ) )
+        life = static_cast<int>( (static_cast<float>( life ) * static_cast<float>(1.2) ) );
 
-    if(global->get_geroy_skill("damage_1") == true)
+    if( global->isGeroySkill( NameForSkill::DAMAGE_1 ) )
         this->set_bonus_damage(10);
 
-    if(global->get_geroy_skill("inishiativa_2") == true)
+    if( global->isGeroySkill( NameForSkill::INITIATIVE_2 ) )
         this->set_bonus_inichiativa(40);
-    else if(global->get_geroy_skill("inishiativa_1") == true)
+    else if( global->isGeroySkill( NameForSkill::INITIATIVE_1 ) )
         this->set_bonus_inichiativa(15);
 
-    if(global->get_geroy_skill("def_fier_2") == true)
+    if( global->isGeroySkill( NameForSkill::IMMUNITY_FROM_FIRE ) )
     {
         if(immunitet_stroka == "")     immunitet_stroka = "Огонь";
         else                            immunitet_stroka += ";Огонь";
     }
-    else if(global->get_geroy_skill("def_fier_1") == true)
+    else if( global->isGeroySkill( NameForSkill::FIRE_PROTECTION ) )
     {
         if(zashita_stroka == "")   zashita_stroka = "Огонь";
         else                        zashita_stroka += ";Огонь";
     }
 
-    if(global->get_geroy_skill("def_cold_2") == true)
+    if( global->isGeroySkill( NameForSkill::IMMUNITY_FROM_COLD ) )
     {
         if(immunitet_stroka == "")     immunitet_stroka = "Холод";
         else                            immunitet_stroka += ";Холод";
     }
-    else if(global->get_geroy_skill("def_cold_1") == true)
+    else if( global->isGeroySkill( NameForSkill::COLD_PROTECTION ) )
     {
         if(zashita_stroka == "")   zashita_stroka = "Холод";
         else                        zashita_stroka += ";Холод";
     }
 
-    if(global->get_geroy_skill("def_electriciti_2") == true)
+    if( global->isGeroySkill( NameForSkill::IMMUNITY_FROM_LIGHTNING ) )
     {
         if(immunitet_stroka == "")     immunitet_stroka = "Молния";
         else                            immunitet_stroka += ";Молния";
     }
-    else if(global->get_geroy_skill("def_electriciti_1") == true)
+    else if( global->isGeroySkill( NameForSkill::LIGHTNING_PROTECTION ) )
     {
         if(zashita_stroka == "")   zashita_stroka = "Молния";
         else                        zashita_stroka += ";Молния";
     }
 
-    if(global->get_geroy_skill("def_poison_2") == true)
+    if( global->isGeroySkill( NameForSkill::IMMUNITY_FROM_POISON ) )
     {
         if(immunitet_stroka == "")     immunitet_stroka = "Яд";
         else                            immunitet_stroka += ";Яд";
     }
-    else if(global->get_geroy_skill("def_poison_1") == true)
+    else if( global->isGeroySkill( NameForSkill::POISON_PROTECTION ) )
     {
         if(zashita_stroka == "")   zashita_stroka = "Яд";
         else                        zashita_stroka += ";Яд";

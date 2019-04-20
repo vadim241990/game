@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Window 2.2
 import QtGraphicalEffects 1.0
+import NameForSkill 1.0  //get_geroy_skill
 
 Rectangle //вступительная заставка к новому уровню
 {
@@ -300,102 +301,73 @@ Rectangle //вступительная заставка к новому уров
 
     function bottom_2_opisanie_use()
     {
-        if(global_settings.get_geroy_skill("inishiativa_1") === true)
-            return true;
-        else
-            return false;
+        return global_settings.isGeroySkill( NameForSkill.INITIATIVE_1 );
     }
 
     function bottom_3_opisanie_use()
     {
-        var res_1 = global_settings.get_geroy_skill("def_poison_1");
-        var res_2 = global_settings.get_geroy_skill("def_electriciti_1");
+        var res_1 = global_settings.isGeroySkill( NameForSkill.POISON_PROTECTION );
+        var res_2 = global_settings.isGeroySkill( NameForSkill.LIGHTNING_PROTECTION );
 
-        if((res_1 === true) && (res_2 === true))
-            return true;
-        else
-            return false;
+        return ( (res_1 === true) && (res_2 === true) )
     }
 
     function top_2_opisanie_use()
     {
-        if(global_settings.get_geroy_skill("toshnost_1") === true)
-            return true;
-        else
-            return false;
+        return global_settings.isGeroySkill( NameForSkill.ACCURACY_1 );
     }
 
     function top_3_opisanie_use()
     {
-        var res_1 = global_settings.get_geroy_skill("def_fier_1");
-        var res_2 = global_settings.get_geroy_skill("def_cold_1");
+        var res_1 = global_settings.isGeroySkill( NameForSkill.FIRE_PROTECTION );
+        var res_2 = global_settings.isGeroySkill( NameForSkill.COLD_PROTECTION );
 
-        if((res_1 === true) && (res_2 === true))
-            return true;
-        else
-            return false;
+        return ( (res_1 === true) && (res_2 === true) )
     }
 
     function right_2_opisanie_use()
     {
-        if(global_settings.get_geroy_skill("bron_1") === true)
-            return true;
-        else
-            return false;
+        return global_settings.isGeroySkill( NameForSkill.PROTECT_1 );
     }
 
     function right_3_opisanie_use()
     {
-        var res_1 = global_settings.get_geroy_skill("bron_2");
-        var res_2 = global_settings.get_geroy_skill("bron_life_1");
+        var res_1 = global_settings.isGeroySkill( NameForSkill.PROTECT_2 );
+        var res_2 = global_settings.isGeroySkill( NameForSkill.MAX_LIFE_1 );
 
-        if((res_1 === true) && (res_2 === true))
-            return true;
-        else
-            return false;
+        return ( (res_1 === true) && (res_2 === true) )
     }
 
     function right_4_opisanie_use()
     {
-        var res_1 = global_settings.get_geroy_skill("bron_3");
-        var res_2 = global_settings.get_geroy_skill("bron_life_2");
-        var res_3 = global_settings.get_geroy_skill("bron_regen_1");
 
-        if((res_1 === true) && (res_2 === true) && (res_3 === true))
-            return true;
-        else
-            return false;
+        var res_1 = global_settings.isGeroySkill( NameForSkill.PROTECT_3 );
+        var res_2 = global_settings.isGeroySkill( NameForSkill.MAX_LIFE_2 );
+        var res_3 = global_settings.isGeroySkill( NameForSkill.REGENERATION_1 );
+
+        return ( (res_1 === true) && (res_2 === true) && (res_3 === true) )
     }
 
     function left_2_opisanie_use()
     {
-        if(global_settings.get_geroy_skill("damage_1") === true)
-            return true;
-        else
-            return false;
+        return global_settings.isGeroySkill( NameForSkill.DAMAGE_1 );
     }
 
     function left_3_opisanie_use()
     {
-        var res_1 = global_settings.get_geroy_skill("damage_poison_1");
-        var res_2 = global_settings.get_geroy_skill("damage_vampir_1");
+        var res_1 = global_settings.isGeroySkill( NameForSkill.POISON_DAMAGE_1 );
+        var res_2 = global_settings.isGeroySkill( NameForSkill.VAMPIRISM_1 );
 
-        if((res_1 === true) && (res_2 === true))
-            return true;
-        else
-            return false;
+        return ( (res_1 === true) && (res_2 === true) )
     }
 
     function left_4_opisanie_use()
     {
-        var res_1 = global_settings.get_geroy_skill("damage_2");
-        var res_2 = global_settings.get_geroy_skill("damage_all_team_1");
-        var res_3 = global_settings.get_geroy_skill("damage_ushas_1");
+        var res_1 = global_settings.isGeroySkill( NameForSkill.DAMAGE_2 );
+        var res_2 = global_settings.isGeroySkill( NameForSkill.DAMAGE_FOR_ALL_TEAM_1 );
+        var res_3 = global_settings.isGeroySkill( NameForSkill.PARALYSIS_1 );
 
-        if((res_1 === true) && (res_2 === true) && (res_3 === true))
-            return true;
-        else
-            return false;
+        return ( (res_1 === true) && (res_2 === true) && (res_3 === true) )
     }
 
     function repaint_fon_1_point_energy()
@@ -422,14 +394,14 @@ Rectangle //вступительная заставка к новому уров
         point.text = "Осталось пунктов: " + global_settings.get_point_1();
     }
 
-    function click_button_fon_2(name_mag)
+    function click_button_fon_2(type)
     {
         if(global_settings.get_point_2() > 0)
         {
-            if(global_settings.get_geroy_skill(name_mag) === true)
+            if( global_settings.isGeroySkill( type ) )
                 return;
 
-            global_settings.set_geroy_skill(name_mag,true);
+            global_settings.setGeroySkill(type);
             repaint_fon_2();
             global_settings.set_point_2(global_settings.get_point_2() - 1);
             number_points.text = "Осталось баллов: " + global_settings.get_point_2();
@@ -485,9 +457,9 @@ Rectangle //вступительная заставка к новому уров
             bottom_open_2();
             if(bottom_3_opisanie_use() === false)
             {
-                if(global_settings.get_geroy_skill("def_poison_1") === true)
+                if( global_settings.isGeroySkill( NameForSkill.POISON_PROTECTION ) )
                     effect_bottom_2_1.color = "green";
-                if(global_settings.get_geroy_skill("def_electriciti_1") === true)
+                if( global_settings.isGeroySkill( NameForSkill.LIGHTNING_PROTECTION ) )
                     effect_bottom_2_2.color = "green";
 
                 bottom_close_3();
@@ -498,11 +470,12 @@ Rectangle //вступительная заставка к новому уров
                 effect_bottom_2_2.color = "green";
                 bottom_open_3();
 
-                if(global_settings.get_geroy_skill("inishiativa_2") === true)
+
+                if( global_settings.isGeroySkill( NameForSkill.INITIATIVE_2 ) )
                     effect_bottom_3_1.color = "green";
-                if(global_settings.get_geroy_skill("def_poison_2") === true)
+                if( global_settings.isGeroySkill( NameForSkill.IMMUNITY_FROM_POISON ) )
                     effect_bottom_3_2.color = "green";
-                if(global_settings.get_geroy_skill("def_electriciti_2") === true)
+                if( global_settings.isGeroySkill( NameForSkill.IMMUNITY_FROM_LIGHTNING ) )
                     effect_bottom_3_3.color = "green";
             }
         }
@@ -518,9 +491,9 @@ Rectangle //вступительная заставка к новому уров
             top_open_2();
             if(top_3_opisanie_use() === false)
             {
-                if(global_settings.get_geroy_skill("def_fier_1") === true)
+                if( global_settings.isGeroySkill( NameForSkill.FIRE_PROTECTION ) )
                     effect_top_2_1.color = "green";
-                if(global_settings.get_geroy_skill("def_cold_1") === true)
+                if( global_settings.isGeroySkill( NameForSkill.COLD_PROTECTION ) )
                     effect_top_2_2.color = "green";
 
                 top_close_3();
@@ -531,11 +504,11 @@ Rectangle //вступительная заставка к новому уров
                 effect_top_2_2.color = "green";
                 top_open_3();
 
-                if(global_settings.get_geroy_skill("toshnost_2") === true)
+                if( global_settings.isGeroySkill( NameForSkill.ACCURACY_2 ) )
                     effect_top_3_1.color = "green";
-                if(global_settings.get_geroy_skill("def_fier_2") === true)
+                if( global_settings.isGeroySkill( NameForSkill.IMMUNITY_FROM_FIRE ) )
                     effect_top_3_2.color = "green";
-                if(global_settings.get_geroy_skill("def_cold_2") === true)
+                if( global_settings.isGeroySkill( NameForSkill.IMMUNITY_FROM_COLD ) )
                     effect_top_3_3.color = "green";
             }
         }
@@ -552,9 +525,9 @@ Rectangle //вступительная заставка к новому уров
             right_open_2();
             if(right_3_opisanie_use() === false) //не все прокачано
             {
-                if(global_settings.get_geroy_skill("bron_life_1") === true)
+                if( global_settings.isGeroySkill( NameForSkill.MAX_LIFE_1 ) )
                     effect_right_2_1.color = "green";
-                if(global_settings.get_geroy_skill("bron_2") === true)
+                if( global_settings.isGeroySkill( NameForSkill.PROTECT_2 ) )
                     effect_right_2_2.color = "green";
 
                 right_close_3();
@@ -567,11 +540,11 @@ Rectangle //вступительная заставка к новому уров
                 right_open_3();
                 if(right_4_opisanie_use() === false) //не все прокачано
                 {
-                    if(global_settings.get_geroy_skill("bron_regen_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.REGENERATION_1 ) )
                         effect_right_3_1.color = "green";
-                    if(global_settings.get_geroy_skill("bron_3") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.PROTECT_3 ) )
                         effect_right_3_2.color = "green";
-                    if(global_settings.get_geroy_skill("bron_life_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.MAX_LIFE_2 ) )
                         effect_right_3_3.color = "green";
 
                     right_close_4();
@@ -583,13 +556,13 @@ Rectangle //вступительная заставка к новому уров
                     effect_right_3_3.color = "green";
                     right_open_4();
 
-                    if(global_settings.get_geroy_skill("bron_shit_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.SHIELD_1 ) )
                         effect_right_4_1.color = "green";
-                    if(global_settings.get_geroy_skill("bron_regen_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.REGENERATION_2 ) )
                         effect_right_4_2.color = "green";
-                    if(global_settings.get_geroy_skill("bron_life_3") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.MAX_LIFE_3 ) )
                         effect_right_4_3.color = "green";
-                    if(global_settings.get_geroy_skill("bron_4") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.PROTECT_4 ) )
                         effect_right_4_4.color = "green";
                 }
             }
@@ -607,9 +580,9 @@ Rectangle //вступительная заставка к новому уров
             left_open_2();
             if(left_3_opisanie_use() === false) //не все прокачано
             {
-                if(global_settings.get_geroy_skill("damage_vampir_1") === true)
+                if( global_settings.isGeroySkill( NameForSkill.VAMPIRISM_1 ) )
                     effect_left_2_1.color = "green";
-                if(global_settings.get_geroy_skill("damage_poison_1") === true)
+                if( global_settings.isGeroySkill( NameForSkill.POISON_DAMAGE_1 ) )
                     effect_left_2_2.color = "green";
 
                 left_close_3();
@@ -622,11 +595,11 @@ Rectangle //вступительная заставка к новому уров
                 left_open_3();
                 if(left_4_opisanie_use() === false) //не все прокачано
                 {
-                    if(global_settings.get_geroy_skill("damage_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.DAMAGE_2 ) )
                         effect_left_3_1.color = "green";
-                    if(global_settings.get_geroy_skill("damage_ushas_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.PARALYSIS_1 ) )
                         effect_left_3_2.color = "green";
-                    if(global_settings.get_geroy_skill("damage_all_team_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.DAMAGE_FOR_ALL_TEAM_1 ) )
                         effect_left_3_3.color = "green";
 
                     left_close_4();
@@ -638,13 +611,13 @@ Rectangle //вступительная заставка к новому уров
                     effect_left_3_3.color = "green";
                     left_open_4();
 
-                    if(global_settings.get_geroy_skill("damage_ushas_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.PARALYSIS_2 ) )
                         effect_left_4_1.color = "green";
-                    if(global_settings.get_geroy_skill("damage_all_team_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.DAMAGE_FOR_ALL_TEAM_2 ) )
                         effect_left_4_2.color = "green";
-                    if(global_settings.get_geroy_skill("damage_vampir_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.VAMPIRISM_2 ) )
                         effect_left_4_3.color = "green";
-                    if(global_settings.get_geroy_skill("damage_poison_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.POISON_DAMAGE_2 ) )
                         effect_left_4_4.color = "green";
                 }
             }
@@ -1279,14 +1252,14 @@ Rectangle //вступительная заставка к новому уров
                 onExited:
                 {
                     disable_right();
-                    if(global_settings.get_geroy_skill("damage_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.DAMAGE_1 ) )
                         effect_left_1.color = "green";
                     else
                         effect_left_1.color = "blue";
                 }
                 onClicked:
                 {
-                    click_button_fon_2("damage_1");
+                    click_button_fon_2( NameForSkill.DAMAGE_1 );
                 }
             }
         }
@@ -1332,14 +1305,14 @@ Rectangle //вступительная заставка к новому уров
                 onExited:
                 {
                     disable_bottom();
-                    if(global_settings.get_geroy_skill("toshnost_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.ACCURACY_1 ) )
                         effect_top_1.color = "green";
                     else
                         effect_top_1.color = "blue";
                 }
                 onClicked:
                 {
-                    click_button_fon_2("toshnost_1");
+                    click_button_fon_2( NameForSkill.ACCURACY_1 );
                 }
             }
         }
@@ -1385,14 +1358,14 @@ Rectangle //вступительная заставка к новому уров
                 onExited:
                 {
                     disable_top();
-                    if(global_settings.get_geroy_skill("inishiativa_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.INITIATIVE_1 ) )
                         effect_bottom_1.color = "green";
                     else
                         effect_bottom_1.color = "blue";
                 }
                 onClicked:
                 {
-                    click_button_fon_2("inishiativa_1");
+                    click_button_fon_2( NameForSkill.INITIATIVE_1 );
                 }
             }
         }
@@ -1438,14 +1411,14 @@ Rectangle //вступительная заставка к новому уров
                 onExited:
                 {
                     disable_left();
-                    if(global_settings.get_geroy_skill("bron_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.PROTECT_1 ) )
                         effect_right_1.color = "green";
                     else
                         effect_right_1.color = "blue";
                 }
                 onClicked:
                 {
-                    click_button_fon_2("bron_1");
+                    click_button_fon_2( NameForSkill.PROTECT_1 );
                 }
             }
         }
@@ -1497,17 +1470,15 @@ Rectangle //вступительная заставка к новому уров
                     if(left_2_opisanie_use() === true)
                         disable_right();
 
-                    if(global_settings.get_geroy_skill("damage_vampir_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.VAMPIRISM_1 ) )
                         effect_left_2_1.color = "green";
                     else
                         effect_left_2_1.color = "blue";
                 }
                 onClicked:
                 {
-                    if(left_2_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("damage_vampir_1");
+                    if( left_2_opisanie_use() )
+                        click_button_fon_2( NameForSkill.VAMPIRISM_1 );
                 }
             }
         }
@@ -1559,7 +1530,7 @@ Rectangle //вступительная заставка к новому уров
                     if(left_2_opisanie_use() === true)
                         disable_right();
 
-                    if(global_settings.get_geroy_skill("damage_poison_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.POISON_DAMAGE_1 ) )
                         effect_left_2_2.color = "green";
                     else
                         effect_left_2_2.color = "blue";
@@ -1567,10 +1538,8 @@ Rectangle //вступительная заставка к новому уров
                 }
                 onClicked:
                 {
-                    if(left_2_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("damage_poison_1");
+                    if( left_2_opisanie_use() )
+                        click_button_fon_2( NameForSkill.POISON_DAMAGE_1 );
                 }
             }
         }
@@ -1583,7 +1552,7 @@ Rectangle //вступительная заставка к новому уров
             anchors.bottom: top_1.top
             anchors.bottomMargin: fon.height * 0.025
             anchors.right: rect_main.horizontalCenter
-            anchors.rightMargin: (fon.height * 0.025) /2
+            anchors.rightMargin: (fon.height * 0.025) / 2
 
             RectangularGlow
             {
@@ -1622,17 +1591,15 @@ Rectangle //вступительная заставка к новому уров
                     if(top_2_opisanie_use() === true)
                         disable_bottom();
 
-                    if(global_settings.get_geroy_skill("def_fier_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.FIRE_PROTECTION ) )
                         effect_top_2_1.color = "green";
                     else
                         effect_top_2_1.color = "blue";
                 }
                 onClicked:
                 {
-                    if(top_2_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("def_fier_1");
+                    if( top_2_opisanie_use() )
+                        click_button_fon_2( NameForSkill.FIRE_PROTECTION );
                 }
             }
         }
@@ -1684,17 +1651,15 @@ Rectangle //вступительная заставка к новому уров
                     if(top_2_opisanie_use() === true)
                         disable_bottom();
 
-                    if(global_settings.get_geroy_skill("def_cold_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.COLD_PROTECTION ) )
                         effect_top_2_2.color = "green";
                     else
                         effect_top_2_2.color = "blue";
                 }
                 onClicked:
                 {
-                    if(top_2_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("def_cold_1");
+                    if( top_2_opisanie_use() )
+                        click_button_fon_2( NameForSkill.COLD_PROTECTION );
                 }
             }
         }
@@ -1746,17 +1711,15 @@ Rectangle //вступительная заставка к новому уров
                     if(bottom_2_opisanie_use() === true)
                         disable_top();
 
-                    if(global_settings.get_geroy_skill("def_poison_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.POISON_PROTECTION ) )
                         effect_bottom_2_1.color = "green";
                     else
                         effect_bottom_2_1.color = "blue";
                 }
                 onClicked:
                 {
-                    if(bottom_2_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("def_poison_1");
+                    if( bottom_2_opisanie_use() )
+                        click_button_fon_2( NameForSkill.POISON_PROTECTION );
                 }
             }
         }
@@ -1808,17 +1771,15 @@ Rectangle //вступительная заставка к новому уров
                     if(bottom_2_opisanie_use() === true)
                         disable_top();
 
-                    if(global_settings.get_geroy_skill("def_electriciti_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.LIGHTNING_PROTECTION ) )
                         effect_bottom_2_2.color = "green";
                     else
                         effect_bottom_2_2.color = "blue";
                 }
                 onClicked:
                 {
-                    if(bottom_2_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("def_electriciti_1");
+                    if( bottom_2_opisanie_use() )
+                        click_button_fon_2( NameForSkill.LIGHTNING_PROTECTION );
                 }
             }
         }
@@ -1870,7 +1831,7 @@ Rectangle //вступительная заставка к новому уров
                     if(right_2_opisanie_use() === true)
                         disable_left();
 
-                    if(global_settings.get_geroy_skill("bron_life_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.MAX_LIFE_1 ) )
                         effect_right_2_1.color = "green";
                     else
                         effect_right_2_1.color = "blue";
@@ -1893,7 +1854,7 @@ Rectangle //вступительная заставка к новому уров
             anchors.left: right_1.right
             anchors.leftMargin: fon.height * 0.025
             anchors.bottom: rect_main.verticalCenter
-            anchors.bottomMargin: (fon.height * 0.025) /2
+            anchors.bottomMargin: (fon.height * 0.025) / 2
 
             RectangularGlow
             {
@@ -1932,17 +1893,15 @@ Rectangle //вступительная заставка к новому уров
                     if(right_2_opisanie_use() === true)
                         disable_left();
 
-                    if(global_settings.get_geroy_skill("bron_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.PROTECT_2 ) )
                         effect_right_2_2.color = "green";
                     else
                         effect_right_2_2.color = "blue";
                 }
                 onClicked:
                 {
-                    if(right_2_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("bron_2");
+                    if( right_2_opisanie_use() )
+                        click_button_fon_2( NameForSkill.PROTECT_2 );
                 }
             }
         }
@@ -1993,17 +1952,15 @@ Rectangle //вступительная заставка к новому уров
                     if(left_3_opisanie_use() === true)
                         disable_right();
 
-                    if(global_settings.get_geroy_skill("damage_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.DAMAGE_2 ) )
                         effect_left_3_1.color = "green";
                     else
                         effect_left_3_1.color = "blue";
                 }
                 onClicked:
                 {
-                    if(left_3_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("damage_2");
+                    if( left_3_opisanie_use() )
+                        click_button_fon_2( NameForSkill.DAMAGE_2 );
                 }
             }
         }
@@ -2055,17 +2012,15 @@ Rectangle //вступительная заставка к новому уров
                     if(left_3_opisanie_use() === true)
                         disable_right();
 
-                    if(global_settings.get_geroy_skill("damage_ushas_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.PARALYSIS_1 ) )
                         effect_left_3_2.color = "green";
                     else
                         effect_left_3_2.color = "blue";
                 }
                 onClicked:
                 {
-                    if(left_3_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("damage_ushas_1");
+                    if( left_3_opisanie_use() )
+                        click_button_fon_2( NameForSkill.PARALYSIS_1 );
                 }
             }
         }
@@ -2117,17 +2072,15 @@ Rectangle //вступительная заставка к новому уров
                     if(left_3_opisanie_use() === true)
                         disable_right();
 
-                    if(global_settings.get_geroy_skill("damage_all_team_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.DAMAGE_FOR_ALL_TEAM_1 ) )
                         effect_left_3_3.color = "green";
                     else
                         effect_left_3_3.color = "blue";
                 }
                 onClicked:
                 {
-                    if(left_3_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("damage_all_team_1");
+                    if( left_3_opisanie_use() )
+                        click_button_fon_2( NameForSkill.DAMAGE_FOR_ALL_TEAM_1 );
                 }
             }
         }
@@ -2178,17 +2131,15 @@ Rectangle //вступительная заставка к новому уров
                     if(top_3_opisanie_use() === true)
                         disable_bottom();
 
-                    if(global_settings.get_geroy_skill("toshnost_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.ACCURACY_2 ) )
                         effect_top_3_1.color = "green";
                     else
                         effect_top_3_1.color = "blue";
                 }
                 onClicked:
                 {
-                    if(top_3_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("toshnost_2");
+                    if( top_3_opisanie_use() )
+                        click_button_fon_2( NameForSkill.ACCURACY_2 );
                 }
             }
         }
@@ -2240,17 +2191,15 @@ Rectangle //вступительная заставка к новому уров
                     if(top_3_opisanie_use() === true)
                         disable_bottom();
 
-                    if(global_settings.get_geroy_skill("def_fier_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.IMMUNITY_FROM_FIRE ) )
                         effect_top_3_2.color = "green";
                     else
                         effect_top_3_2.color = "blue";
                 }
                 onClicked:
                 {
-                    if(top_3_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("def_fier_2");
+                    if( top_3_opisanie_use() )
+                        click_button_fon_2( NameForSkill.IMMUNITY_FROM_FIRE );
                 }
             }
         }
@@ -2302,17 +2251,15 @@ Rectangle //вступительная заставка к новому уров
                     if(top_3_opisanie_use() === true)
                         disable_bottom();
 
-                    if(global_settings.get_geroy_skill("def_cold_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.IMMUNITY_FROM_COLD ) )
                         effect_top_3_3.color = "green";
                     else
                         effect_top_3_3.color = "blue";
                 }
                 onClicked:
                 {
-                    if(top_3_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("def_cold_2");
+                    if( top_3_opisanie_use() )
+                        click_button_fon_2( NameForSkill.IMMUNITY_FROM_COLD );
                 }
             }
         }
@@ -2363,17 +2310,15 @@ Rectangle //вступительная заставка к новому уров
                     if(bottom_3_opisanie_use() === true)
                         disable_top();
 
-                    if(global_settings.get_geroy_skill("inishiativa_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.INITIATIVE_2 ) )
                         effect_bottom_3_1.color = "green";
                     else
                         effect_bottom_3_1.color = "blue";
                 }
                 onClicked:
                 {
-                    if(bottom_3_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("inishiativa_2");
+                    if( bottom_3_opisanie_use() )
+                        click_button_fon_2( NameForSkill.INITIATIVE_2 );
                 }
             }
         }
@@ -2425,17 +2370,15 @@ Rectangle //вступительная заставка к новому уров
                     if(bottom_3_opisanie_use() === true)
                         disable_top();
 
-                    if(global_settings.get_geroy_skill("def_poison_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.IMMUNITY_FROM_POISON ) )
                         effect_bottom_3_2.color = "green";
                     else
                         effect_bottom_3_2.color = "blue";
                 }
                 onClicked:
                 {
-                    if(bottom_3_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("def_poison_2");
+                    if( bottom_3_opisanie_use() )
+                        click_button_fon_2( NameForSkill.IMMUNITY_FROM_POISON );
                 }
             }
         }
@@ -2487,17 +2430,15 @@ Rectangle //вступительная заставка к новому уров
                     if(bottom_3_opisanie_use() === true)
                         disable_top();
 
-                    if(global_settings.get_geroy_skill("def_electriciti_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.IMMUNITY_FROM_LIGHTNING ) )
                         effect_bottom_3_3.color = "green";
                     else
                         effect_bottom_3_3.color = "blue";
                 }
                 onClicked:
                 {
-                    if(bottom_3_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("def_electriciti_2");
+                    if( bottom_3_opisanie_use() )
+                        click_button_fon_2( NameForSkill.IMMUNITY_FROM_LIGHTNING );
                 }
             }
         }
@@ -2548,17 +2489,15 @@ Rectangle //вступительная заставка к новому уров
                     if(right_3_opisanie_use() === true)
                         disable_left();
 
-                    if(global_settings.get_geroy_skill("bron_regen_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.REGENERATION_1 ) )
                         effect_right_3_1.color = "green";
                     else
                         effect_right_3_1.color = "blue";
                 }
                 onClicked:
                 {
-                    if(right_3_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("bron_regen_1");
+                    if( right_3_opisanie_use() )
+                        click_button_fon_2( NameForSkill.REGENERATION_1 );
                 }
             }
         }
@@ -2610,17 +2549,15 @@ Rectangle //вступительная заставка к новому уров
                     if(right_3_opisanie_use() === true)
                         disable_left();
 
-                    if(global_settings.get_geroy_skill("bron_3") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.PROTECT_3 ) )
                         effect_right_3_2.color = "green";
                     else
                         effect_right_3_2.color = "blue";
                 }
                 onClicked:
                 {
-                    if(right_3_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("bron_3");
+                    if( right_3_opisanie_use() )
+                        click_button_fon_2( NameForSkill.PROTECT_3 );
                 }
             }
         }
@@ -2672,17 +2609,15 @@ Rectangle //вступительная заставка к новому уров
                     if(right_3_opisanie_use() === true)
                         disable_left();
 
-                    if(global_settings.get_geroy_skill("bron_life_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.MAX_LIFE_2 ) )
                         effect_right_3_3.color = "green";
                     else
                         effect_right_3_3.color = "blue";
                 }
                 onClicked:
                 {
-                    if(right_3_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("bron_life_2");
+                    if( right_3_opisanie_use() )
+                        click_button_fon_2( NameForSkill.MAX_LIFE_2 );
                 }
             }
         }
@@ -2734,17 +2669,15 @@ Rectangle //вступительная заставка к новому уров
                     if(left_4_opisanie_use() === true)
                         disable_right();
 
-                    if(global_settings.get_geroy_skill("damage_ushas_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.PARALYSIS_2 ) )
                         effect_left_4_1.color = "green";
                     else
                         effect_left_4_1.color = "blue";
                 }
                 onClicked:
                 {
-                    if(left_4_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("damage_ushas_2");
+                    if( left_4_opisanie_use() )
+                        click_button_fon_2( NameForSkill.PARALYSIS_2 );
                 }
             }
         }
@@ -2796,17 +2729,15 @@ Rectangle //вступительная заставка к новому уров
                     if(left_4_opisanie_use() === true)
                         disable_right();
 
-                    if(global_settings.get_geroy_skill("damage_all_team_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.DAMAGE_FOR_ALL_TEAM_2 ) )
                         effect_left_4_2.color = "green";
                     else
                         effect_left_4_2.color = "blue";
                 }
                 onClicked:
                 {
-                    if(left_4_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("damage_all_team_2");
+                    if( left_4_opisanie_use() )
+                        click_button_fon_2( NameForSkill.DAMAGE_FOR_ALL_TEAM_2 );
                 }
             }
         }
@@ -2858,17 +2789,15 @@ Rectangle //вступительная заставка к новому уров
                     if(left_4_opisanie_use() === true)
                         disable_right();
 
-                    if(global_settings.get_geroy_skill("damage_vampir_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.VAMPIRISM_2 ) )
                         effect_left_4_3.color = "green";
                     else
                         effect_left_4_3.color = "blue";
                 }
                 onClicked:
                 {
-                    if(left_4_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("damage_vampir_2");
+                    if( left_4_opisanie_use() )
+                        click_button_fon_2( NameForSkill.VAMPIRISM_2 );
                 }
             }
         }
@@ -2920,17 +2849,15 @@ Rectangle //вступительная заставка к новому уров
                     if(left_4_opisanie_use() === true)
                         disable_right();
 
-                    if(global_settings.get_geroy_skill("damage_poison_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.POISON_DAMAGE_2 ) )
                         effect_left_4_4.color = "green";
                     else
                         effect_left_4_4.color = "blue";
                 }
                 onClicked:
                 {
-                    if(left_4_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("damage_poison_2");
+                    if( left_4_opisanie_use() )
+                        click_button_fon_2( NameForSkill.POISON_DAMAGE_2 );
                 }
             }
         }
@@ -2982,17 +2909,15 @@ Rectangle //вступительная заставка к новому уров
                     if(right_4_opisanie_use() === true)
                         disable_left();
 
-                    if(global_settings.get_geroy_skill("bron_shit_1") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.SHIELD_1 ) )
                         effect_right_4_1.color = "green";
                     else
                         effect_right_4_1.color = "blue";
                 }
                 onClicked:
                 {
-                    if(right_4_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("bron_shit_1");
+                    if( right_4_opisanie_use() )
+                        click_button_fon_2( NameForSkill.SHIELD_1 );
                 }
             }
         }
@@ -3044,17 +2969,15 @@ Rectangle //вступительная заставка к новому уров
                     if(right_4_opisanie_use() === true)
                         disable_left();
 
-                    if(global_settings.get_geroy_skill("bron_regen_2") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.REGENERATION_2 ) )
                         effect_right_4_2.color = "green";
                     else
                         effect_right_4_2.color = "blue";
                 }
                 onClicked:
                 {
-                    if(right_4_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("bron_regen_2");
+                    if( right_4_opisanie_use() )
+                        click_button_fon_2( NameForSkill.REGENERATION_2 );
                 }
             }
         }
@@ -3106,17 +3029,15 @@ Rectangle //вступительная заставка к новому уров
                     if(right_4_opisanie_use() === true)
                         disable_left();
 
-                    if(global_settings.get_geroy_skill("bron_life_3") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.MAX_LIFE_3 ) )
                         effect_right_4_3.color = "green";
                     else
                         effect_right_4_3.color = "blue";
                 }
                 onClicked:
                 {
-                    if(right_4_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("bron_life_3");
+                    if( right_4_opisanie_use() )
+                        click_button_fon_2( NameForSkill.MAX_LIFE_3 );
                 }
             }
         }
@@ -3168,17 +3089,15 @@ Rectangle //вступительная заставка к новому уров
                     if(right_4_opisanie_use() === true)
                         disable_left();
 
-                    if(global_settings.get_geroy_skill("bron_4") === true)
+                    if( global_settings.isGeroySkill( NameForSkill.PROTECT_4 ) )
                         effect_right_4_4.color = "green";
                     else
                         effect_right_4_4.color = "blue";
                 }
                 onClicked:
                 {
-                    if(right_4_opisanie_use() === false)
-                        return;
-
-                    click_button_fon_2("bron_4");
+                    if( right_4_opisanie_use() )
+                        click_button_fon_2( NameForSkill.PROTECT_4 );
                 }
             }
         }

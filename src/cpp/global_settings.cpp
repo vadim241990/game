@@ -56,42 +56,6 @@ global_settings::global_settings(QApplication * app,QObject *parent) : QObject(p
         this->books_magic.push_back("");
     }
 
-    this->geroy_skill.insert("damage_1",false); //10% к урону
-    this->geroy_skill.insert("damage_poison_1",false); //урон от яда
-    this->geroy_skill.insert("damage_vampir_1",false); //реген от урона
-    this->geroy_skill.insert("damage_2",false); //30% к урону
-    this->geroy_skill.insert("damage_all_team_1",false); //15% к урону команды
-    this->geroy_skill.insert("damage_ushas_1",false); //вероятность парализовать
-    this->geroy_skill.insert("damage_poison_2",false); // увеличение урона от яда
-    this->geroy_skill.insert("damage_vampir_2",false); // увеличение регена от урона
-    this->geroy_skill.insert("damage_all_team_2",false); //увеличение урона команды до 25%
-    this->geroy_skill.insert("damage_ushas_2",false); // увеличение вероятности парализовать
-
-    this->geroy_skill.insert("bron_1",false); // 10 к броне
-    this->geroy_skill.insert("bron_2",false); // 25 к броне
-    this->geroy_skill.insert("bron_life_1",false); // 20% к максимуму жизни
-    this->geroy_skill.insert("bron_3",false); // 40 к броне
-    this->geroy_skill.insert("bron_life_2",false); // 50% к максимуму жизни
-    this->geroy_skill.insert("bron_regen_1",false); // реген 5% за ход
-    this->geroy_skill.insert("bron_4",false); // 60 к броне
-    this->geroy_skill.insert("bron_life_3",false); //75% к максимуму жизни
-    this->geroy_skill.insert("bron_regen_2",false); //усиление регенерации
-    this->geroy_skill.insert("bron_shit_1",false); //наложение защитного щита
-
-    this->geroy_skill.insert("inishiativa_1",false); // 15% увеличение инициативы
-    this->geroy_skill.insert("def_poison_1",false); // защита от яда
-    this->geroy_skill.insert("def_electriciti_1",false); // защита от молнии
-    this->geroy_skill.insert("inishiativa_2",false); // увеличение инициативы
-    this->geroy_skill.insert("def_poison_2",false); // иммунитет от яда
-    this->geroy_skill.insert("def_electriciti_2",false); // иммунитет от молнии
-
-    this->geroy_skill.insert("toshnost_1",false); //на 10 повывает точность героя
-    this->geroy_skill.insert("def_fier_1",false); //защита от огня
-    this->geroy_skill.insert("def_cold_1",false); //защита от холода
-    this->geroy_skill.insert("toshnost_2",false); //повышает точность до 20
-    this->geroy_skill.insert("def_fier_2",false); //иммунитет к огню
-    this->geroy_skill.insert("def_cold_2",false); //иммунитет к холоду
-
     this->building.insert("gold_1",false);    //building
     this->building.insert("gold_2",false);
     this->building.insert("gold_3",false);
@@ -448,18 +412,15 @@ QString global_settings::get_books_magic(int index)
     return "";
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-bool global_settings::get_geroy_skill(QString key)
+
+bool global_settings::isGeroySkill( NameForSkill::Skill skill )
 {
-    return this->geroy_skill.value(key);
+    return p_->m_hero.passivAbilities.contains( skill );
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////
-void global_settings::set_geroy_skill(QString key,bool value)
+
+void global_settings::setGeroySkill( NameForSkill::Skill skill )
 {
-    this->geroy_skill[key] = value;
+    p_->m_hero.passivAbilities.push_back( skill );
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -797,10 +758,6 @@ void global_settings::remove_clear_global_settings()
     this->books_magic.clear();
     this->otrad.clear();
     this->can_buy_otrad.clear();
-
-    QList<QString> list_skill = this->geroy_skill.keys();
-    for(int v = 0; v < list_skill.size(); v++)
-        this->geroy_skill[list_skill.at(v)] = false;
 
     QList<QString> list_building = this->building.keys();
     for(int f = 0; f < list_building.size(); f++)
