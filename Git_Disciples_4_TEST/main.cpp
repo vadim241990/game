@@ -14,6 +14,14 @@ TEST( InitGlobalSettings, InitDataIsValid )
     ASSERT_EQ( 0, settings->get_point_lovkost() );
     ASSERT_EQ( 0, settings->get_point_life() );
     ASSERT_EQ( 0, settings->get_point_energy() );
+
+    ASSERT_EQ( false, settings->isGeroySkill( NameForSkill::DAMAGE_1 ) );
+    ASSERT_EQ( false, settings->isGeroySkill( NameForSkill::DAMAGE_2 ) );
+    ASSERT_EQ( false, settings->isGeroySkill( NameForSkill::ACCURACY_1 ) );
+    ASSERT_EQ( false, settings->isGeroySkill( NameForSkill::PROTECT_1 ) );
+    ASSERT_EQ( false, settings->isGeroySkill( NameForSkill::PROTECT_3 ) );
+    ASSERT_EQ( false, settings->isGeroySkill( NameForSkill::FIRE_PROTECTION ) );
+    ASSERT_EQ( false, settings->isGeroySkill( NameForSkill::POISON_PROTECTION ) );
 }
 
 int main(int argc, char *argv[])
